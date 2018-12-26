@@ -1,0 +1,176 @@
+/**index.wxss**/
+
+.out-side-index .head-bar-index {
+    height: 128rpx
+}
+
+.out-side-index .head-bar-index .h2 {
+    display: inline-block;
+    line-height: 88rpx;
+    font-size: 34rpx;
+    color: #fff;
+    float: left;
+    padding-left: 20rpx;
+}
+
+.out-side-index .banner-bar {
+    width: 710rpx;
+    height: 300rpx;
+    margin: 0 auto;
+    border-radius: 6px;
+    overflow: hidden;
+}
+
+.out-side-index .banner-bar .swiper {
+    height: 300rpx!important;
+    border-radius: 6px;
+    overflow: hidden;
+}
+
+.out-side-index .banner-bar image {
+    width: 710rpx;
+    height: 300rpx;
+    border-radius: 6px;
+}
+
+.out-side-index .nav-bar {
+    margin: 40rpx 0 25rpx;
+    background-color: #fff;
+    overflow: hidden;
+}
+
+.out-side-index .nav-bar .nav-list {
+    display: inline-block;
+    width: 150rpx;
+    height: 185rpx;
+    float: left;
+    overflow: hidden;
+}
+
+.out-side-index .nav-bar .nav-list .nav-img {
+    padding-top: 15rpx;
+    text-align: center;
+    overflow: hidden;
+}
+
+.out-side-index .nav-bar .nav-list .nav-img image {
+    width: 112rpx;
+    height: 112rpx;
+}
+
+.out-side-index .nav-bar .nav-list .nav-name {
+    display: block;
+    text-align: center;
+    font-size: 26rpx;
+    line-height: 50rpx;
+    color: #000;
+}
+
+.out-side-index .goods-list {
+    background-color: #fff;
+    overflow: hidden;
+    margin-bottom: 24rpx;
+}
+
+.out-side-index .goods-list .goods-img {
+    text-align: center;
+    padding: 20rpx 0;
+    overflow: hidden;
+}
+
+.out-side-index .goods-list .goods-img image {
+    width: 460rpx;
+    height: 460rpx;
+}
+
+.out-side-index .goods-name {
+    line-height: 52rpx;
+    font-size: 32rpx;
+    color: #000;
+    padding: 0 20rpx;
+}
+
+.out-side-index .goods-name i {
+    display: inline-block;
+    height: 46rpx;
+    line-height: 46rpx;
+    background: #fc6c15 url('https://api.duishangbao.cn/upload/image/icon_zu.png') no-repeat 10rpx -495rpx / 70rpx 1000rpx;
+    padding: 0 10rpx 0 55rpx;
+    font-size: 32rpx;
+    color: #fff;
+    border-radius: 5rpx;
+    margin-right: 10rpx;
+}
+
+.out-side-index .goods-label {
+    overflow: hidden;
+    padding: 5rpx 0 15rpx 20rpx;
+}
+
+.out-side-index .goods-label .label-red {
+    display: inline-block;
+    float: left;
+    padding: 2rpx 8rpx;
+    font-size: 24rpx;
+    color: #e62343;
+    border: .5px solid #fce4e8;
+    border-radius: 8rpx;
+    margin-right: 10rpx;
+}
+
+.out-side-index .goods-label .label-yellow {
+    display: inline-block;
+    float: left;
+    padding: 2rpx 8rpx;
+    font-size: 24rpx;
+    color: #fc6c15;
+    border: .5px solid #fce4e8;
+    border-radius: 8rpx;
+    margin-right: 1rpx;
+}
+
+.out-side-index .goods-price {
+    height: 88rpx;
+    position: relative;
+    padding: 0 20rpx;
+}
+
+.out-side-index .goods-price .goods-btn-pay {
+    display: inline-block;
+    width: 218rpx;
+    padding: 6rpx 0;
+    background-color: #e62343;
+    font-size: 36rpx;
+    color: #fff;
+    text-align: center;
+    position: absolute;
+    top: 0;
+    right: 20rpx;
+    border-radius: 8rpx;
+}
+
+.out-side-index .goods-price .icon-rmb {
+    display: inline-block;
+    font-size: 24rpx;
+    color: #e62343;
+    float: left;
+    padding: 33rpx 6rpx 0 0;
+}
+
+.out-side-index .goods-price .goods-price-now {
+    display: inline-block;
+    font-size: 68rpx;
+    line-height: 68rpx;
+    color: #e62343;
+    float: left;
+    padding-top: 0;
+}
+
+.out-side-index .goods-price .goods-price-old {
+    display: inline-block;
+    font-size: 24rpx;
+    color: #9c9c9c;
+    float: left;
+    padding: 33rpx 6rpx 0 15rpx;
+    text-decoration: line-through;
+}

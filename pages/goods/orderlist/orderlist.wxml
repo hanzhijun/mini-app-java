@@ -1,0 +1,111 @@
+<view class='order-box {{ordertype == "dpay" && (orders.length >= 2 || ids.length >= 2) && "dds"}}'>
+    <!-- 导航 -->
+    <view class="nav-box fs-24 fc-gray-darkest bg-white">
+        <!--订单状态: 0待付款(默认，支付失败)，1已关闭，2待发货(已支付)，3已发货，4已完成，5申请退款，6拒绝退款，7等待退款，8退款完成，21所有订单，22售后-->
+        <text class="{{status == 21 && 'current fc-red-light'}}" data-status="21" bindtap='switchTab'>所有订单</text>
+        <text class="{{status == 0 && 'current fc-red-light'}}" data-status="0" bindtap='switchTab'>待付款</text>
+        <text class="{{status == 2 && 'current fc-red-light'}}" data-status="2" bindtap='switchTab'>待发货</text>
+        <text class="{{status == 3 && 'current fc-red-light'}}" data-status="3" bindtap='switchTab'>待收货</text>
+        <text class="{{status == 4 && 'current fc-red-light'}}" data-status="4" bindtap='switchTab'>已完成</text>
+        <text class="{{status == 22 && 'current fc-red-light'}}" data-status="22" bindtap='switchTab'>售后</text>
+    </view>
+
+    <!-- 通过current来更新数据 -->
+    <view class="content-outside">
+        <view class="order-list-main {{item.status == status ? 'this-show' : ''}}" wx:for="{{orderList}}" wx:key="">
+
+            <view class="content-box bg-white" wx:for='{{item.list}}' wx:for-item="goods" wx:key="">
+
+                <view style='width: 100%;border-bottom:1px solid #e6e6e6;padding: 0 30rpx 35rpx 0;'>
+                    <view>
+                        <checkbox-group bindchange='checkAll' data-order_id='{{goods.id}}'>
+                            <view class='checkbox' style='display:flex;justify-content: space-between'>
+                                <view>
+                                    <!--<checkbox checked='{{goods.checked}}' value='{{goods.id}}' wx:if='{{goods.status == 0}}'></checkbox>-->
+                                    <text class="fs-30">贝划算</text>
+                                </view>
+
+                                <view class='fs-24 fc-red'>
+                                    <text wx:if='{{goods.status == 5}}'>申请退款</text>
+                                    <text wx:elif='{{goods.status == 7}}'>退款中</text>
+                                    <text wx:elif='{{goods.status == 8}}'>退款成功</text>
+                                    <text wx:elif='{{goods.status == 6}}'>退款失败</text>
+                                    <text wx:elif='{{goods.status == 0}}'>待付款</text>
+                                    <text wx:elif='{{goods.status == 2}}'>待发货</text>
+                                    <text wx:elif='{{goods.status == 3}}'>待收货</text>
+                                    <text wx:elif='{{goods.status == 4}}'>已完成</text>
+                                </view>
+
+                            </view>
+                        </checkbox-group>
+                    </view>
+                </view>
+
+                <view class='content'>
+
+                    <view style='width:100%'>
+                        <!--<checkbox-group bindchange='check' data-goods_id='{{goods.id}}'>
+                            <view class='checkbox' wx:if='{{goods.status == 0}}'>
+                                <checkbox checked='{{goods.checked}}' value='{{goods.id}}'></checkbox>
+                            </view>
+                        </checkbox-group>-->
+                        <image style='width: 75px;height:75px;flex-shrink:0' src='{{goods.goodsImage}}'></image>
+
+                        <view class="fs-24 desc">
+                            <text>{{goods.goodsName}}</text>
+                            <text>{{goods.goodsSpec}}</text>
+
+                            <view>
+                                <view>
+                                    <text>￥{{goods.goodsPrice.cash / 100 || 0}} 可打捞金贝 {{goods.back_gold}}</text>
+                                </view>
+                                <text>x {{goods.quantity}}</text>
+                            </view>
+                        </view>
+                    </view>
+                </view>
+
+                <view class="footer">
+                    <view class='result fs-24'>
+                        <text>共{{goods.quantity}}件商品 合计：</text>
+                        <text class='width100'>￥{{goods.goodsPrice.cash  / 100}} + {{goods.goodsPrice.gold}}金贝</text>
+                    </view>
+
+                    <view class='btn-box'>
+                        <!--订单状态: 0待付款(默认，支付失败)，1已关闭，2待发货(已支付)，3已发货，4已完成，5申请退款，6拒绝退款，7等待退款，8退款完成，21所有订单，22售后-->
+                        <button class='order-btn fs-30' wx:if='{{goods.sharedata}}' bindtouchstart="shareAgain" data-e_data='{{item.sharedata.e_data}}' data-index="{{index}}">查看分享</button>
+                        <button class='fs-30 order-btn' wx:if='{{goods.status == 0}}'>取消订单</button>
+                        <button class='fs-30 order-btn' wx:if='{{goods.status == 1}}'>查看详情</button>
+                        <button class='fs-30 order-btn' wx:if='{{goods.status == 3}}'>查看物流</button>
+                        <button class='fs-30 order-btn' wx:if='{{goods.status == 3}}'>确认收货</button>
+                        <button class='fs-30 order-btn' wx:if='{{goods.status == 4}}'>删除订单</button>
+                        <button class='fs-30 order-btn' wx:if='{{goods.status == 4}}'>重新购买</button>
+                        <button class='fs-30 order-btn other' wx:if='{{goods.status == 0}}'>立即付款</button>
+                    </view>
+                </view>
+
+            </view>
+
+        </view>
+    </view>
+
+    <view style='flex:1'></view>
+
+    <view class='pay-box' wx:if='{{ordertype == "dpay" && (orders.length >= 2 || ids.length >= 2)}}'>
+        <button bindtap='pay' class='pay fs-24'>合并支付</button>
+    </view>
+
+    <view class='alert-msg' wx:if='{{show_alert}}'>
+        <radio-box item='{{alert_msg}}' bindvalue='getVal'>
+            <view>
+                <text style='font-size: 36rpx;'>请选择取消原因</text>
+            </view>
+        </radio-box>
+
+        <button data-type='finish' bindtap='hide' class='fs-30 fc-white'>完成</button>
+    </view>
+
+    <view class='beijing' data-type='hide' bindtap='hide' wx:if='{{show_alert}}'></view>
+
+</view>
+

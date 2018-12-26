@@ -1,0 +1,80 @@
+<!--商家-->
+
+<view class="out-side-businesshome">
+
+  <view class="busine-title fs-36 fc-1a">北京遇上烤鸭、北京遇上烤鸭（府城国际）北京遇上烤鸭（府城国际）</view>
+
+  <view class="open-time fs-24 fc-99">周一至周日 09:00-23:00 99元/人</view>
+
+  <view class="banner">
+    <image src="https://api.duishangbao.net/upload/operation/content/img/1/37bf33479250981c1f13135a54aaeca0.jpeg"></image>
+  </view>
+
+  <view class="addr">
+    <view class="l-side">
+      <text class="addr-name fs-28 fc-1a text-overflow">武侯区益州大道中段722号复城国际1层道中段722号复城国际1层</text>
+      <text class="addr-num fx-28 fc-99">距离您500m</text>
+    </view>
+    <view class="border-line-shu-e6e6e6"></view>
+    <text class="tel opacity" ontouchstart=""></text>
+  </view>
+
+  <view class="voucher-bar">
+    <view class="title fs-32 fc-1a">代金券</view>
+
+    <ul class="voucher-ul">
+      <li>
+        <view class="l">
+          <view class="price fs-32 fc-e6 text-overflow">99.99代金券99.99代金券</view>
+          <view class="use-time fs-24 fc-99">周一至周五使用</view>
+        </view>
+        <view class="c"></view>
+        <view class="r">
+          <view class="price">
+            <text class="fs-36 fc-e6">￥</text>
+            <text class="fs-48 fc-e6">88.88</text>
+            <text class="return fs-22 fc-fc">送68金贝</text>
+          </view>
+          <view class="gold fs-24 fc-99">金贝帮你抵扣了20.00元</view>
+          <text class="buy-btn fs-28 fc-ff opacity" ontouchstart="">立即抢购</text>
+          <text class="icon-gold" title="金贝抵扣"></text>
+        </view>
+      </li>
+    </ul>
+
+    <view class="border-line-heng-e6e6e6"></view>
+    <view class="more fs-24 fc-40 opacity" ontouchstart="">更多1张优惠券 ></view>
+
+  </view>
+
+  <view class="package-bar">
+    <view class="header">
+      <text class="title fs-32 fc-1a">热销套餐</text>
+      <text class="more fs-24 fc-66 opacity" ontouchstart="">更多</text>
+    </view>
+
+    <view class="package-outside">
+      <view class="auto-k">
+        <ul>
+          <li class="opacity" ontouchstart="">
+            <view class="img">
+              <image src="https://api.duishangbao.net/upload/operation/content/img/1/37bf33479250981c1f13135a54aaeca0.jpeg"></image>
+            </view>
+            <view class="main">
+              <text class="name fs-32 fc-1a text-overflow">就是合适...(团购1~2人)</text>
+              <view class="price text-overflow">
+                <text class="fs-28 fc-e6">￥</text>
+                <text class="fs-38 fc-e6">800.00</text>
+              </view>
+              <text class="sale fs-24 fc-66">已售200份</text>
+              <text class="price-old fs-24 fc-66 fs-line">原价:￥1399</text>
+            </view>
+          </li>
+        </ul>
+      </view>
+    </view>
+  </view>
+
+</view>
+
+<include src="../include/include.wxml"></include>

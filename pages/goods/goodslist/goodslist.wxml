@@ -1,0 +1,36 @@
+<!--列表页-->
+
+<view class="out-side-goodslist {{word?'has-search':''}}">
+
+    <view class="head-bar-fixed" wx:if="{{word}}">
+        <view class="search-main-bar">
+            <text class="search-go opacity" title="搜索" bindtap="toSearch"></text>
+            <input class="search-word" placeholder="搜索商品(助力购买更划算)" placeholder-style="color:#ffe0e8"></input>
+            <text class="search-del opacity" title="清空" bindtap="delAllword"></text>
+        </view>
+    </view>
+
+    <view class="nav-bar">
+        <view class="opacity fc-1a {{searchType == 1 ? 'this-over':''}}" data-type="1" bindtap="changeNav"><text class="fs-26">综合</text></view>
+        <view class="opacity fc-1a {{searchType == 2 ? 'this-over':''}}" data-type="2" bindtap="changeNav"><text class="fs-26">销量</text></view>
+        <view class="opacity fc-1a {{searchType == 3 || searchType === 4 ? 'this-over':''}}" data-type="3" bindtap="changeNav"><text class="fs-26 sort {{searchType === 3 ? 'up':''}} {{searchType === 4 ? 'down':''}}">价格</text></view>
+    </view>
+
+    <view class="goods-out">
+        <ul>
+            <li class="goods-list opacity" wx:for="{{ list }}" data-id="{{ item.id }}" bindtap="openPage">
+                <view class="goods-img">
+                    <image wx:if="item.image" src="{{ item.image }}"></image>
+                    <image wx:else src="https://img.duishangbao.cn/upload/goods/list/13/57df3532333e8e3e87ab963f137db674.png"></image>
+                </view>
+                <view class='goods-name text-overflow-2'>{{ item.goodsName }}</view>
+                <view class='goods-info'>
+                    <text class='red'>￥ {{ item.price/100 }}</text>
+                </view>
+            </li>
+        </ul>
+    </view>
+
+</view>
+
+<include src="../../include/include.wxml"></include>

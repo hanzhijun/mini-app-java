@@ -1,0 +1,88 @@
+.out-side-aftersalelist {
+  background-color: #f4f4f4;
+  min-height: 100vh;
+}
+
+.out-side-aftersalelist .goods-bar {
+  background-color: #fff;
+  overflow: hidden;
+  padding: 35rpx 20rpx 40rpx;
+}
+
+.out-side-aftersalelist .goods-bar .goods-img {
+  width: 164rpx;
+  height: 164rpx;
+  float: left;
+  margin: 5rpx 18rpx 0 0;
+}
+
+.out-side-aftersalelist .goods-bar .goods-img image {
+  width: 164rpx;
+  height: 164rpx;
+  border-radius: 10rpx;
+}
+
+.out-side-aftersalelist .goods-bar .goods-main {
+  width: 528rpx;
+  overflow: hidden;
+  float: left;
+}
+
+.out-side-aftersalelist .goods-bar .name {
+  width: 100%;
+  max-height: 80rpx;
+  line-height: 40rpx;
+}
+
+.out-side-aftersalelist .goods-bar .sku {
+  width: 100%;
+  line-height: 40rpx;
+}
+
+.out-side-aftersalelist .goods-bar .price-bar {
+  line-height: 28rpx;
+  padding-top: 15rpx;
+}
+
+.out-side-aftersalelist .goods-bar .price-bar .txt {
+}
+
+.out-side-aftersalelist .goods-bar .price-bar .price {
+  display: inline-block;
+  float: right;
+}
+
+.out-side-aftersalelist .after-ul {
+  display: block;
+  background-color: #fff;
+  overflow: hidden;
+  margin-top: 20rpx;
+  padding: 0 20rpx;
+}
+
+.out-side-aftersalelist .after-li {
+  display: block;
+  height: 90rpx;
+  position: relative;
+  border-top: 1px solid #eee;
+}
+
+.out-side-aftersalelist .after-li:first-child {
+  border-top: none;
+}
+
+.out-side-aftersalelist .after-li .txt {
+  display: inline-block;
+  line-height: 90rpx;
+}
+
+.out-side-aftersalelist .after-li .icon {
+  display: inline-block;
+  width: 25rpx;
+  height: 25rpx;
+  position: absolute;
+  right: 0;
+  top: 32rpx;
+  background: url('https://api.duishangbao.cn/upload/image/icon_zu2.png') no-repeat 0 -1050rpx / 70rpx 1190rpx;
+  z-index: 1;
+}

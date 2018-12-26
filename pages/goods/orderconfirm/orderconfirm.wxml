@@ -1,0 +1,73 @@
+<!--确认订单页-->
+<view class="out-side-confirm">
+
+    <view class="order-address" wx:if="{{ addrId !== null }}">
+        <view class="order-addr-mess" wx:if="{{ addrId !== '' }}" bindtap="goToAddress('change')">
+            <text class="name fs-bold fs-24">收货人：{{ addrUserName }}</text>
+            <text class="tel fs-bold fs-24">{{ addrUserTel }}</text>
+            <text class="addr-main fs-24">{{ addrUserRess }}</text>
+            <text class="icon-star"></text>
+        </view>
+
+        <view class="order-addr-mess" wx:if="{{ addrId === '' }}" bindtap="goToAddress('add')">
+            <text class="add-new-btn fs-32 fc-1a">新增收货地址</text>
+            <text class="icon-star"></text>
+        </view>
+        <view class="line"></view>
+    </view>
+
+    <view class="order-goods-list" wx:for="{{ goodsList }}" wx:key="">
+
+        <view class="pub-name fs-28 fc-1a">贝划算</view>
+
+        <view class="order-goods-bar">
+            <view class="order-goods-img"><image src="https://bhs-duishangbao.oss-cn-shenzhen.aliyuncs.com/upload/goods/imgs/32/18a65547982d717dc220fb133e1d8bcf.jpeg"></image></view>
+            <text class="order-goods-name fs-26 fc-0d">{{ item.goodsName }}</text>
+            <text class="order-goods-sku fs-22 fc-b3">{{ item.goodsSpec }}</text>
+            <view class="order-goods-price">
+                <text class="price-num fs-38 fc-e6">￥{{ item.goodsPrice.cash/100 | priceNum(item.goodsPrice.cash/100) }}</text>
+                <text class="return-num fs-24">送88金贝<text class="icon"></text></text>
+            </view>
+            <text class="order-goods-num fs-22 fc-59">x{{ item.quantity }}</text>
+        </view>
+
+        <view class="order-goods-message">
+            <text class="title fs-24 fc-1a">买家留言</text>
+            <input class="fs-22 fc-1a" type="text" placeholder="填写内容备注需求等，45字内"></input><!--v-model="item.remarks"-->
+        </view>
+
+        <view class="order-goods-subtotal">
+            <text class="fs-26 fc-1a fs-bold">共{{ item.quantity }}件商品　　小计: </text>
+            <text class="fs-28 fc-e6">￥{{ item.payPrice.cash/100 * item.quantity | priceNum(item.payPrice.cash/100 * item.quantity) }}</text>
+        </view>
+    </view>
+
+
+    <ul class="order-goods-p-count">
+        <li class="fs-24">
+            <text class="title">商品总额</text>
+            <text class="price fc-e6">￥{{ payPriceTotalPrice.cash/100 | priceNum(payPriceTotalPrice.cash/100) }}</text>
+        </li>
+        <li class="fs-24" wx:if="{{ useGold === 1 }}">
+            <text class="title">使用金贝</text>
+            <text class="price fc-e6">-￥{{ useGoldNum | priceNum(useGoldNum) }}</text>
+        </li>
+        <li class="fs-24">
+            <text class="title">运费</text>
+            <text class="price fc-e6">￥{{ freightPrice.cash/100 | priceNum(freightPrice.cash/100) }}</text>
+        </li>
+    </ul>
+
+    <view class='golden-yh' wx:if="{{ this.$store.state.userCapital.gold !== 0 }}">
+        <text class="title fs-28 fc-1a">可用<text class="icon">{{ gold / 100 }}</text>个金贝</text>
+        <text class="gold-auto {{useGold === 1?'this-over':''}}" bindtap='checkSwitch'></text>
+    </view>
+
+    <view class="go-pay">
+        <text><text class="fs-34 fs-bold fc-e6">￥{{payNum | priceNum(payNum)}}</text><text class="fs-26">实付金额: </text></text>
+        <text class="fs-38 fc-ff opacity" bindtap="createOrder">去支付</text>
+    </view>
+
+</view>
+
+<include src="../include/include.wxml"></include>

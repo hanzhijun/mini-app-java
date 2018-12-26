@@ -1,0 +1,305 @@
+/**
+ * @title 确认订单页
+ */
+.out-side-confirm {
+  background-color: #f4f4f4;
+  min-height: calc(100vh - 200rpx);
+  padding-bottom: 200rpx;
+}
+
+.out-side-confirm .gold-auto {
+  display: inline-block;
+  width: 95rpx;
+  height: 60rpx;
+  overflow: hidden;
+  float: right;
+  background: url('https://api.duishangbao.cn/upload/image/icon_zu3.png') no-repeat 0 -560rpx / 100rpx 700rpx;
+  margin-top: 35rpx;
+}
+
+.out-side-confirm .gold-auto.this-over {
+  background: url('https://api.duishangbao.cn/upload/image/icon_zu3.png') no-repeat 0 -630rpx / 100rpx 700rpx;
+}
+
+.out-side-confirm .confirm-header-null {
+  height: 88rpx;
+}
+
+.out-side-confirm .order-address {
+  overflow: hidden;
+  background-color: #fff;
+}
+
+.out-side-confirm .order-address .line {
+  display: block;
+  height: 20rpx;
+  background: url('https://api.duishangbao.cn/upload/image/line-order-header.png') repeat-x center / 84rpx 4rpx;
+  border-bottom: 1px solid #e5e5e5;
+}
+
+.out-side-confirm .order-addr-mess {
+  width: 710rpx;
+  margin: 0 auto;
+  position: relative;
+}
+
+.out-side-confirm .order-addr-mess .name {
+  display: inline-block;
+  font-size: 28rpx;
+  color: #1a1a1a;
+  line-height: 32rpx;
+  float: left;
+  margin-top: 20rpx;
+}
+
+.out-side-confirm .order-addr-mess .tel {
+  display: inline-block;
+  font-size: 28rpx;
+  color: #1a1a1a;
+  line-height: 32rpx;
+  float: right;
+  margin: 20rpx 63rpx 0 0;
+}
+
+.out-side-confirm .order-addr-mess .addr-main {
+  display: block;
+  clear: both;
+  line-height: 32rpx;
+  padding: 15rpx 56rpx 5rpx 0;
+}
+
+.out-side-confirm .order-addr-mess .icon-star {
+  display: inline-block;
+  width: 50rpx;
+  height: 50rpx;
+  position: absolute;
+  right: 0;
+  top: 40rpx;
+  background: url('https://api.duishangbao.cn/upload/image/icon_zu.png') no-repeat 30rpx -193rpx/70rpx 1000rpx;
+  z-index: 1;
+}
+
+.out-side-confirm .order-addr-mess .add-new-btn {
+  display: block;
+  background: url('https://api.duishangbao.cn/upload/image/icon_zu4.png') no-repeat 0 -115rpx/50rpx 1000rpx;
+  padding: 38rpx 0 30rpx 58rpx;
+}
+
+.out-side-confirm .order-goods-list {
+  background-color: #fff;
+  padding: 20rpx;
+  overflow: hidden;
+  margin-top: 20rpx;
+}
+
+.out-side-confirm .order-goods-list .pub-name {
+  height: 70rpx;
+}
+
+.out-side-confirm .order-goods-list .order-goods-bar {
+  height: 215rpx;
+  position: relative;
+}
+
+.out-side-confirm .order-goods-img {
+  width: 168rpx;
+  height: 168rpx;
+  position: absolute;
+  left: 0;
+  top: 0;
+}
+
+.out-side-confirm .order-goods-img image {
+  width: 168rpx;
+  height: 168rpx;
+}
+
+.out-side-confirm .order-goods-bar .order-goods-name {
+  display: block;
+  line-height: 36rpx;
+  padding: 0 80rpx 5rpx 188rpx;
+}
+
+.out-side-confirm .order-goods-bar .order-goods-sku {
+  display: block;
+  line-height: 32rpx;
+  padding: 0 80rpx 0 188rpx;
+}
+
+.out-side-confirm .order-goods-bar .order-goods-price {
+  width: 500rpx;
+  position: absolute;
+  top: 122rpx;
+  left: 188rpx;
+}
+
+.out-side-confirm .order-goods-bar .order-goods-price .price-num {
+  display: inline-block;
+  line-height: 40rpx;
+  float: left;
+  margin: 1rpx 0 0 0;
+}
+
+.out-side-confirm .order-goods-bar .order-goods-price .return-num {
+  display: inline-block;
+  color: #fc6c15;
+  border: 1px solid #fc6c15;
+  padding: 2rpx 6rpx 3rpx;
+  border-radius: 5rpx;
+  position: relative;
+  float: left;
+  margin: 0 0 0 20rpx;
+}
+
+.out-side-confirm .order-goods-bar .order-goods-price .return-num .icon {
+  display: inline-block;
+  width: 15rpx;
+  height: 13rpx;
+  background: url('https://api.duishangbao.cn/upload/image/qipao_jiao.png') no-repeat 0 0/15rpx 13rpx;
+  position: absolute;
+  left: -13rpxm;
+  top: 12rpx;
+}
+
+.out-side-confirm .order-goods-bar .order-goods-num {
+  display: inline-block;
+  position: absolute;
+  right: 0;
+  top: 124rpx;
+}
+
+.out-side-confirm .order-goods-message {
+  height: 80rpx;
+  border-top: 1px solid #f4f4f4;
+  border-bottom: 1px solid #f4f4f4;
+}
+
+.out-side-confirm .order-goods-message .title {
+  display: inline-block;
+  width: 180rpx;
+  height: 38rpx;
+  line-height: 38rpx;
+  float: left;
+  margin: 20rpx 0 0 0;
+}
+
+.out-side-confirm .order-goods-message input {
+  width: 529rpx;
+  height: 38rpx;
+  line-height: 38rpx;
+  border: 0;
+  float: left;
+  margin: 20rpx 0 0 0;
+}
+
+.out-side-confirm input::-webkit-input-placeholder {
+  color: #737373
+}
+
+.out-side-confirm .order-goods-delivery {
+  height: 80rpx;
+}
+
+.out-side-confirm .order-goods-delivery .title {
+  display: inline-block;
+  line-height: 80rpx;
+  float: left;
+}
+
+.out-side-confirm .order-goods-delivery .delivery {
+  display: inline-block;
+  line-height: 80rpx;
+  float: right;
+}
+
+.out-side-confirm .order-goods-subtotal {
+  overflow: hidden;
+  padding: 25rpx 0 0;
+  line-height: 50rpx;
+  text-align: right;
+}
+
+.out-side-confirm .order-goods-p-count {
+  display: block;
+  overflow: hidden;
+  background-color: #fff;
+  padding: 20rpx;
+  margin-top: 20rpx;
+}
+
+.out-side-confirm .order-goods-p-count li {
+  display: block;
+  line-height: 55rpx;
+}
+
+.out-side-confirm .order-goods-p-count li .price {
+  display: inline-block;
+  float: right;
+}
+
+.out-side-confirm .go-pay {
+  height: 100rpx;
+  width: 100vw;
+  background-color: #fff;
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  border-top: 1px solid #f4f4f4;
+}
+
+.out-side-confirm .go-pay text {
+  display: inline-block;
+  width: 506rpx;
+  line-height: 100rpx;
+  float: left;
+  text-align: right;
+}
+
+.out-side-confirm .go-pay text b,
+.out-side-confirm .go-pay text i {
+  display: inline-block;
+  padding-left: 50rpx;
+  line-height: 100rpx;
+  float: right;
+}
+
+.out-side-confirm .go-pay a {
+  display: inline-block;
+  width: 212rpx;
+  line-height: 100rpx;
+  float: right;
+  background-color: #e62343;
+  text-align: center;
+}
+
+.out-side-confirm .golden-yh {
+  width: 100vw;
+  height: 82rpx;
+  background-color: #fff;
+  position: fixed;
+  left: 0;
+  bottom: 98rpx;
+  border-top: 1px solid #f4f4f4;
+}
+
+.out-side-confirm .golden-yh .title {
+  display: inline-block;
+  line-height: 82rpx;
+  padding-left: 20rpx;
+}
+
+.out-side-confirm .golden-yh .title i {
+  color: #fe7600;
+}
+
+.out-side-confirm .golden-yh .gold-auto {
+  width: 48rpx;
+  height: 48rpx;
+  background: url('https://api.duishangbao.cn/upload/image/icon_zu.png') no-repeat 0 -100rpx/70rpx 1000rpx;
+  float: right;
+  margin: 16rpx;
+}
+
+.out-side-confirm .golden-yh .gold-auto.this-over {
+  background: url('https://api.duishangbao.cn/upload/image/icon_zu.png') no-repeat 0 0/70rpx 1000rpx;
+}

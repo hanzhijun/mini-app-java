@@ -1,0 +1,351 @@
+
+.out-side-orderdetail {
+  background-color: #f4f4f4;
+  min-height: 100vh;
+}
+
+.out-side-orderdetail .order-address {
+  overflow: hidden;
+  background-color: #fff;
+}
+
+.out-side-orderdetail .order-address .line {
+  display: block;
+  height: 20rpx;
+  background: url('https://api.duishangbao.cn/upload/image/line-order-header.png') repeat-x center / 84rpx 4rpx;
+  border-bottom: 1px solid #e5e5e5;
+}
+
+.out-side-orderdetail .order-addr-mess {
+  width: 710rpx;
+  margin: 0 auto;
+  position: relative;
+}
+
+.out-side-orderdetail .order-addr-mess .name {
+  display: inline-block;
+  font-size: 28rpx;
+  color: #1a1a1a;
+  line-height: 32rpx;
+  float: left;
+  margin-top: 20rpx;
+}
+
+.out-side-orderdetail .order-addr-mess .tel {
+  display: inline-block;
+  font-size: 28rpx;
+  color: #1a1a1a;
+  line-height: 32rpx;
+  float: right;
+  margin: 20rpx 0 0 0;
+}
+
+.out-side-orderdetail .order-addr-mess .addr-main {
+  display: block;
+  clear: both;
+  line-height: 32rpx;
+  padding: 15rpx 0;
+  font-size: 26rpx;
+}
+
+.out-side-orderdetail .order-addr-mess .icon-star {
+  display: inline-block;
+  width: 50rpx;
+  height: 50rpx;
+  position: absolute;
+  right: 0;
+  top: 40rpx;
+  background: url('https://api.duishangbao.cn/upload/image/icon_zu.png') no-repeat 30rpx -193rpx/70rpx 1000rpx;
+  z-index: 1;
+}
+
+.out-side-orderdetail .order-addr-mess .add-new-btn {
+  display: block;
+  background: url('https://api.duishangbao.cn/upload/image/icon_zu4.png') no-repeat 0 -115rpx/50rpx 1000rpx;
+  padding: 38rpx 0 30rpx 58rpx;
+}
+
+.out-side-orderdetail .order-goods-list {
+  background-color: #fff;
+  padding: 20rpx;
+  overflow: hidden;
+  margin-top: 20rpx;
+}
+
+.out-side-orderdetail .order-goods-list .pub-name {
+  height: 70rpx;
+}
+
+.out-side-orderdetail .order-goods-list .order-goods-bar {
+  height: 215rpx;
+  position: relative;
+}
+
+.out-side-orderdetail .order-goods-img {
+  width: 168rpx;
+  height: 168rpx;
+  position: absolute;
+  left: 0;
+  top: 0;
+}
+
+.out-side-orderdetail .order-goods-img image {
+  width: 168rpx;
+  height: 168rpx;
+}
+
+.out-side-orderdetail .order-goods-bar .order-goods-name {
+  display: block;
+  line-height: 36rpx;
+  padding: 0 80rpx 5rpx 188rpx;
+}
+
+.out-side-orderdetail .order-goods-bar .order-goods-sku {
+  display: block;
+  line-height: 32rpx;
+  padding: 0 80rpx 0 188rpx;
+}
+
+.out-side-orderdetail .order-goods-bar .order-goods-price {
+  width: 500rpx;
+  position: absolute;
+  top: 130rpx;
+  left: 188rpx;
+}
+
+.out-side-orderdetail .order-goods-bar .order-goods-price .price-num {
+  display: inline-block;
+  line-height: 40rpx;
+  float: left;
+  margin: 1rpx 0 0 0;
+}
+
+.out-side-orderdetail .order-goods-bar .order-goods-price .return-num {
+  display: inline-block;
+  color: #fc6c15;
+  border: 1px solid #fc6c15;
+  padding: 2rpx 6rpx 3rpx;
+  border-radius: 5rpx;
+  position: relative;
+  float: left;
+  margin: 0 0 0 20rpx;
+}
+
+.out-side-orderdetail .order-goods-bar .order-goods-price .return-num i {
+  display: inline-block;
+  width: 15rpx;
+  height: 13rpx;
+  background: url('https://api.duishangbao.cn/upload/image/qipao_jiao.png') no-repeat 0 0/15rpx 13rpx;
+  position: absolute;
+  left: -13rpx;
+  top: 12rpx;
+}
+
+.out-side-orderdetail .order-goods-bar .order-goods-num {
+  display: inline-block;
+  position: absolute;
+  right: 0;
+  top: 78rpx;
+}
+
+.out-side-orderdetail .order-goods-bar .order-goods-tui {
+  display: inline-block;
+  position: absolute;
+  right: 0;
+  top: 126rpx;
+  padding: 1rpx 25rpx;
+  border-radius: 150rpx;
+  border: 1px solid #808080;
+}
+
+.out-side-orderdetail .order-goods-message {
+  height: 80rpx;
+  border-top: 1px solid #f4f4f4;
+  border-bottom: 1px solid #f4f4f4;
+}
+
+.out-side-orderdetail .order-goods-message .title {
+  display: inline-block;
+  width: 180rpx;
+  height: 38rpx;
+  line-height: 38rpx;
+  float: left;
+  margin: 20rpx 0 0 0;
+}
+
+.out-side-orderdetail .order-goods-message .liuyan {
+  display: inline-block;
+  width: 529rpx;
+  height: 38rpx;
+  line-height: 38rpx;
+  border: 0;
+  float: left;
+  margin: 20rpx 0 0 0;
+}
+
+.out-side-orderdetail .order-goods-delivery {
+  height: 80rpx;
+}
+
+.out-side-orderdetail .order-goods-delivery .title {
+  display: inline-block;
+  line-height: 80rpx;
+  float: left;
+}
+
+.out-side-orderdetail .order-goods-delivery .delivery {
+  display: inline-block;
+  line-height: 80rpx;
+  float: right;
+}
+
+.out-side-orderdetail .order-goods-subtotal {
+  overflow: hidden;
+  padding: 25rpx 0 0;
+  line-height: 50rpx;
+  text-align: right;
+}
+
+.out-side-orderdetail .order-goods-p-count {
+  display: block;
+  overflow: hidden;
+  background-color: #fff;
+  padding: 20rpx;
+  margin-top: 20rpx;
+}
+
+.out-side-orderdetail .order-goods-p-count li {
+  display: block;
+  line-height: 55rpx;
+}
+
+.out-side-orderdetail .order-goods-p-count li .price {
+  display: inline-block;
+  float: right;
+}
+
+.out-side-orderdetail .order-jilu {
+  display: block;
+  background-color: #fff;
+  overflow: hidden;
+  padding: 10rpx 20rpx;
+  margin-top: 20rpx;
+}
+
+.out-side-orderdetail .order-jilu li {
+  display: block;
+  overflow: hidden;
+}
+
+.out-side-orderdetail .order-jilu li .txt {
+  display: inline-block;
+  line-height: 52rpx;
+  font-size: 28rpx;
+  float: left;
+}
+
+.out-side-orderdetail .order-jilu li .copy {
+  display: inline-block;
+  padding: 5rpx 10rpx;
+  border-radius: 3px;
+  border: 1px solid #bfbfbf;
+  float: left;
+  margin: 2rpx 0 0 30rpx;
+}
+
+.out-side-orderdetail .footer-btn {
+  background-color: #fff;
+  overflow: hidden;
+  margin-top: 20rpx;
+  padding: 20rpx;
+}
+
+.out-side-orderdetail .footer-btn text {
+  display: inline-block;
+  font-size: 26rpx;
+  color: #595959;
+  line-height: 26rpx;
+  padding: 15rpx 20rpx;
+  border: 1px solid #bfbfbf;
+  border-radius: 3px;
+  float: right;
+  margin-left: 25rpx;
+}
+
+.out-side-orderdetail .footer-btn text.red {
+  color: #e62343;
+  border: 1px solid #e62343;
+}
+
+.out-side-orderdetail .order-wuliu {
+  background-color: #fff;
+  padding: 20rpx;
+  margin-top: 20rpx;
+  overflow: hidden;
+  position: relative;
+}
+
+.out-side-orderdetail .order-wuliu .icon {
+  width: 70rpx;
+  height: 70rpx;
+  float: left;
+}
+
+.out-side-orderdetail .order-wuliu .icon image {
+  width: 70rpx;
+  height: 70rpx;
+}
+
+.out-side-orderdetail .order-wuliu .name-bar {
+  max-width: 160rpx;
+  float: left;
+  overflow: hidden;
+  margin: 0 0 0 20rpx;
+}
+
+.out-side-orderdetail .order-wuliu .name-bar .name {
+  display: block;
+  width: 100%;
+  height: 44rpx;
+}
+
+.out-side-orderdetail .order-wuliu .name-bar .tel {
+  display: block;
+  width: 100%;
+  height: 30rpx;
+}
+
+.out-side-orderdetail .order-wuliu .border-line-shu-e6e6e6 {
+  float: left;
+  height: 50rpx;
+  margin: 10rpx 15rpx 0 15rpx;
+}
+
+.out-side-orderdetail .order-wuliu .wuliu-state {
+  max-width: 420rpx;
+  float: left;
+  overflow: hidden;
+  margin: 0 0 0 0;
+}
+
+.out-side-orderdetail .order-wuliu .wuliu-state .txt {
+  display: block;
+  width: 100%;
+  height: 40rpx;
+}
+
+.out-side-orderdetail .order-wuliu .wuliu-state .time {
+  display: block;
+  width: 100%;
+}
+
+.out-side-orderdetail .order-wuliu .icon-star {
+  display: inline-block;
+  width: 50rpx;
+  height: 50rpx;
+  position: absolute;
+  right: 20rpx;
+  top: 40rpx;
+  background: url('https://api.duishangbao.cn/upload/image/icon_zu.png') no-repeat 30rpx -193rpx/70rpx 1000rpx;
+  z-index: 1;
+}

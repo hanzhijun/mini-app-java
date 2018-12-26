@@ -1,0 +1,90 @@
+<login-box bind:loginevent='loginevent' id="loginBox"></login-box>
+
+<view class="out-side-cart">
+
+    <view class="head-bar-fixed">
+        <view class="list-title fs-32 fc-ff">{{ title }}</view>
+        <text class="header-address text-overflow"> {{ this.$store.state.addrName }}</text>
+        <text class="header-cart-btn opacity" bindtap="switchPage" wx:if="{{option == 'shopcart'}}" ontouchstart="">编辑商品</text>
+        <text class="header-cart-btn opacity" bindtap="switchPage" wx:if="{{option == 'edit'}}" ontouchstart="">完成</text>
+    </view>
+
+    <view class="cart-main" wx:if="{{count > 0}}">
+        <view class="cart-number">共 <text class="red">{{ count }}</text> 件商品</view>
+        <!--商品列表-->
+        <view class="cart-list" wx:for="{{ goodsList }}" wx:key="">
+            <text class="check-single {{item.isSelect * 1 === 1?'this-over':''}}" bindtap="checkSingle" data-id="{{ item.goodsSkuId }}"></text>
+            <view class="cart-img"><image class='image' src="{{item.goodsImage}}"></image></view>
+            <view class="cart-mess-bar">
+                <view class="name text-overflow-2">{{ item.goodsName }}</view>
+                <text class="spec">{{ item.goodsSpec }}</text>
+                <text class="return">送68金贝</text>
+                <view class="price">¥ {{ item.goodsPrice.cash / 100 | priceNum(item.goodsPrice.cash / 100) }}</view>
+                <view class='cart-btn-box' v-if="option === 'shopcart'">
+                    <text class="jia" data-sku="{{item.goodsSkuId}}" data-quantity="{{item.quantity}}" data-num="1" bindtap="changeNum">+</text>
+                    <text class="num">{{ item.quantity }}</text>
+                    <text class="jian" data-sku="{{item.goodsSkuId}}" data-quantity="{{item.quantity}}" data-num="-1" bindtap="changeNum">-</text>
+                </view>
+            </view>
+        </view>
+
+    </view>
+
+    <!--统计及去结算-->
+    <view class='cart-footer' wx:if="{{option === 'shopcart'}}">
+
+        <view class="cart-footer-mess {{hasGold <= 0 ? 'single':''}}">
+            <view class="t"><text class="f-type1">合计：</text><text class="f-type2">¥ {{ pay.price/100 | priceNum(pay.price/100) }}</text><text class="f-type3"> (送45金贝)</text></view>
+            <view class="b" v-if="this.$store.state.userCapital.gold > 0">可用{{ hasGold / 100 }}金贝立减{{ pay.missPrice }}元</view>
+        </view>
+
+        <view class='to-pay opacity' bindtap="toPay" wx:if="{{pay.nums > 0}}" ontouchstart="">去结算({{ pay.nums }})</view>
+        <view class='to-pay gray' wx:else>去结算({{ pay.nums }})</view>
+
+        <i class="btn-select-all {{checkAll === 1?'this-over':''}}" bindtap="toCheckAll">全选</i>
+
+    </view>
+
+    <!--编辑购物车-->
+    <view class='cart-footer' wx:if="{{option == 'edit'}}">
+
+        <i class="btn-cart-del opacity" bindtap="deleteCartConfirm" ontouchstart="">删除所选</i>
+        <i class="btn-cart-move opacity" bindtap="joinCollect" ontouchstart="">移至收藏</i>
+
+        <i class="btn-select-all {{checkAll == 1?'this-over':''}}" bindtap="toCheckAll">全选</i>
+
+    </view>
+
+    <!--购物车为空-->
+    <view class='cart-null' wx:if="{{count == 0}}">
+        <view class="cart-null-icon"><image src="https://api.duishangbao.cn/upload/image/cart-null.jpg"></image></view>
+        <view class="note1">你的购物车空空的哦~</view>
+        <view class="note2">去看看心仪的商品吧~</view>
+        <view class="cart-null-btn opacity" ontouchstart=""><text>立即去购物></text></view>
+    </view>
+
+    <!--确认删除弹窗-->
+    <view class="base-box" wx:if="{{cartBox == 1}}">
+        <view class="gray-back" bindtap="cartCloseBox"></view>
+        <view class="box-confirm">
+            <view class="txt">确认将已选中的{{ pay.nums }}件商品删除？</view>
+            <view class="btn">
+                <text class="l" bindtap="cartCloseBox" ontouchstart="">取消</text>
+                <text class="r opacity" bindtap="deleteCart" ontouchstart="">确认删除</text>
+            </view>
+        </view>
+    </view>
+
+    <!--移至收藏弹窗-->
+    <view class="base-box" wx:if="{{cartBox == 2}}">
+        <view class="gray-back" bindtap="cartCloseBox"></view>
+        <view class="box-confirm">
+            <view class="txt">确认将已选中的{{ pay.nums }}件商品移至收藏？</view>
+            <view class="btn">
+                <text class="l" bindtap="cartCloseBox">取消</text>
+                <text class="r opacity">移至收藏</text>
+            </view>
+        </view>
+    </view>
+
+</view>

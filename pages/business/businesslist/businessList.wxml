@@ -1,0 +1,56 @@
+<view class="out-side-businesslist">
+
+    <view class="classify-main">
+        <view class="auto-k">
+            <ul>
+                <li class="this-over"><text class="fs-32 fc-66">美食</text></li>
+                <li><text class="fs-32 fc-66">娱乐</text></li>
+                <li><text class="fs-32 fc-66">丽人</text></li>
+                <li><text class="fs-32 fc-66">休闲</text></li>
+                <li><text class="fs-32 fc-66">健身</text></li>
+                <li><text class="fs-32 fc-66">运动</text></li>
+                <li><text class="fs-32 fc-66">电脑</text></li>
+                <li><text class="fs-32 fc-66">手机</text></li>
+                <li><text class="fs-32 fc-66">汽车</text></li>
+            </ul>
+        </view>
+    </view>
+
+    <view class="classify-side">
+        <ul>
+            <li class="this-over"><text class="fs-28 fc-1a text-overflow">特色火锅</text><text class="border-line-heng-e6e6e6"></text></li>
+            <li><text class="fs-28 fc-1a text-overflow">传统火锅</text><text class="border-line-heng-e6e6e6"></text></li>
+            <li><text class="fs-28 fc-1a text-overflow">美味佳肴</text><text class="border-line-heng-e6e6e6"></text></li>
+        </ul>
+    </view>
+
+    <view class="business-list">
+        <ul>
+            <li>
+                <view class="img"><image src="https://img.duishangbao.cn/upload/goods/imgs/32/18a65547982d717dc220fb133e1d8bcf.jpeg"></image></view>
+                <view class="main">
+                    <text class="name fs-28 fc-1a text-overflow">李大嘴肥肠粉(高新店)</text>
+                    <text class="tuan fs-24 fc-66 text-overflow">战斧牛排hah.. 团购1~2人</text>
+                    <text class="addr fs-20 fc-66 text-overflow">高新区 吉泰路</text>
+                    <text class="price fs-20 fc-66 text-overflow">人均消费:￥900</text>
+                    <text class="away fs-24 fc-66">1.1km</text>
+                </view>
+                <view class="border-line-heng-e6e6e6"></view>
+            </li>
+            <li>
+                <view class="img"><image src="https://img.duishangbao.cn/upload/goods/imgs/32/18a65547982d717dc220fb133e1d8bcf.jpeg"></image></view>
+                <view class="main">
+                    <text class="name fs-28 fc-1a text-overflow">李大嘴肥肠粉(高新店)</text>
+                    <text class="tuan fs-24 fc-66 text-overflow">战斧牛排hah.. 团购1~2人</text>
+                    <text class="addr fs-20 fc-66 text-overflow">高新区 吉泰路</text>
+                    <text class="price fs-20 fc-66 text-overflow">人均消费:￥900</text>
+                    <text class="away fs-24 fc-66">1.1km</text>
+                </view>
+                <view class="border-line-heng-e6e6e6"></view>
+            </li>
+        </ul>
+    </view>
+
+</view>
+
+<include src="../include/include.wxml"></include>

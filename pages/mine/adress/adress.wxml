@@ -1,0 +1,37 @@
+<view style='margin-bottom:100rpx'>
+    <view class="adressListCon">
+
+        <radio-group class="radio-group" bindchange="radioChange">
+            <!--1  -->
+            <view class="adressList clear" wx:for="{{adressList}}" wx:key="">
+                <view class="fl a_choose" data-index='{{index}}' bindtap='checkAddress' wx:if="{{history_page != ''}}">
+                    <radio class="radio" name="test"></radio>
+                </view>
+                <view class="aInfo fl" data-index='{{index}}' bindtap='checkAddress'>
+                    <view class="nameTel fs-24">
+                        <view>
+                            <text class="name">{{item.userName}}</text>
+                        </view>
+                        <view>
+                            <text class="tel">{{item.userPhone}}</text>
+                            <view class="defaultAdress" wx:if="{{item.isDefault == 1}}">默认</view>
+                        </view>
+                    </view>
+                    <view class="addr_detail fs-24">{{item.detailAddress}}</view>
+                </view>
+                <view class="updateIcon fr">
+                    <text class="icon-bianji" bindtap='updateAdress' data-id="{{item.id}}" title="编辑" data-data="{{item}}"></text>
+                    <text class="fs-22" bindtap='dele' data-id="{{item.id}}" data-data="{{item}}"> 删除</text>
+                </view>
+
+            </view>
+        </radio-group>
+
+    </view>
+    <view bindtap='addReciver'>
+        <button class="addReciver">+添加新收货人</button>
+    </view>
+
+</view>
+
+<include src="../../include/include.wxml"></include>

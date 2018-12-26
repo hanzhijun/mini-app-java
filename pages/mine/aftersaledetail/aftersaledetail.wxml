@@ -1,0 +1,65 @@
+<view class="out-side-aftersaledetail">
+
+  <view class="after-sale-fail">
+    <text class="icon"></text>
+    <view class="mess">
+      <view class="after-result fs-32 fc-1a">很抱歉！您的申请失败！</view>
+      <view class="after-info fs-24 fc-99">商家拒绝了你的换货申请</view>
+    </view>
+  </view>
+
+  <view class="after-sale-state">
+    <view class="circle">
+      <text class="icon fs-32 fc-66 this-over"></text>
+      <text class="border-line-heng-e6e6e6 this-over"></text>
+      <text class="icon fs-32 fc-66 this-over"></text>
+      <text class="border-line-heng-e6e6e6"></text>
+      <text class="icon fs-32 fc-66"></text>
+    </view>
+    <view class="txt-bar fs-32">
+      <text class="txt-detail this-over">申请退款</text>
+      <text class="txt-detail this-over">正在处理</text>
+      <text class="txt-detail">退款完成</text>
+    </view>
+  </view>
+
+  <view class="after-sale-note">
+    <view class="title fs-28 fc-1a">您已成功发起了换货申请，请耐心等待商家处理</view>
+    <ul class="note-detail">
+      <li class="fs-24 fc-99">商家同意了您的换货申请，卖家将及时联系您</li>
+      <li class="fs-24 fc-99">如果商家拒绝您的换货申请，您可以修改换货申请后再次发起，商家会重新处理</li>
+    </ul>
+  </view>
+
+  <view class="after-sale-goods">
+    <view class="title fs-28 fc-1a">退款信息</view>
+    <view class="border-line-heng-e6e6e6"></view>
+    <view class="goods-bar">
+      <view class="img">
+        <image src="https://img.duishangbao.cn/upload/goods/imgs/32/18a65547982d717dc220fb133e1d8bcf.jpeg"></image>
+      </view>
+      <view class="main">
+        <text class="name fs-28 fc-1a">秋水伊人衬衫2018冬装新款女装时尚系带简约纯色明线上衣女</text>
+        <view class="sku">
+          <text class="l fs-22 fc-b2">卡其色;170/92A/XL</text>
+          <text class="r fs-22 fc-59">x1</text>
+        </view>
+        <span class="price fs-24 fc-59">￥9999.99</span>
+      </view>
+    </view>
+  </view>
+
+  <view class="after-sale-mess">
+    <ul class="fs-28">
+      <li class="has-txt"><text class="title">退款原因:</text><text class="info">材质与商品描述不符材质与商品描述不符材质与商品描述不符材质与商品描述不符材质与商品描述不符材质与商品描述不符材质与商品描述不符材质与商品描述不符材质与商品描述不符</text></li>
+      <li class="border-line-heng-e6e6e6"></li>
+      <li class="has-txt"><text class="title">退款金额:</text><text class="info"><text class="fc-e6">￥168.00</text>、<text class="fc-fc">168金贝</text></text></li>
+      <li class="border-line-heng-e6e6e6"></li>
+      <li class="has-txt"><text class="title">申请时间:</text><text class="info">2018-08-22 17:24:12</text></li>
+      <li class="border-line-heng-e6e6e6"></li>
+      <li class="has-txt"><text class="title">退款编号:</text><text class="info">11928011516093769</text><text class="copy fs-24">复制</text> </li>
+    </ul>
+  </view>
+
+  <view class="after-edit-btn fs-32 fc-ff opacity">修改申请</view>
+</view>

@@ -1,0 +1,68 @@
+{
+  "pages": [
+    "pages/index/index",
+    "pages/nearby/nearby",
+    "pages/cart/cart",
+    "pages/mine/mine",
+
+    "pages/goods/search/search",
+    "pages/goods/classify/classify",
+    "pages/goods/goodslist/goodslist",
+    "pages/goods/goodsdetail/goodsdetail",
+    "pages/goods/orderconfirm/orderconfirm",
+    "pages/goods/orderdetail/orderdetail",
+    "pages/goods/orderlist/orderlist",
+
+    "pages/business/businesslist/businesslist",
+    "pages/business/businesshome/businesshome",
+    "pages/business/packagedetail/packagedetail",
+    "pages/business/packageorderconfirm/packageorderconfirm",
+    "pages/business/packageorderdetail/packageorderdetail",
+
+    "pages/mine/aboutus/aboutus",
+    "pages/mine/adress/adress",
+    "pages/mine/adress/addReciver/addReciver",
+    "pages/mine/collect/collect",
+    "pages/mine/aftersalelist/aftersalelist",
+    "pages/mine/aftersaleapply/aftersaleapply",
+    "pages/mine/aftersaledetail/aftersaledetail"
+
+  ],
+  "window": {
+    "backgroundTextStyle": "light",
+    "navigationBarBackgroundColor": "#e62343",
+    "navigationBarTitleText": "贝划算",
+    "navigationBarTextStyle": "#fff"
+  },
+  "tabBar": {
+    "color": "#333",
+    "selectedColor": "#f75d45",
+    "backgroundColor": "#fff",
+    "list": [
+      {
+        "pagePath": "pages/index/index",
+        "text": "首页",
+        "iconPath": "/images/home.png",
+        "selectedIconPath": "/images/home2.png"
+      },
+      {
+        "pagePath": "pages/nearby/nearby",
+        "text": "附近",
+        "iconPath": "/images/nearby.png",
+        "selectedIconPath": "/images/nearby2.png"
+      },
+      {
+        "pagePath": "pages/cart/cart",
+        "text": "购物车",
+        "iconPath": "/images/cart.png",
+        "selectedIconPath": "/images/cart2.png"
+      },
+      {
+        "pagePath": "pages/mine/mine",
+        "text": "我的",
+        "iconPath": "/images/mine.png",
+        "selectedIconPath": "/images/mine2.png"
+      }
+    ]
+  }
+}

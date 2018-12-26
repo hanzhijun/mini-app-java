@@ -1,0 +1,50 @@
+<!--index.wxml-->
+
+<view class="out-side-index" style="background:#f4f4f4 url('http://api.duishangbao.cn/upload/image/index_all_bj.png') no-repeat top / 100vw 362rpx">
+
+    <view class="head-bar-index">
+      <text class="h2">贝划算</text>
+      <view class="search-main-bar opacity" ontouchstart="" bindtap="searchJump" style="width: 540rpx">
+        <text class="search-go" title="搜索" ontouchstart=""></text>
+        <text class="search-word">搜索商品(助力购买更划算)</text>
+      </view>
+    </view>
+
+    <view class="banner-bar">
+        <swiper class="swiper" indicator-dots="true" autoplay="true" interval="8000" duration="1000" circular="true">
+            <block wx:for="{{ imageList }}" wx:key="">
+                <swiper-item class="swiper-item">
+                    <image src="https://img-qn.hdb.com/upload/_oss/userpartyimg/201811/01/617552341541068661684_party0.jpg" class="slide-image" width="710" height="300" bindtap="bannerJump"></image>
+                </swiper-item>
+            </block>
+        </swiper>
+    </view>
+
+    <view class="nav-bar">
+      <view class="nav-list opacity" wx-for="{{ menuList }}" bindtap="bannerJump" ontouchstart="">
+        <view class="nav-img"><image src="https://img-qn.hdb.com/upload/_oss/userpartyimg/201811/01/617552341541068661684_party0.jpg"></image></view>
+        <text class="nav-name">类目名称</text>
+      </view>
+    </view>
+
+    <view class="goods-bar">
+      <view class="goods-list opacity" ontouchstart="">
+        <view class="goods-img"><image src="https://img-qn.hdb.com/upload/_oss/userpartyimg/201811/01/617552341541068661684_party0.jpg"></image></view>
+        <view class="goods-name"><text>金贝当钱花</text>月见和菓子(芒果味棉花糖麻薯...俘获芳心直用三层夹心嗲方炯</view>
+        <view class="goods-label">
+          <text class="label-red">6人助力·多得20金贝</text>
+          <text class="label-yellow">送20金贝</text>
+        </view>
+        <view class="goods-price">
+          <text class="goods-btn-pay">助力购</text>
+          <text class="icon-rmb">¥</text>
+          <text class="goods-price-now">18.00</text>
+          <text class="goods-price-old">29.00</text>
+        </view>
+      </view>
+      
+    </view>
+
+  </view>
+
+<include src="../include/include.wxml"></include>

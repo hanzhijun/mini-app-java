@@ -1,0 +1,46 @@
+<view class="out-side-packageorderconfirm">
+
+  <view class="package-info">
+    <view class="img"><image src="https://img.duishangbao.cn/upload/goods/imgs/32/18a65547982d717dc220fb133e1d8bcf.jpeg"></image></view>
+    <view class="main">
+      <view class="name fs-34 fc-1a text-overflow-2">战斧牛排 团购2~3人</view>
+      <view class="price"><text class="fs-38 fc-1a">￥188.00</text><text class="return"><text class="txt fs-24 fc-e6">送68金贝</text></text></view>
+      <ul class="label-ul">
+        <li class="fs-28 fc-b2">随时退</li>
+        <li class="fs-28 fc-b2">免预约</li>
+        <li class="fs-28 fc-b2">过期自动退</li>
+      </ul>
+    </view>
+  </view>
+
+  <view class="package-count-bar">
+    <view class="num">
+      <text class="title fs-32 fc-1a">套餐数量</text>
+      <text class="jia"></text>
+      <text class="count fs-28 fc-66">2</text>
+      <text class="jian"></text>
+    </view>
+
+    <view class="use-gold">
+      <view class="l">
+        <text class="title fs-32 fc-1a">使用金贝</text>
+        <text class="di-mess fs-24 fc-99">共有40金贝,可以抵扣40元</text>
+      </view>
+      <view class="btn-power"></view>
+    </view>
+
+    <view class="border-line-heng-e6e6e6"></view>
+
+    <view class="result">
+      <text class="fr fs-44 fc-1a">338.88</text>
+      <text class="fr fs-28 fc-1a">小计￥</text>
+      <text class="fr fs-24 fc-e6">￥40.88</text>
+      <text class="fr fs-24 fc-1a">小计￥</text>
+      <text class="title fs-32 fc-1a">实付金额</text>
+    </view>
+  </view>
+
+  <view class="pay-btn fs-34 fc-ff opacity" ontouchstart="">确认支付 ￥338.88</view>
+</view>
+
+<include src="../include/include.wxml"></include>

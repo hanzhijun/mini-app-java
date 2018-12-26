@@ -1,0 +1,261 @@
+.out-side-businesshome {
+  background-color: #f4f4f4;
+  width: 100vw;
+  min-height: 100vh;
+  overflow: hidden;
+}
+
+.out-side-businesshome .busine-title {
+  background-color: #fff;
+  font-weight: 900;
+  padding: 15rpx 20rpx;
+  line-height: 50rpx;
+  text-align: left;
+}
+
+.out-side-businesshome .open-time {
+  background-color: #fff;
+  padding: 0 20rpx 20rpx;
+}
+
+.out-side-businesshome .banner {
+  height: 375rpx;
+}
+
+.out-side-businesshome .banner image {
+  width: 100vw;
+  height: 375rpx;
+}
+
+.out-side-businesshome .addr {
+  background-color: #fff;
+  overflow: hidden;
+  padding: 20rpx;
+}
+
+.out-side-businesshome .addr .l-side {
+  width: 515rpx;
+  overflow: hidden;
+  float: left;
+}
+
+.out-side-businesshome .addr .l-side span {
+  display: block;
+}
+
+.out-side-businesshome .addr .border-line-shu-e6e6e6 {
+  height: 46rpx;
+  float: left;
+  margin: 0.10rpx 0 0 15rpx;
+}
+
+.out-side-businesshome .addr .tel {
+  display: inline-block;
+  width: 170rpx;
+  height: 56rpx;
+  background: url('https://api.duishangbao.cn/upload/image/icon_zu6.png') no-repeat 70rpx -300rpx / 60rpx 1200rpx;
+  margin-top: 2rpx;
+}
+
+.out-side-businesshome .voucher-bar {
+  overflow: hidden;
+  background-color: #fff;
+  padding: 20rpx;
+  margin-top: 16rpx;
+}
+
+.out-side-businesshome .voucher-bar .title {
+  height: 68rpx;
+  line-height: 50rpx;
+}
+
+.out-side-businesshome .voucher-ul {
+  overflow: hidden;
+  display: block;
+}
+
+.out-side-businesshome .voucher-ul li {
+  display: block;
+  width: 710rpx;
+  height: 204rpx;
+  background: url('https://api.duishangbao.cn/upload/image/juan_jiao3.png') no-repeat right / 1000rpx 204rpx;
+  float: left;
+  margin-bottom: 40rpx;
+}
+
+.out-side-businesshome .voucher-ul li .l {
+  width: 260rpx;
+  height: 204rpx;
+  background: url('https://api.duishangbao.cn/upload/image/juan_jiao1.png') no-repeat 0 0 / 300rpx 204rpx;
+  float: left;
+}
+
+.out-side-businesshome .voucher-ul li .l .price {
+  display: block;
+  text-align: center;
+  padding: 50rpx 0 0 8rpx;
+}
+
+.out-side-businesshome .voucher-ul li .l .use-time {
+  display: block;
+  text-align: center;
+  padding-top: 20rpx;
+}
+
+.out-side-businesshome .voucher-ul li .c {
+  display: inline-block;
+  width: 50rpx;
+  height: 204rpx;
+  background: url('https://api.duishangbao.cn/upload/image/juan_jiao2.png') no-repeat 0 0 / 50rpx 204rpx;
+  float: left;
+}
+
+.out-side-businesshome .voucher-ul li .r {
+  height: 204rpx;
+  padding-left: 330rpx;
+  position: relative;
+}
+
+.out-side-businesshome .voucher-ul li .r .price {
+  padding: 20rpx 0 0 0;
+  overflow: hidden;
+}
+
+.out-side-businesshome .voucher-ul li .r .price text {
+  display: inline-block;
+  float: left;
+  line-height: 50rpx;
+}
+
+.out-side-businesshome .voucher-ul li .r .price .return {
+  line-height: 26rpx;
+  padding: 5rpx 10rpx;
+  border: 0.5px solid #fc6c15;
+  border-radius: 2px;
+  margin: 6rpx 0 0 10rpx;
+}
+
+.out-side-businesshome .voucher-ul li .r .gold {
+  height: 60rpx;
+  line-height: 36rpx;
+}
+
+.out-side-businesshome .voucher-ul li .r .buy-btn {
+  padding: 15rpx 60rpx;
+  border-radius: 100rpx;
+  background-color: #e62343;
+  margin-top: 10rpx;
+}
+
+.out-side-businesshome .voucher-ul li .r .icon-gold {
+  display: inline-block;
+  width: 110rpx;
+  height: 110rpx;
+  background: url('https://api.duishangbao.cn/upload/image/icon_zu7.png') no-repeat -32rpx -306rpx / 150rpx 600rpx;
+  position: absolute;
+  top: 0;
+  right: 0;
+}
+
+.out-side-businesshome .voucher-bar .more {
+  text-align: center;
+  overflow: hidden;
+  padding: 20rpx 0;
+}
+
+.out-side-businesshome .package-bar {
+  overflow: hidden;
+  padding: 20rpx 0 40rpx;
+  background-color: #fff;
+  margin-top: 16rpx;
+}
+
+.out-side-businesshome .package-bar .header {
+  height: 65rpx;
+  padding: 0 20rpx;
+}
+
+.out-side-businesshome .package-bar .header .more {
+  display: inline-block;
+  padding-right: 23rpx;
+  background: url('https://api.duishangbao.cn/upload/image/icon_zu.png') no-repeat 50rpx -198rpx/70rpx 1000rpx;
+  float: right;
+  margin-top: 5rpx;
+}
+
+.out-side-businesshome .package-outside {
+  width: 100vw;
+  height: 352rpx;
+  overflow: hidden;
+}
+
+.out-side-businesshome .package-outside .auto-k {
+  width: 100vw;
+  height: 380rpx;
+  overflow-x: auto;
+}
+
+.out-side-businesshome .package-outside ul {
+  display: block;
+  white-space: nowrap;
+}
+
+.out-side-businesshome .package-outside ul li {
+  display: inline-block;
+  width: 580rpx;
+  height: 350rpx;
+  margin-left: 20rpx;
+}
+
+.out-side-businesshome .package-outside ul li .img,
+.out-side-businesshome .package-outside ul li .img image {
+  width: 580rpx;
+  height: 228rpx;
+  border-top-left-radius: 10rpx;
+  border-top-right-radius: 10rpx;
+}
+
+.out-side-businesshome .package-outside ul li .main {
+  display: block;
+  height: 122rpx;
+  border-left: 0.5px solid #e6e6e6;
+  border-right: 0.5px solid #e6e6e6;
+  border-bottom: 0.5px solid #e6e6e6;
+  border-bottom-left-radius: 10rpx;
+  border-bottom-right-radius: 10rpx;
+  position: relative;
+}
+
+.out-side-businesshome .package-outside ul li .main .name {
+  display: inline-block;
+  position: absolute;
+  width: 355rpx;
+  left: 15rpx;
+  top: 20rpx;
+}
+
+.out-side-businesshome .package-outside ul li .main .price {
+  display: inline-block;
+  position: absolute;
+  width: 200rpx;
+  text-align: right;
+  right: 15rpx;
+  top: 20rpx;
+}
+
+.out-side-businesshome .package-outside ul li .main .sale {
+  display: inline-block;
+  position: absolute;
+  width: 355rpx;
+  left: 15rpx;
+  top: 68rpx;
+}
+
+.out-side-businesshome .package-outside ul li .main .price-old {
+  display: inline-block;
+  position: absolute;
+  width: 200rpx;
+  text-align: right;
+  right: 15rpx;
+  top: 68rpx;
+}

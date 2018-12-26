@@ -1,0 +1,207 @@
+
+.out-side-aftersaledetail {
+  background-color: #f4f4f4;
+  padding: 0 0 20rpx;
+}
+
+.out-side-aftersaledetail .after-sale-state {
+  overflow: hidden;
+  background-color: #fff;
+  padding: 83rpx 0 75rpx;
+}
+
+.out-side-aftersaledetail .after-sale-state .circle {
+  overflow: hidden;
+  padding: 0 0 15rpx 90rpx;
+}
+
+.out-side-aftersaledetail .after-sale-state .icon {
+  display: inline-block;
+  width: 32rpx;
+  height: 32rpx;
+  background: url('https://api.duishangbao.cn/upload/image/icon_zu4.png') no-repeat 0 -700rpx/50rpx 1000rpx;
+  float: left;
+  margin-right: 35rpx;
+}
+
+.out-side-aftersaledetail .after-sale-state .icon.this-over {
+  background: url('https://api.duishangbao.cn/upload/image/icon_zu4.png') no-repeat 0 -750rpx/50rpx 1000rpx;
+}
+
+.out-side-aftersaledetail .after-sale-state .border-line-heng-e6e6e6 {
+  width: 170rpx;
+  float: left;
+  margin: 15rpx 35rpx 0 0;
+}
+
+.out-side-aftersaledetail .after-sale-state .border-line-heng-e6e6e6.this-over {
+  background: url('https://api.duishangbao.cn/upload/image/border-line-heng-e62343.png') repeat-x 0 0/ 100px 1px;
+}
+
+.out-side-aftersaledetail .after-sale-state .txt-bar {
+  overflow: hidden;
+  padding-top: 5rpx;
+}
+
+.out-side-aftersaledetail .after-sale-state .txt-bar .txt-detail {
+  display: inline-block;
+  width: 160rpx;
+  line-height: 36rpx;
+  text-align: center;
+  float: left;
+  margin-left: 114rpx;
+}
+
+.out-side-aftersaledetail .after-sale-state .txt-bar .txt-detail.this-over {
+  color: #e62343;
+}
+
+.out-side-aftersaledetail .after-sale-state .txt-bar .txt-detail:first-child {
+  margin-left: 22rpx;
+}
+
+.out-side-aftersaledetail .after-sale-note {
+  overflow: hidden;
+  background-color: #fff;
+  padding: 20rpx;
+  margin-top: 16rpx;
+}
+
+.out-side-aftersaledetail .after-sale-note .title {
+  padding-bottom: 5rpx;
+}
+
+.out-side-aftersaledetail .after-sale-note .note-detail li {
+  display: block;
+  line-height: 38rpx;
+}
+
+.out-side-aftersaledetail .after-sale-goods {
+  overflow: hidden;
+  background-color: #fff;
+  padding: 20rpx;
+  margin-top: 16rpx;
+}
+
+.out-side-aftersaledetail .after-sale-goods .title {
+  line-height: 80rpx;
+}
+
+.out-side-aftersaledetail .after-sale-goods .goods-bar {
+  overflow: hidden;
+  padding: 30rpx 0 20rpx;
+}
+
+.out-side-aftersaledetail .goods-bar .img {
+  width: 164rpx;
+  height: 164rpx;
+  float: left;
+  margin-top: 5rpx;
+}
+
+.out-side-aftersaledetail .goods-bar .img,
+.out-side-aftersaledetail .goods-bar .img image {
+  width: 164rpx;
+  height: 164rpx;
+  border-radius: 10rpx;
+
+}
+
+.out-side-aftersaledetail .after-sale-goods .main {
+  width: 531rpx;
+  float: left;
+  position: relative;
+  margin-left: 15rpx;
+}
+
+.out-side-aftersaledetail .after-sale-goods .main .name {
+  display: block;
+  width: 400rpx;
+  line-height: 40rpx;
+}
+
+.out-side-aftersaledetail .after-sale-goods .main .price {
+  display: inline-block;
+  position: absolute;
+  top: 0;
+  right: 0;
+  line-height: 40rpx;
+}
+
+.out-side-aftersaledetail .after-sale-goods .main .sku {
+  padding-top: 10rpx;
+  line-height: 32rpx;
+}
+
+.out-side-aftersaledetail .after-sale-goods .main .sku .r {
+  display: inline-block;
+  float: right;
+}
+
+.out-side-aftersaledetail .after-sale-mess {
+  overflow: hidden;
+  background-color: #fff;
+  padding: 20rpx;
+  margin-top: 16rpx;
+}
+
+.out-side-aftersaledetail .after-sale-mess .has-txt {
+  display: block;
+  overflow: hidden;
+  padding: 20rpx 0;
+}
+
+.out-side-aftersaledetail .after-sale-mess .has-txt .title {
+  display: inline-block;
+  line-height: 40rpx;
+  float: left;
+  width: 150rpx;
+}
+
+.out-side-aftersaledetail .after-sale-mess .has-txt .info {
+  display: inline-block;
+  line-height: 40rpx;
+  max-width: 530rpx;
+  float: left;
+}
+
+.out-side-aftersaledetail .after-sale-mess .has-txt .copy {
+  display: inline-block;
+  padding: 5rpx 10rpx;
+  border-radius: 3px;
+  border: 1px solid #bfbfbf;
+  float: left;
+  margin: 0 0 0 30rpx;
+}
+
+.out-side-aftersaledetail .after-sale-fail {
+  overflow: hidden;
+  background-color: #fff;
+  padding: 35rpx 20rpx;
+}
+
+.out-side-aftersaledetail .after-sale-fail .icon {
+  display: inline-block;
+  width: 50rpx;
+  height: 50rpx;
+  background: url('https://api.duishangbao.cn/upload/image/icon_zu4.png') no-repeat 0 -800rpx/50rpx 1000rpx;
+  float: left;
+  margin: 3rpx 15rpx 0 0;
+}
+
+.out-side-aftersaledetail .after-sale-fail .mess {
+  display: block;
+  width: 600rpx;
+  overflow: hidden;
+  float: left;
+}
+
+.out-side-aftersaledetail .after-edit-btn {
+  width: 690rpx;
+  margin: 20rpx auto 0;
+  background-color: #e62343;
+  color: #fff;
+  padding: 25rpx 0;
+  text-align: center;
+  border-radius: 10rpx;
+}

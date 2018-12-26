@@ -1,0 +1,176 @@
+{
+	"description": "项目配置文件",
+	"packOptions": {
+		"ignore": []
+	},
+	"setting": {
+		"urlCheck": false,
+		"es6": true,
+		"postcss": true,
+		"minified": true,
+		"newFeature": true
+	},
+	"compileType": "miniprogram",
+	"libVersion": "2.3.1",
+	"appid": "wx7c9cf8c378593759",
+	"projectname": "mini-app-java",
+	"debugOptions": {
+		"hidedInDevtools": []
+	},
+	"isGameTourist": false,
+	"condition": {
+		"search": {
+			"current": -1,
+			"list": []
+		},
+		"conversation": {
+			"current": -1,
+			"list": []
+		},
+		"plugin": {
+			"current": -1,
+			"list": []
+		},
+		"game": {
+			"currentL": -1,
+			"list": []
+		},
+		"miniprogram": {
+			"current": 21,
+			"list": [
+				{
+					"id": 0,
+					"name": "商品类目",
+					"pathName": "pages/goods/classify/classify",
+					"query": "cid=504335720861663232"
+				},
+				{
+					"id": 1,
+					"name": "商品列表",
+					"pathName": "pages/goods/goodslist/goodslist",
+					"query": "sid=502899370350346240&sname=薄外套1&word=123456"
+				},
+				{
+					"id": 2,
+					"name": "商品详情",
+					"pathName": "pages/goods/goodsdetail/goodsdetail",
+					"query": "gid=517995202985373696"
+				},
+				{
+					"id": 3,
+					"name": "确认订单",
+					"pathName": "pages/goods/orderconfirm/orderconfirm",
+					"query": ""
+				},
+				{
+					"id": 4,
+					"name": "商家列表",
+					"pathName": "pages/business/businessList/businessList",
+					"query": "business_category_id=1&business_category_id2=122"
+				},
+				{
+					"id": -1,
+					"name": "商家",
+					"pathName": "pages/business/home/home",
+					"query": "business_offline_id=1359"
+				},
+				{
+					"id": -1,
+					"name": "套餐、代金券",
+					"pathName": "pages/taocan/detail/detail",
+					"query": "id=2924&type=package"
+				},
+				{
+					"id": -1,
+					"name": "我 - 关于我们",
+					"pathName": "pages/mine/aboutus/aboutus",
+					"query": ""
+				},
+				{
+					"id": -1,
+					"name": "我 - 我的订单",
+					"pathName": "pages/goods/orderlist/orderlist",
+					"query": "status=21"
+				},
+				{
+					"id": -1,
+					"name": "我 - 我的地址",
+					"pathName": "pages/mine/adress/adress",
+					"query": ""
+				},
+				{
+					"id": -1,
+					"name": "test",
+					"pathName": "pages/test/test",
+					"query": ""
+				},
+				{
+					"id": -1,
+					"name": "我 - 我的收藏",
+					"pathName": "pages/mine/collect/collect",
+					"query": ""
+				},
+				{
+					"id": -1,
+					"name": "确认订单",
+					"pathName": "pages/goods/orderdetail/orderdetail",
+					"query": ""
+				},
+				{
+					"id": -1,
+					"name": "购物车",
+					"pathName": "pages/cart/cart",
+					"query": ""
+				},
+				{
+					"id": -1,
+					"name": "售后服务",
+					"pathName": "pages/mine/aftersalelist/aftersalelist",
+					"query": ""
+				},
+				{
+					"id": -1,
+					"name": "售后申请",
+					"pathName": "pages/mine/aftersaleapply/aftersaleapply",
+					"query": ""
+				},
+				{
+					"id": -1,
+					"name": "售后申请",
+					"pathName": "pages/mine/aftersaledetail/aftersaledetail",
+					"query": ""
+				},
+				{
+					"id": -1,
+					"name": "附近",
+					"pathName": "pages/nearby/nearby",
+					"query": ""
+				},
+				{
+					"id": -1,
+					"name": "商家列表",
+					"pathName": "pages/business/businesslist/businesslist",
+					"query": ""
+				},
+				{
+					"id": 19,
+					"name": "商家详情",
+					"pathName": "pages/business/businesshome/businesshome",
+					"query": ""
+				},
+				{
+					"id": -1,
+					"name": "套餐详情",
+					"pathName": "pages/business/packagedetail/packagedetail",
+					"query": ""
+				},
+				{
+					"id": -1,
+					"name": "套餐-确认订单",
+					"pathName": "pages/business/packageorderconfirm/packageorderconfirm",
+					"query": ""
+				}
+			]
+		}
+	}
+}

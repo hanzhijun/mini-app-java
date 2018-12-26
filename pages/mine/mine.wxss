@@ -1,0 +1,278 @@
+.out-side-mine {
+  background-color: #f4f4f4;
+  overflow: hidden;
+  min-height: 100vh;
+  padding-bottom: 113rpx;
+}
+
+.out-side-mine .mine-head-bar {
+  width: 100vw;
+  height: 318rpx;
+  position: relative;
+  background: url('https://api.duishangbao.cn/upload/image/mine-top-bj1.jpg') no-repeat top / 100vw 220rpx;
+}
+
+.out-side-mine .mine-head-bar .mine-header-img {
+  width: 112rpx;
+  height: 112rpx;
+  background: url('https://api.duishangbao.cn/upload/image/mine-header01.png') no-repeat top / 112rpx 112rpx;
+  float: left;
+  margin: 23rpx 16rpx 0 22rpx;
+}
+
+.out-side-mine .mine-head-bar .mine-header-img image {
+  width: 106rpx;
+  height: 106rpx;
+  margin: 3rpx;
+  border-radius: 50%;
+}
+
+.out-side-mine .mine-head-bar .mine-header-name {
+  display: inline-block;
+  line-height: 112rpx;
+  float: left;
+  margin-top: 23rpx;
+}
+
+.out-side-mine .mine-head-bar .mine-header-name text {
+  display: inline-block;
+  font-size: 32rpx;
+  color: #fff;
+}
+
+.out-side-mine .mine-head-bar .mine-head-k {
+  width: 646rpx;
+  height: 147rpx;
+  background: url('https://api.duishangbao.cn/upload/image/mine-top-bj2.png') no-repeat 0 0 / 646rpx 147rpx;
+  position: absolute;
+  left: 50rpx;
+  top: 150rpx;
+}
+
+.out-side-mine .head-k-mess {
+  text-align: center;
+  padding-top: 60rpx;
+}
+
+.out-side-mine .head-k-mess .gold {
+  display: inline-block;
+  line-height: 36rpx;
+  padding-left: 70rpx;
+  background: url('https://api.duishangbao.cn/upload/image/icon_zu2.png') no-repeat 13rpx 278rpx / 70rpx 1190rpx;
+}
+
+.out-side-mine .head-k-mess2 {
+  height: 72rpx;
+  line-height: 72rpx;
+  text-align: center;
+  padding-top: 35rpx;
+}
+
+.out-side-mine .head-k-mess2 .gold {
+  display: inline-block;
+  padding-left: 60rpx;
+  background: url('https://api.duishangbao.cn/upload/image/mine-header-gold-bj1.png') no-repeat 0 0 / 60rpx 72rpx;
+  font-size: 58rpx;
+  color: #fe7900;
+  float: left;
+  margin-left: 210rpx;
+}
+
+.out-side-mine .head-k-mess2 .gray {
+  display: inline-block;
+  padding-left: 20rpx;
+  background: url('https://api.duishangbao.cn/upload/image/mine-header-gold-bj2.png') no-repeat 0 0 / 20rpx 72rpx;
+  font-size: 28rpx;
+  color: #999;
+  float: left;
+  margin-left: 10rpx;
+}
+
+.out-side-mine .mine-order-up {
+  height: 238rpx;
+  background-color: #fff;
+}
+
+.out-side-mine .line-order-list {
+  padding-top: 25rpx;
+}
+
+.out-side-mine .line-order-list .opacity {
+  display: inline-block;
+  width: 25vw;
+  height: 100rpx;
+  float: left;
+  text-align: center;
+}
+
+.out-side-mine .line-order-list .img {
+  display: inline-block;
+  width: 70rpx;
+  height: 55rpx;
+  position: relative;
+}
+
+.out-side-mine .line-order-list .img .num {
+  display: inline-block;
+  position: absolute;
+  font-size: 18rpx;
+  color: #fff;
+  background-color: #e62343;
+  width: 38rpx;
+  line-height: 10rpx;
+  padding: 14rpx 0;
+  right: -10rpx;
+  top: -10rpx;
+  border-radius: 50%;
+  overflow: hidden;
+  opacity: 0.9;
+}
+
+.out-side-mine .line-order-list .icon01 {
+  background: url('https://api.duishangbao.cn/upload/image/icon_zu2.png') no-repeat 5rpx 0 / 70rpx 1190rpx;
+}
+
+.out-side-mine .line-order-list .icon02 {
+  background: url('https://api.duishangbao.cn/upload/image/icon_zu2.png') no-repeat 10rpx -70rpx / 70rpx 1190rpx;
+}
+
+.out-side-mine .line-order-list .icon03 {
+  background: url('https://api.duishangbao.cn/upload/image/icon_zu2.png') no-repeat 8rpx -137rpx / 70rpx 1190rpx;
+}
+
+.out-side-mine .line-order-list .icon04 {
+  background: url('https://api.duishangbao.cn/upload/image/icon_zu2.png') no-repeat 12rpx -208rpx / 70rpx 1190rpx;
+}
+
+.out-side-mine .line-order-list .txt {
+  display: block;
+  text-align: center;
+  font-size: 24rpx;
+  color: #404040;
+}
+
+.out-side-mine .mine-order-down {
+  overflow: hidden;
+  background-color: #fff;
+  margin: 20rpx 0;
+}
+
+.out-side-mine .order-top-line {
+  height: 90rpx;
+}
+
+.out-side-mine .order-top-line .title {
+  display: inline-block;
+  line-height: 36rpx;
+  padding-left: 45rpx;
+  font-size: 32rpx;
+  color: #000;
+  background: url('https://api.duishangbao.cn/upload/image/icon_zu2.png') no-repeat 0 -349rpx / 70rpx 1190rpx;
+  margin: 26rpx 0 0 20rpx;
+  float: left;
+}
+
+.out-side-mine .order-top-line .go-look {
+  display: inline-block;
+  line-height: 30rpx;
+  padding-right: 88rpx;
+  font-size: 24rpx;
+  color: #e62343;
+  background: url('https://api.duishangbao.cn/upload/image/icon_zu2.png') no-repeat right -1045rpx / 70rpx 1190rpx;
+  margin: 29rpx -30rpx 0 0;
+  float: right;
+}
+
+.out-side-mine .mine-order-down .order-top-line .title {
+  background: url('https://api.duishangbao.cn/upload/image/icon_zu2.png') no-repeat 0 -419rpx / 70rpx 1190rpx;
+}
+
+.out-side-mine .mine-nav-list {
+  height: 372rpx;
+  background-color: #fff;
+}
+
+.out-side-mine .mine-nav-list .opacity {
+  display: inline-block;
+  width: calc(25vw - 1px);
+  height: 185rpx;
+  padding-top: 42rpx;
+  border-left: 1px solid #dcdcdc;
+  float: left;
+  text-align: center;
+}
+
+.out-side-mine .mine-nav-list .down {
+  border-bottom: 1px solid #dcdcdc;
+}
+
+.out-side-mine .mine-nav-list .first {
+  border-left: 1px solid #fff;
+}
+
+.out-side-mine .mine-nav-list .img {
+  display: inline-block;
+  width: 70rpx;
+  height: 55rpx;
+}
+
+.out-side-mine .mine-nav-list .icon05 {
+  background: url('https://api.duishangbao.cn/upload/image/icon_zu2.png') no-repeat 13rpx -488rpx / 70rpx 1190rpx;
+}
+
+.out-side-mine .mine-nav-list .icon06 {
+  background: url('https://api.duishangbao.cn/upload/image/icon_zu2.png') no-repeat 18rpx -558rpx / 70rpx 1190rpx;
+}
+
+.out-side-mine .mine-nav-list .icon07 {
+  background: url('https://api.duishangbao.cn/upload/image/icon_zu2.png') no-repeat 18rpx -628rpx / 70rpx 1190rpx;
+}
+
+.out-side-mine .mine-nav-list .icon08 {
+  background: url('https://api.duishangbao.cn/upload/image/icon_zu2.png') no-repeat 13rpx -698rpx / 70rpx 1190rpx;
+}
+
+.out-side-mine .mine-nav-list .icon09 {
+  background: url('https://api.duishangbao.cn/upload/image/icon_zu2.png') no-repeat 14rpx -768rpx / 70rpx 1190rpx;
+}
+
+.out-side-mine .mine-nav-list .icon10 {
+  background: url('https://api.duishangbao.cn/upload/image/icon_zu2.png') no-repeat 13rpx -838rpx / 70rpx 1190rpx;
+}
+
+.out-side-mine .mine-nav-list .icon11 {
+  background: url('https://api.duishangbao.cn/upload/image/icon_zu2.png') no-repeat 14rpx -908rpx / 70rpx 1190rpx;
+}
+
+.out-side-mine .mine-nav-list .icon12 {
+  background: url('https://api.duishangbao.cn/upload/image/icon_zu2.png') no-repeat 12rpx -978rpx / 70rpx 1190rpx;
+}
+
+.out-side-mine .mine-nav-list .txt {
+  clear: both;
+  display: block;
+  text-align: center;
+  font-size: 24rpx;
+  color: #404040;
+}
+
+.out-side-mine .mine-btn-login text {
+  display: block;
+  height: 92rpx;
+  line-height: 92rpx;
+  background-color: #fff;
+  text-align: center;
+  font-size: 28rpx;
+  color: #e62343;
+  margin-top: 20rpx;
+}
+
+.out-side-mine .for-login {
+  position: fixed;
+  width: 100vw;
+  height: calc(100vh - 100rpx);
+  opacity: 0;
+  left: 0;
+  top: 0;
+  z-index: 99;
+}

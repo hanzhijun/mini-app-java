@@ -1,0 +1,147 @@
+<!--pages/detail/detail.wxml-->
+
+<view class="out-side-goodsdetail">
+
+    <view class="banner">
+        <swiper indicator-dots="true" style='height:{{width}}px'>
+            <block wx:for="{{ bannerList }}" wx:key="">
+                <swiper-item>
+                    <image bindload='imageLoad' src="{{item.imgPath}}" class="slide-image"></image>
+                </swiper-item>
+            </block>
+        </swiper>
+    </view>
+
+    <view class="goods-main">
+
+        <view class="detai-info1">
+            <text class="icon-rmb fs-40 fc-e6">￥</text>
+            <text class="price-now fc-e6">{{ price / 100 | priceNum(price / 100) }}</text>
+            <text class="price-old fs-24 fc-80 fs-line">{{ price / 100 | priceNum(price / 100) }}</text>
+            <text class="goods-collect fs-22 fc-66"><text class="clearfix"></text>收藏</text>
+            <text class="goods-num fs-24 fc-1a">库存: {{ goodsStock }}</text>
+        </view>
+
+        <view class="detai-info2 help-pay" wx:if="{{ shareBuy == 1 }}">
+            <view class="detai-info2-bj2">
+                <!--助力购-->
+                <view class="detai-info2-bj3">
+                    <text class="gold-num fs-24 fc-fc" wx:if="{{ this.$store.state.isLogin === 1 }}">金贝帮您抵扣了{{ Math.min(price / 100, this.$store.state.userCapital.gold / 100) | priceNum(Math.min(price / 100, this.$store.state.userCapital.gold / 100))}}元</text>
+                    <text class="gold-num fs-24 fc-40" wx:else>点击<text class="fs-24 fc-e6">登录</text>获取更多优惠</text>
+                    <text class="line-ge"></text>
+                    <text class="help-num fs-24 fc-e6">6人助力·多得209金贝</text>
+                    <text class="line-ge"></text>
+                    <text class="return-num fs-24 fc-fc">送{{ backGold }}金贝</text>
+                </view>
+            </view>
+        </view>
+        <!--正常购买-->
+        <view class="detai-info2" wx:else>
+            <view class="detai-info2-bj2">
+                <view class="detai-info2-bj3">
+                    <text class="gold-num fs-24 fc-fc" wx:if="{{ this.$store.state.isLogin === 1 }}">金贝帮您抵扣了{{ Math.min(price / 100, this.$store.state.userCapital.gold / 100) | priceNum(Math.min(price / 100, this.$store.state.userCapital.gold / 100))}}元</text>
+                    <text class="gold-num fs-24 fc-40" wx:else>点击<text class="fs-24 fc-e6">登录</text>获取更多优惠</text>
+                    <text class="line-ge"></text>
+                    <text class="help-num fs-24 fc-e6">立即购买送{{ backGold }}金贝</text>
+                </view>
+            </view>
+        </view>
+
+        <view class="goods-name"><text class="icon">金贝当钱花</text>{{ goodsName }}</view>
+
+        <view class="border-line-heng-e6e6e6"></view>
+
+        <view class="goods-mess-bar opacity" bindtap="showSkuBox">
+            <text class="title fs-24 fc-66">选择</text>
+            <text class="this-value  fs-24 fc-1a">{{ skuData }} {{ quantity }}</text>
+            <text class="icon"></text>
+        </view>
+
+        <view class="border-line-heng-e6e6e6"></view>
+
+        <view class="goods-mess-bar">
+            <text class="title  fs-24 fc-66">运费</text>
+            <text class="this-value  fs-24 fc-1a">免运费</text>
+        </view>
+
+        <view class="goods-explain">
+            <span class="title fs-24">说明</span>
+            <span class="this-value fs-24">贝划算用户专享福利</span>
+        </view>
+
+    </view>
+
+    <view class='goods-detail'>
+        <view class='detail-title'>
+            <text class="txt fs-28 fc-33">商品详情介绍</text>
+            <text class="icon"></text>
+        </view>
+        <view class="detail-img">
+            <image wx:for="{{ detailImgList }}" wx:key="" src='{{ item.imgPath }}'></image>
+        </view>
+    </view>
+
+    <!--助力购-->
+    <view class="detail-footer" wx:if="{{ shareBuy === 0 }}">
+        <view class="border-line-heng-e6e6e6"></view>
+        <text class="help-pay-btn opacity fs-40">助力购</text>
+    </view>
+
+    <!--正常购买-->
+    <view class="detail-footer" v-else>
+        <view class="border-line-heng-e6e6e6"></view>
+        <view class="to-order opacity fs-28 fc-ff" bindtap="toOrder" ontouchstart="">立即购买</view>
+        <view class="to-cart opacity" bindtap="goToCart" ontouchstart="">
+            <text class="icon"></text>
+            <text class="txt fs-22 fc-66">购物车</text>
+            <text class="num">99</text>
+        </view>
+        <view class="border-line-shu-e6e6e6"></view>
+        <view class="in-cart opacity fs-28 fc-26" bindtap="joinShopCart" ontouchstart="">加入购物车</view>
+    </view>
+
+    <!--选择规格数量弹窗-->
+    <view class="base-box box-select-sku {{skuBox === 1 ? 'this-over':''}}">
+        <view class="gray-back" bindtap="showSkuBox" ontouchstart=""></view>
+        <view class="box-sku-main">
+            <view class="header">
+                <text class="txt fs-28 fc-0d">规格、数量</text>
+                <text class="opacity" href="javascript:void(0)" bindtap="showSkuBox" ontouchstart=""></text>
+            </view>
+            <view class="border-line-heng-e6e6e6"></view>
+            <view class="info-bar">
+                <view class="info-img"><image src="{{skuImgPath}}"></image></view>
+                <view class="info-mess">
+                    <view class="price"><text class="icon-rmb fs-30 fc-e6">￥</text><text class="price-sku fc-e6">138.00</text></view>
+                    <view class="stock fs-24 fc-66">库存: {{ goodsStock }}</view>
+                    <view class="note-txt fs-24 fc-66">已选: {{ skuData }}</view>
+                </view>
+            </view>
+            <view class="info-select">
+                <ul>
+                    <li wx:for="{{ skuSpecList }}" wx:key="">
+                        <text class="type-name fs-26 fc-0d">{{item.specGroupName}}</text>
+                        <view class="type-box">
+                            <text class="t-box opacity fs-24" :class="{'this-over':spec.over === 1}" wx:for="{{ item.specList }}" wx:for-item="spec" wx:key="" bindtap="changeSku(item.index, spec.index, spec.over)" ontouchstart="">{{spec.name}}</text>
+                        </view>
+                    </li>
+                    <li>
+                        <text class="type-name fs-26 fc-0d">数量</text>
+                        <view class='btn-box'>
+                            <text class="l" bindtap="checkNumber(-1)">-</text>
+                            <text class="c">{{quantity}}</text>
+                            <text class="r" bindtap="checkNumber(1)">+</text>
+                        </view>
+                    </li>
+                </ul>
+            </view>
+            <view class="footer">
+                <text class="fs-28 fc-ff opacity">加入购物车</text>
+                <text class="go-pay fs-28 fc-ff opacity">立即购买</text>
+            </view>
+        </view>
+    </view>
+
+</view>
+
+<include src="../include/include.wxml"></include>

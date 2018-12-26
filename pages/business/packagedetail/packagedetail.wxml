@@ -1,0 +1,50 @@
+<view class="out-side-packagedetail">
+
+  <view class="package-title fs-36 fc-1a">北京遇上烤鸭、北京遇上烤鸭（府城国际）北京遇上烤鸭（府城国际）</view>
+
+  <view class="open-time">
+    <view class="label-bar">
+      <text class="border-line-shu-e6e6e6"></text>
+      <text class="txt fs-24 fc-99">随时退</text>
+      <text class="border-line-shu-e6e6e6"></text>
+      <text class="txt fs-24 fc-99">免预约</text>
+      <text class="border-line-shu-e6e6e6"></text>
+      <text class="txt fs-24 fc-99">过期自动退</text>
+    </view>
+    <text class="sale fs-24 fc-99">已售200份</text>
+  </view>
+
+  <view class="banner"><image src="https://api.duishangbao.net/upload/operation/content/img/1/37bf33479250981c1f13135a54aaeca0.jpeg"></image></view>
+
+  <view class="shop-mess">
+    <view class="title fs-34 fc-1a">商家信息</view>
+    <view class="border-line-heng-xuxian"></view>
+    <view class="main">
+      <view class="txt">
+        <text class="name fs-32 fc-1a">北京遇上烤鸭（复城国际）</text>
+        <text class="addr fs-24 fc-99">500m | 武侯区益州大道中段722号复城国际1层武侯区益州大道中段722号复城国际1层</text>
+      </view>
+      <view class="tel opacity" ontouchstart=""></view>
+    </view>
+  </view>
+
+  <view class="package-info">
+    <view class="title fs-34 fc-1a">套餐详情</view>
+    <view class="border-line-heng-xuxian"></view>
+    <view class="detail-main">战斧牛排其骨长30厘米，肉身更重达1公斤。牛排边缘肉质入口香脆，中间口感丰厚饱满，令人回味无穷；斧头是牛肋眼，厚达5公分，重达50盎司，一头牛只最多只能切出9-10份战斧牛排。</view>
+  </view>
+
+  <view class="foot-bar">
+    <view class="border-line-heng-e6e6e6"></view>
+    <text class="go-pay opacity fs-32 fc-ff" ontouchstart="">立即购买</text>
+    <view class="price">
+      <text class="rmb fs-28 fc-e6">￥</text>
+      <text class="num fs-38 fc-e6">88.88</text>
+      <view class="return fs-22 fc-fc">送88金贝<text class="icon"></text></view>
+    </view>
+    <view class="gold fs-24 fc-b2">金贝帮你抵扣了20.00元</view>
+  </view>
+
+</view>
+
+<include src="../include/include.wxml"></include>

@@ -1,0 +1,90 @@
+/**
+ * @title 活动类目
+ */
+
+page {
+  background-color: #fff;
+}
+
+.line {
+  float: left;
+}
+
+.classify-out {
+  display: block;
+  width: 150rpx;
+  height: calc(100vh - 88rpx);
+  background-color: #fff;
+  border-right: 1px solid #eee;
+  overflow-y: auto;
+  margin-top: 88rpx;
+  float: left;
+}
+
+.classify {
+  display: block;
+  height: 80rpx;
+  text-align: center;
+}
+
+.classify .classify-side {
+  display: block;
+  height: 58rpx;
+  line-height: 58rpx;
+  color: #333;
+  font-size: 26rpx;
+  border-left: 3px solid #fff;
+  margin: 11rpx 0;
+}
+
+.classify.this-over .classify-side {
+  border-left: 3px solid #f62343;
+}
+
+.classify.this-over .classify-side,
+.classify .classify-side:active {
+  color: #e62343;
+}
+
+.classify-main {
+  display: none;
+  width: calc(100vw - 153rpx);
+  height: calc(100vh - 185rpx);
+  overflow-y: auto;
+  position: absolute;
+  top: 88rpx;
+  right: 0;
+  background-color: #fff;
+  padding: 26rpx 0 0 0;
+}
+
+.classify-main.this-over {
+  display: block;
+}
+
+.classify-main li {
+  width: 190rpx;
+  height: 240rpx;
+  float: left;
+  overflow: hidden;
+  text-align: center;
+}
+
+.classify-main li .classify-img {
+  height: 150rpx;
+}
+
+.classify-main li .classify-img image {
+  width: 150rpx;
+  height: 150rpx;
+  background-color: #eee;
+}
+
+.classify-main li .classify-txt {
+  padding-top: 12rpx;
+  font-size: 24rpx;
+}
+
+.classify-main li:active .classify-txt {
+  color: #f75d45
+}

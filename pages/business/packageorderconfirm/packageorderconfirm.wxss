@@ -1,0 +1,170 @@
+
+.out-side-packageorderconfirm {
+  background-color: #f4f4f4;
+  width: 100vw;
+  min-height: 100vh;
+  padding: 0 0 116rpx;
+  overflow: hidden;
+}
+
+.out-side-packageorderconfirm .package-info {
+  overflow: hidden;
+  background-color: #fff;
+  padding: 20rpx 0 30rpx 20rpx;
+}
+
+.out-side-packageorderconfirm .package-info .img {
+  width: 198rpx;
+  height: 198rpx;
+  float: left;
+  margin: 8rpx 20rpx 0 0;
+}
+
+.out-side-packageorderconfirm .package-info .img image {
+  width: 198rpx;
+  height: 198rpx;
+  border-radius: 10rpx;
+}
+
+.out-side-packageorderconfirm .package-info .main {
+  width: 512rpx;
+  overflow: hidden;
+  float: left;
+  margin-top: 5rpx;
+  position: relative;
+}
+
+.out-side-packageorderconfirm .package-info .main .name {
+  height: 88rpx;
+  line-height: 44rpx;
+}
+
+.out-side-packageorderconfirm .package-info .main .price {
+  overflow: hidden;
+  margin-top: 18rpx;
+}
+
+.out-side-packageorderconfirm .package-info .main .price .fs-38 {
+  display: inline-block;
+  float: left;
+}
+
+.out-side-packageorderconfirm .package-info .main .price .return {
+  display: inline-block;
+  height: 33rpx;
+  line-height: 33rpx;
+  background: url('https://api.duishangbao.cn/upload/image/qipao_jiao_12.png') no-repeat right / 600rpx 33rpx;
+  padding-right: 10rpx;
+  margin: 5rpx 0 0 10rpx;
+}
+
+.out-side-packageorderconfirm .package-info .main .price .return .txt {
+  display: inline-block;
+  height: 33rpx;
+  line-height: 33rpx;
+  background: url('https://api.duishangbao.cn/upload/image/qipao_jiao_11.png') no-repeat left / 21rpx 33rpx;
+  padding-left: 18rpx;
+}
+
+.out-side-packageorderconfirm .label-ul {
+  display: block;
+  overflow: hidden;
+}
+
+.out-side-packageorderconfirm .label-ul li {
+  display: inline-block;
+  line-height: 38rpx;
+  padding: 0 12rpx 5rpx 44rpx;
+  background: url('https://api.duishangbao.cn/upload/image/icon_zu6.png') no-repeat 0 -479rpx / 60rpx 1200rpx;
+  float: left;
+}
+
+.out-side-packageorderconfirm .package-count-bar {
+  overflow: hidden;
+  padding: 20rpx;
+  background-color: #fff;
+  margin-top: 16rpx;
+}
+
+.out-side-packageorderconfirm .package-count-bar .num {
+  display: block;
+  overflow: hidden;
+  padding: 30rpx 0 50rpx;
+}
+
+.out-side-packageorderconfirm .package-count-bar .num .jia {
+  display: inline-block;
+  width: 46rpx;
+  height: 46rpx;
+  background: url('https://api.duishangbao.cn/upload/image/icon_zu6.png') no-repeat 0 -658rpx / 60rpx 1200rpx;
+  float: right;
+}
+
+.out-side-packageorderconfirm .package-count-bar .num .count {
+  display: inline-block;
+  line-height: 46rpx;
+  padding: 0 15rpx;
+  float: right;
+}
+
+.out-side-packageorderconfirm .package-count-bar .num .jian {
+  display: inline-block;
+  width: 46rpx;
+  height: 46rpx;
+  background: url('https://api.duishangbao.cn/upload/image/icon_zu6.png') no-repeat 0 -598rpx / 60rpx 1200rpx;
+  float: right;
+}
+
+.out-side-packageorderconfirm .use-gold {
+  overflow: hidden;
+  padding: 5rpx 0 15rpx;
+}
+
+.out-side-packageorderconfirm .use-gold .l {
+  width: 520rpx;
+  overflow: hidden;
+  float: left;
+}
+
+.out-side-packageorderconfirm .use-gold .l .title {
+  display: inline-block;
+  padding-right: 44rpx;
+  line-height: 46rpx;
+  background: url('https://api.duishangbao.cn/upload/image/icon_zu6.png') no-repeat 136rpx -534rpx / 60rpx 1200rpx;
+}
+
+.out-side-packageorderconfirm .use-gold .l .di-mess {
+  display: block;
+  padding: 8rpx 0 15rpx;
+}
+
+.out-side-packageorderconfirm .use-gold .btn-power {
+  display: inline-block;
+  width: 90rpx;
+  height: 50rpx;
+  background: url('https://api.duishangbao.cn/upload/image/icon_zu5.png') no-repeat 0 -495rpx / 110rpx 1100rpx;
+  float: right;
+  margin: 23rpx 0 0 0;
+}
+
+.out-side-packageorderconfirm .use-gold .btn-power.this-over {
+  background: url('https://api.duishangbao.cn/upload/image/icon_zu5.png') no-repeat 0 -440rpxm / 110rpx 1100rpx;
+}
+
+.out-side-packageorderconfirm .package-count-bar .result {
+  line-height: 46rpx;
+  overflow: hidden;
+  padding: 25rpx 0 15rpx;
+}
+
+.out-side-packageorderconfirm .pay-btn {
+  width: 100vw;
+  height: 98rpx;
+  line-height: 98rpx;
+  text-align: center;
+  background-color: #e62343;
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  z-index: 1;
+}

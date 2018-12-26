@@ -1,0 +1,50 @@
+<!--附近-->
+
+<view class="out-side-nearby">
+
+  <swiper class="swiper" indicator-dots="true" autoplay="true" interval="5000" duration="300" circular="true">
+    <block wx:for="{{ bannerList }}" wx:key="">
+      <swiper-item class="swiper-item">
+        <image src="{{ item.img_path }}{{ item.img }}" class="slide-image" width="355" height="150" alt="{{ item.title }}" data-jump_data="{{ item.jump_data }}" data-jump_type="{{ item.jump_type }}" bindtap="openPageTo"></image>
+      </swiper-item>
+    </block>
+  </swiper>
+
+  <ul class="near-nav">
+    <li class="near-list opacity" wx:for="{{ navList }}" wx:key="" ontouchstart="" data-jump_data="{{ item.jump_data }}" data-jump_type="{{ item.jump_type }}" bindtap="openPageTo">
+      <view class="img">
+        <image class="near-img" src='{{ item.img }}'></image>
+      </view>
+      <view class="txt fs-24 fc-40 text-overflow">{{ item.title }}</view>
+    </li>
+  </ul>
+
+  <view class="hot-header">
+    <text class="hot fs-28 fc-1a">热门商家</text>
+    <text class="more fs-24 fc-99">更多></text>
+  </view>
+
+  <ul class="hot-sj-ul">
+    <li class="opacity">
+      <!-- v-for="item in list" v-bind:key="item.id" ontouchstart=""-->
+      <view class="border-line-heng-e6e6e6"></view>
+      <view class="img">
+        <!--<img :src="item.licenseImage">-->
+        <image src="https://img.duishangbao.cn/upload/goods/imgs/32/18a65547982d717dc220fb133e1d8bcf.jpeg"></image>
+      </view>
+      <view class="main">
+        <text class="name fs-30 fc-1a text-overflow"><!--{{item.name}}-->北京遇上烤..(府城国际)</text>
+        <text class="addr fs-24 fc-1a text-overflow"><!--{{item.address}} {{item.distance}}km-->高新区 吉泰路 0.8km</text>
+        <text class="price fs-24 fc-66">人均消费:<!--￥{{item.expense_avg}}-->￥88.88</text>
+
+        <view class="label fs-24 fc-66">
+          <text class="di">金贝消费</text>
+          <text class="tuan text-overflow">战斧牛排hah.. 团购1~2人</text>
+        </view>
+      </view>
+    </li>
+  </ul>
+
+</view>
+
+<include src="../include/include.wxml"></include>

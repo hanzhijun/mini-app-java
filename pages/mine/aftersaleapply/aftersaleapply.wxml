@@ -1,0 +1,44 @@
+<view class="out-side-aftersaleapply">
+
+  <view class="goods-bar">
+    <view class="goods-img">
+      <image src="https://img.duishangbao.cn/upload/goods/imgs/32/18a65547982d717dc220fb133e1d8bcf.jpeg"></image>
+    </view>
+    <view class="goods-main">
+      <text class="name fs-28 fc-0d text-overflow-2">秋水伊人衬衫2018冬装新款女装时尚系带简约纯色明线上衣女</text>
+      <text class="sku fs-22 fc-b2 text-overflow">卡其色;170/92A/XL</text>
+      <view class="price-bar">
+        <text class="txt fs-28 fc-0d">实付金额</text>
+        <text class="price fs-28 fc-e6">￥168.00</text>
+      </view>
+    </view>
+  </view>
+
+  <ul class="after-ul">
+    <li class="after-li opacity" ontouchstart="">
+      <text class="txt fs-28 fc-1a">换货原因</text>
+      <text class="icon"></text>
+    </li>
+    <li class="after-li">
+      <text class="txt fs-28 fc-1a">换货说明：</text>
+    </li>
+    <li class="after-li" ontouchstart="">
+      <textarea class="text-area fs-28 fc-1a" placeholder="陈述您遇到的问题..."></textarea>
+    </li>
+  </ul>
+
+  <view class="up-load-bar">
+    <view class="up-load-title fs-32 fc-1a">上传凭证</view>
+    <view class="img-group">
+      <view class="img-group-k"><image src="https://img.duishangbao.cn/upload/goods/list/13/57df3532333e8e3e87ab963f137db674.png"></image></view>
+      <view class="img-group-k"><image src="https://img.duishangbao.cn/upload/goods/list/13/57df3532333e8e3e87ab963f137db674.png"></image></view>
+      <view class="img-group-k"><image src="https://img.duishangbao.cn/upload/goods/list/13/57df3532333e8e3e87ab963f137db674.png"></image></view>
+      <view class="img-group-k"><image src="https://img.duishangbao.cn/upload/goods/list/13/57df3532333e8e3e87ab963f137db674.png"></image></view>
+      <view class="img-group-k"><image src="https://img.duishangbao.cn/upload/goods/list/13/57df3532333e8e3e87ab963f137db674.png"></image></view>
+      <text class="up-load-btn opacity" href="javascript:void(0)" ontouchstart=""><text class="icon"></text><text class="txt-up fs-24 fc-1a">上传图片</text><text class="txt-b fs-20 fc-99">(最多6张)</text></text>
+    </view>
+  </view>
+
+  <view class="form-btn opacity fs-32 fc-ff">提交</view>
+
+</view>

@@ -1,0 +1,84 @@
+<!--订单详情页-->
+<view class="out-side-orderdetail">
+
+    <view class="order-address">
+        <view class="order-addr-mess">
+            <text class="name fs-bold">收货人：{{ addrUserName }}</text>
+            <text class="tel fs-bold">{{ addrUserTel }}</text>
+            <text class="addr-main">{{ addrUserRess }}</text>
+        </view>
+        <view class="line"></view>
+    </view>
+
+    <view class="order-wuliu">
+        <view class="icon"><image src="https://img.duishangbao.cn/upload/goods/imgs/32/18a65547982d717dc220fb133e1d8bcf.jpeg"></image></view>
+        <view class="name-bar">
+            <text class="name text-overflow fs-32 fc-40">顺丰快递</text>
+            <textg class="tel text-overflow fs-24 fc-b2">8332898538</textg>
+        </view>
+        <view class="border-line-shu-e6e6e6"></view>
+        <view class="wuliu-state">
+            <text class="txt fs-28 fc-40 text-overflow">最新状态  [杭州市]杭州中转中心</text>
+            <text class="time fs-20 fc-99 text-overflow">更新时间  2018-10-29  10:18:13</text>
+        </view>
+        <text class="icon-star"></text>
+    </view>
+
+    <view class="order-goods-list">
+
+        <view class="pub-name fs-28 fc-1a">贝划算</view>
+
+        <view class="order-goods-bar">
+            <view class="order-goods-img"><image src="https://img.duishangbao.cn/upload/goods/imgs/32/18a65547982d717dc220fb133e1d8bcf.jpeg"></image></view>
+            <text class="order-goods-name fs-26 fc-0d">秋水伊人衬衫2018冬装新款女装时尚系带简约纯色明线上衣女 </text>
+            <text class="order-goods-sku fs-22 fc-b3">卡其色;170/92A/XL</text>
+            <view class="order-goods-price">
+                <text class="price-num fs-38 fc-e6">￥168.00</text>
+                <text class="return-num fs-24">送88金贝<text class="icon"></text></text>
+            </view>
+            <text class="order-goods-num fs-22 fc-59">x1</text>
+            <text class="order-goods-tui fs-28 fc-99 opacity">退款</text>
+        </view>
+
+        <view class="order-goods-message">
+            <text class="title fs-24 fc-1a">买家留言</text>
+            <text class="liuyan fs-22 fc-1a">填写内容备注需求等，45字内</text>
+        </view>
+
+        <view class="order-goods-subtotal">
+            <text class="fs-26 fc-1a fs-bold">共1件商品　小计: </text>
+            <text class="fs-28 fc-1a fs-bold">￥168.00</text>
+        </view>
+    </view>
+
+    <ul class="order-jilu">
+        <li><text class="txt">赠送金贝：获得168金贝</text></li>
+        <li><text class="txt">创建时间：2018-10-26  17:30:59</text></li>
+        <li><text class="txt">付款时间：2018-10-26  17:30:59</text></li>
+        <li><text class="txt">发货时间：2018-10-26  17:30:59</text></li>
+        <li><text class="txt">订单编号：201820822712893711</text><text class="copy fc-1a fs-24 opacity" href="javascript:void(0)">复制</text></li>
+    </ul>
+
+    <ul class="order-goods-p-count">
+        <li class="fs-24">
+            <text class="title">订单金额</text>
+            <text class="price">￥178.00</text>
+        </li>
+        <li class="fs-24">
+            <text class="title">使用金贝</text>
+            <text class="price">-￥168.00</text>
+        </li>
+        <li class="fs-24">
+            <text class="title">运费 (快递)</text>
+            <text class="price">￥10.00</text>
+        </li>
+    </ul>
+
+    <view class="footer-btn">
+        <text class="red opacity" href="javascript:void(0)">确认收货</text>
+        <text class="opacity" href="javascript:void(0)">查看物流</text>
+    </view>
+
+</view>
+
+<include src="../include/include.wxml"></include>

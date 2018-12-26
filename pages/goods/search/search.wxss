@@ -1,0 +1,71 @@
+/**
+ * @title 商品搜索
+ */
+.out-side-search {
+  background-color: #f4f4f4;
+  min-height: 100vh;
+}
+
+.out-side-search .head-btn-return-txt {
+  display: inline-block;
+  padding-right: 20rpx;
+  font-size: 32rpx;
+  color: #fff;
+  float: right;
+  line-height: 88rpx;
+}
+
+.out-side-search .del-all {
+  height: 200rpx;
+  background-color: #fff;
+  border-bottom: 1px solid #d9d9d9;
+}
+
+.out-side-search .del-all .txt {
+  display: inline-block;
+  font-size: 32rpx;
+  line-height: 32rpx;
+  color: #262626;
+  padding: 128rpx 0 0 20rpx;
+}
+
+.out-side-search .del-all .del {
+  display: inline-block;
+  width: 100rpx;
+  height: 60rpx;
+  background: #eee url('https://api.duishangbao.cn/upload/image/icon_zu4.png') no-repeat 18rpx 10rpx / 50rpx 1000rpx;
+  float: right;
+  margin-top: 112rpx;
+}
+
+.out-side-search .search-history-list {
+  display: block;
+  overflow: hidden;
+  background-color: #fff;
+  padding: 0 20rpx 38rpx;
+  margin-top: 20rpx;
+}
+
+.out-side-search .search-history-list li {
+  display: block;
+  height: 110rpx;
+  position: relative;
+  border-bottom: 1px solid #d9d9d9;
+}
+
+.out-side-search .search-history-list li .txt {
+  display: block;
+  line-height: 110rpx;
+  font-size: 24rpx;
+  color: #808080;
+}
+
+.out-side-search .search-history-list li .del {
+  display: inline-block;
+  width: 80rpx;
+  height: 50rpx;
+  background: #eee url('https://api.duishangbao.cn/upload/image/icon_zu4.png') no-repeat 30rpx -40rpx / 50rpx 1000rpx;
+  position: absolute;
+  top: 40rpx;
+  right: 0;
+}

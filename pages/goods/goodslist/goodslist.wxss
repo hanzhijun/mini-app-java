@@ -1,0 +1,106 @@
+/**
+ * @title 商品列表列表页
+ */
+
+.out-side-goodslist {
+  background-color: #f4f4f4;
+  min-height: 100vh;
+}
+
+.goods-out {
+  width: 100vw;
+  overflow: hidden;
+  padding: 112rpx 0 20rpx;
+}
+
+.out-side-goodslist.has-search .goods-out {
+  padding: 200rpx 0 20rpx;
+}
+
+.goods-out ul {
+  display: block;
+  padding-left: 10rpx;
+  overflow: hidden;
+}
+
+.goods-list {
+  width: 350rpx;
+  height: 485rpx;
+  float: left;
+  margin: 0 0 10rpx 10rpx;
+  background-color: #fff;
+  border-radius: 10rpx;
+  overflow: hidden;
+}
+
+.goods-list .goods-img {
+  width: 350rpx;
+  height: 365rpx;
+  text-align: center;
+}
+
+.goods-list .goods-img image {
+  width: 350rpx;
+  height: 350rpx;
+}
+
+.goods-list .goods-name {
+  height: 60rpx;
+  padding: 0 10rpx;
+  font-size: 28rpx;
+  line-height: 30rpx;
+}
+
+.goods-list .goods-info {
+  padding: 5rpx 0 0 10rpx;
+}
+
+.goods-list .goods-info i {
+  font-size: 36rpx;
+  color: #e62343;
+}
+
+.nav-bar {
+  width: 100vw;
+  height: 92rpx;
+  background-color: #fff;
+  position: fixed;
+  z-index: 1;
+  left: 0;
+  top: 0;
+  border-bottom: .5px solid #d6d6d6;
+}
+
+.out-side-goodslist.has-search .nav-bar {
+  top: 88rpx;
+}
+
+.nav-bar .opacity {
+  display: inline-block;
+  width: 250rpx;
+  height: 50rpx;
+  line-height: 50rpx;
+  margin-top: 21rpx;
+  float: left;
+  text-align: center;
+}
+
+.nav-bar .opacity.this-over text {
+  color: #e62343
+}
+
+.nav-bar .opacity .sort {
+  display: inline-block;
+  height: 50rpx;
+  line-height: 50rpx;
+  padding-right: 25rpx;
+  background: url('https://api.duishangbao.cn/upload/image/icon_zu.png') no-repeat 56rpx -585rpx / 70rpx 1000rpx;
+}
+
+.nav-bar .opacity .sort.up {
+  background: url('https://api.duishangbao.cn/upload/image/icon_zu.png') no-repeat 56rpx -685rpx / 70rpx 1000rpx;
+}
+
+.nav-bar .opacity .sort.down {
+  background: url('https://api.duishangbao.cn/upload/image/icon_zu.png') no-repeat 56rpx -635rpx / 70rpx 1000rpx;
+}

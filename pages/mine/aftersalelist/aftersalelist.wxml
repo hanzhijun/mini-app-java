@@ -1,0 +1,31 @@
+<view class="out-side-aftersalelist">
+
+  <view class="goods-bar">
+    <view class="goods-img">
+      <image src="https://img.duishangbao.cn/upload/goods/imgs/32/18a65547982d717dc220fb133e1d8bcf.jpeg"></image>
+    </view>
+    <view class="goods-main">
+      <text class="name fs-28 fc-0d text-overflow-2">秋水伊人衬衫2018冬装新款女装时尚系带简约纯色明线上衣女</text>
+      <text class="sku fs-22 fc-b2 text-overflow">卡其色;170/92A/XL</text>
+      <view class="price-bar">
+        <text class="txt fs-28 fc-0d">实付金额</text>
+        <text class="price fs-28 fc-e6">￥168.00</text>
+      </view>
+    </view>
+  </view>
+
+  <ul class="after-ul">
+    <li class="after-li opacity" ontouchstart="">
+      <text class="txt fs-28 fc-1a">我要退款</text>
+      <text class="icon"></text>
+    </li>
+    <li class="after-li opacity" ontouchstart="">
+      <text class="txt fs-28 fc-1a">已收到货，我要退款</text>
+      <text class="icon"></text>
+    </li>
+    <li class="after-li opacity" ontouchstart="">
+      <text class="txt fs-28 fc-1a">换货</text>
+      <text class="icon"></text>
+    </li>
+  </ul>
+</view>
