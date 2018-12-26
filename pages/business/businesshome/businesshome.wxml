@@ -13,10 +13,10 @@
   <view class="addr">
     <view class="l-side">
       <text class="addr-name fs-28 fc-1a text-overflow">武侯区益州大道中段722号复城国际1层道中段722号复城国际1层</text>
-      <text class="addr-num fx-28 fc-99">距离您500m</text>
+      <text class="addr-num fs-28 fc-99">距离您500m</text>
     </view>
     <view class="border-line-shu-e6e6e6"></view>
-    <text class="tel opacity" ontouchstart=""></text>
+    <text class="tel opacity" ></text>
   </view>
 
   <view class="voucher-bar">
@@ -36,27 +36,27 @@
             <text class="return fs-22 fc-fc">送68金贝</text>
           </view>
           <view class="gold fs-24 fc-99">金贝帮你抵扣了20.00元</view>
-          <text class="buy-btn fs-28 fc-ff opacity" ontouchstart="">立即抢购</text>
+          <text class="buy-btn fs-28 fc-ff opacity" >立即抢购</text>
           <text class="icon-gold" title="金贝抵扣"></text>
         </view>
       </li>
     </ul>
 
     <view class="border-line-heng-e6e6e6"></view>
-    <view class="more fs-24 fc-40 opacity" ontouchstart="">更多1张优惠券 ></view>
+    <view class="more fs-24 fc-40 opacity" >更多1张优惠券 ></view>
 
   </view>
 
   <view class="package-bar">
     <view class="header">
       <text class="title fs-32 fc-1a">热销套餐</text>
-      <text class="more fs-24 fc-66 opacity" ontouchstart="">更多</text>
+      <text class="more fs-24 fc-66 opacity" >更多</text>
     </view>
 
     <view class="package-outside">
       <view class="auto-k">
         <ul>
-          <li class="opacity" ontouchstart="">
+          <li class="opacity" >
             <view class="img">
               <image src="https://api.duishangbao.net/upload/operation/content/img/1/37bf33479250981c1f13135a54aaeca0.jpeg"></image>
             </view>

@@ -24,7 +24,7 @@
         <text class="name fs-32 fc-1a">北京遇上烤鸭（复城国际）</text>
         <text class="addr fs-24 fc-99">500m | 武侯区益州大道中段722号复城国际1层武侯区益州大道中段722号复城国际1层</text>
       </view>
-      <view class="tel opacity" ontouchstart=""></view>
+      <view class="tel opacity" ></view>
     </view>
   </view>
 
@@ -36,7 +36,7 @@
 
   <view class="foot-bar">
     <view class="border-line-heng-e6e6e6"></view>
-    <text class="go-pay opacity fs-32 fc-ff" ontouchstart="">立即购买</text>
+    <text class="go-pay opacity fs-32 fc-ff" >立即购买</text>
     <view class="price">
       <text class="rmb fs-28 fc-e6">￥</text>
       <text class="num fs-38 fc-e6">88.88</text>

@@ -3,93 +3,74 @@ const app = getApp();
 
 Page({
 
-    /**
-     * 页面的初始数据
-     */
-    data: {
-        rawData: null,
-        userInfo: []
-    },
+  /**
+   * 页面的初始数据
+   */
+  data: {
+    loading: 0, // loading加载提示框
+    loginbox: 0, // 登录弹窗
+    toast: 0, // toast提示
+    title: '我的', // 标题
+    toastTxt: '系统错误，请稍后重试!', // toast文字
+    imgUrl: app.globalData.imgUrl,
+    isLogin: app.globalData.isLogin,
+    gold: null,
+    userInfo: null
+  },
 
-    onLoad: function () {
-        this.setData({
-            balance: app.globalData.balance,
-            gold: app.globalData.gold,
-            silver: app.globalData.silver,
-            copper: app.globalData.copper
-        })
-    },
+  onLoad: function () {
+  },
 
-    onShow: function () {
-        this.init();
-    },
+  onShow: function () {
+    this.init();
+  },
 
-    loginevent: function () {
-        setTimeout(() => {
-            this.init();
-        }, 1000)
-    },
-
-    init: function () {
-        console.log(app.globalData.balance);
-        console.log(app.globalData.gold);
-        console.log(app.globalData.silver);
-        console.log(app.globalData.copper);
-        if (!wx.getStorageSync('session')) {
-            let that = this.selectComponent("#loginBox");
-            if (that) {
-                that.setData({
-                    hidden: false
-                });
-            }
-            wx.hideLoading();
-            return;
-        } else {
-            let that = this.selectComponent("#loginBox");
-            if (that) {
-                that.setData({
-                    hidden: 'hidden'
-                });
-            }
-        }
-
-        let rawData = wx.getStorageSync('rawData');
-        this.setData({
-            rawData: rawData && JSON.parse(rawData)
-        });
-
-        // app.clearStorageSync();
-
-    },
-
-/*    getUserCapital: function () {
-        app.get('userCapital/detail', '{}', (res) => {
-            // console.log('成功' + JSON.stringify(res));
-            if (res.code == 1) {
-                this.setData({
-                    list: res.data.data,
-                    loading: 0
-                })
-            } else {
-                // console.log('失败' + JSON.stringify(res.err));
-                this.setData({
-                    loading: 0
-                })
-            }
-        }, (res) => {
-            // console.log('失败' + JSON.stringify(res.err));
-            this.setData({
-                loading: 0
-            })
-        })
-    },*/
-
-    /**
-     * 页面相关事件处理函数--监听用户下拉动作
-     */
-    onPullDownRefresh: function () {
-        this.init();
-        wx.stopPullDownRefresh();
+  init: function () {
+    console.log('我的初始化');
+    if (!wx.getStorageSync('session')) {
+      this.setData({
+        loginbox: 1,
+        isLogin: 0
+      })
+    } else {
+      this.setData({
+        loginbox: 0,
+        isLogin: 1
+      });
+      app.getUserCapital(this)
     }
-
+    let userInfo = wx.getStorageSync('userInfo');
+    if (userInfo) {
+      this.setData({
+        userInfo
+      })
+    }
+  },
+  /**
+   * 页面相关事件处理函数--监听用户下拉动作
+   */
+  onPullDownRefresh: function () {
+    this.init();
+    wx.stopPullDownRefresh();
+  },
+  /**
+   * 用户手动触发登录
+   * @param e
+   */
+  getUserInfo: function (e) {
+    wx.setStorageSync('userInfo', e.detail.userInfo);
+    this.setData({
+      userInfo: e.detail.userInfo
+    });
+    app.toLogin(this);
+  },
+  /**
+   * 登录成功后回执
+   */
+  userInfoReadyCallback: function () {
+    let _this = this;
+    setTimeout(function () {
+      _this.init()
+    }, 600)
+  }
 });

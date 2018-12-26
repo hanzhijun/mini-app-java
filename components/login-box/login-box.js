@@ -18,22 +18,11 @@ Component({
 
   attached: function() {
     let _this = this;
-
     if (!wx.getStorageSync('session')) {
       _this.setData({
         hidden: false
       })
     }
-    // 查看是否授权
-    /*wx.getSetting({
-      success: function (res) {
-        if (!res.authSetting['scope.userInfo']) {
-          _this.setData({
-            hidden: false
-          })
-        }
-      }
-    })*/
   },
 
   /**
@@ -49,9 +38,9 @@ Component({
     getUserInfo: function (e) {
       let _this = this;
       app.getUserInfo((data) => {
-        this.triggerEvent('loginevent', 1);
+        _this.triggerEvent('loginevent', 1);
       },(err) => {
-        this.triggerEvent('loginevent', 0);
+        _this.triggerEvent('loginevent', 0);
       });
       
       app.clearStorageSync();

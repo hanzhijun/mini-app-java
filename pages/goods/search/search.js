@@ -13,31 +13,32 @@ Page({
     loading: 0, // loading加载提示框
     loginbox: 0, // 登录弹窗
     toast: 0, // toast提示
-    toastTxt: '你真的很不错哟！', // toast文字
+    title: '商品搜索', // 标题
+    toastTxt: '系统错误，请稍后重试!', // toast文字
     imgUrl: app.globalData.imgUrl,
+    isLogin: app.globalData.isLogin,
+    gold: null,
+    userInfo: null,
 
-    title: '商品搜索',
     word: '', // 搜索关键字
     searchLong: -1, // 搜索记录条数
-    searchList: [{
-      id: 123,
-      text: '哈根达斯'
-    }, {
-      id: 124,
-      text: '圆圆美梦成真'
-    }, {
-      id: 125,
-      text: '遍历在加'
-    }]
+    searchList: []
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
+
+  },
+  onShow () {
+    if (wx.getStorageSync('searchWord') == '') return;
+    let searchList = JSON.parse(wx.getStorageSync('searchWord'));
+    this.setData({
+      searchList
+    });
     this.checkSearch()
   },
-
   openPage: function (e) {
     let {id} = e.currentTarget.dataset;
     app.openPage('goods/goodsdetail/goodsdetail?gid=' + id)
@@ -69,6 +70,7 @@ Page({
     if (!word) {
       app.showToast(this, '请输入搜索的商品关键字')
     } else {
+      app.addSearchWord(word);
       app.openPage('goods/goodslist/goodslist?word=' + word)
     }
   },
@@ -77,26 +79,23 @@ Page({
    * @param e
    */
   delSearch (e) {
-    let {id} = e.currentTarget.dataset;
-    if (!id) {
-      console.log('搜索历史全部删除成功')
+    let {word} = e.currentTarget.dataset;
+    // let arr = JSON.parse(wx.getStorageSync('searchWord'));
+    if (!word) {
       this.setData({
         searchList: []
       });
-      this.checkSearch()
+      this.checkSearch();
+      wx.setStorageSync('searchWord', '')
     } else {
-      console.log('搜索单条记录')
-      let {searchList} = this.data
-      let newData = []
-      for (let i = 0; i < searchList.length; i++) {
-        if (searchList[i].id !== id) {
-          newData.push(searchList[i])
-        }
-      }
+      let {searchList} = this.data;
+      let index = searchList.indexOf(word);
+      searchList.splice(index, 1);
       this.setData({
-        searchList: newData
+        searchList
       });
-      this.checkSearch()
+      this.checkSearch();
+      wx.setStorageSync('searchWord', JSON.stringify(searchList))
     }
   }
 

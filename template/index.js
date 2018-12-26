@@ -1,5 +1,11 @@
-import city from '../city.js';
-
+const app = getApp();
+let city = '';
+setTimeout(function () {
+  city = app.data.city;
+}, 2000);
+setTimeout(function () {
+  city = app.data.city;
+}, 8000);
 
 /**
  * @param {function} fun 接口
@@ -20,7 +26,7 @@ let json = {
   sheng: [0,''],
   shi: [0,''],
   qu: [0,'']
-}
+};
 
 function getCity(a, b) {
   let sheng = [];

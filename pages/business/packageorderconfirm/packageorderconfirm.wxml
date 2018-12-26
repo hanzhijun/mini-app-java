@@ -40,7 +40,7 @@
     </view>
   </view>
 
-  <view class="pay-btn fs-34 fc-ff opacity" ontouchstart="">确认支付 ￥338.88</view>
+  <view class="pay-btn fs-34 fc-ff opacity" >确认支付 ￥338.88</view>
 </view>
 
 <include src="../include/include.wxml"></include>

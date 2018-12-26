@@ -1,23 +1,30 @@
-<view>
+<view class="out-side-aboutus">
 
-    <view class="icon_about">
-    </view>
-    <text class="title">贝划算</text>
+  <view class="about-up">
+    <view class="bhs-logo"><image src="https://api.duishangbao.cn/upload/image/bhs-logo.png"></image></view>
+    <view class="bhs-v fs-24 fc-99">版本号：V {{ vision }}</view>
 
-    <view class="ourInfo fs-24">
-        <view>
-            <text>客服热线:</text>
-            <text class="hotline">400-028-1213</text>
-        </view>
-        <view>
-            <text>当前版本:</text>
-            <text class="version">{{vision}}</text>
-        </view>
-    </view>
+    <ul class="abouts-ul fs-30 fc-26">
+      <li>
+        <text class="title">客服热线</text>
+        <text class="info">400-1234-567</text>
+        <view class="border-line-heng-e6e6e6"></view>
+      </li>
+      <li>
+        <text class="title">客服邮箱</text>
+        <text class="info">bhs@duishangbao.cn</text>
+        <view class="border-line-heng-e6e6e6"></view>
+      </li>
+      <li>
+        <text class="title">当前版本</text>
+        <text class="info">V {{ vision }}</text>
+        <view class="border-line-heng-e6e6e6"></view>
+      </li>
+    </ul>
+  </view>
 
-    <view class="permit fs-24">
-        <text>《兑商宝用户协议》</text>
-        <text>CopyRight@兑商宝2015-2017</text>
-    </view>
-
+  <view class="about-foot fs-24 fc-66">
+    <text>《兑商宝用户协议》</text>
+    <text>CopyRight @ 兑商宝 2015 - 2018</text>
+  </view>
 </view>

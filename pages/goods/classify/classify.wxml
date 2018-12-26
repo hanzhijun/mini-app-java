@@ -3,7 +3,7 @@
 <view class="out-side-classify">
 
     <view class="head-bar-fixed">
-        <view class="search-main-bar" bindtap="searchJump" ontouchstart="">
+        <view class="search-main-bar" bindtap="searchJump" >
             <text class="search-go opacity" title="搜索"></text>
             <view class="search-word">搜索商品(助力购买更划算)</view>
         </view>
@@ -19,7 +19,7 @@
     <!--二级类目-->
     <view class="classify-main {{item.id == cid?'this-over':''}}" wx:for="{{ list }}" wx:key="">
         <ul>
-            <li class="opacity" wx:for="{{ item.childrenList }}" wx:for-item="list" wx:key="" bindtap="listClick" data-sid="{{ list.relationCategory }}" data-sname="{{ list.name }}" ontouchstart="">
+            <li class="opacity" wx:for="{{ item.childrenList }}" wx:for-item="list" wx:key="" bindtap="listClick" data-sid="{{ list.relationCategory }}" data-sname="{{ list.name }}" >
                 <view class="classify-img"><image :src="{{ list.iconPath }}"></image></view>
                 <view class="classify-txt text-overflow">{{ list.name }}</view>
             </li>

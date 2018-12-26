@@ -33,7 +33,7 @@
   display: inline-block;
   width: 100rpx;
   height: 60rpx;
-  background: #eee url('https://api.duishangbao.cn/upload/image/icon_zu4.png') no-repeat 18rpx 10rpx / 50rpx 1000rpx;
+  background: url('https://api.duishangbao.cn/upload/image/icon_zu4.png') no-repeat 18rpx 10rpx / 50rpx 1000rpx;
   float: right;
   margin-top: 112rpx;
 }
@@ -64,7 +64,7 @@
   display: inline-block;
   width: 80rpx;
   height: 50rpx;
-  background: #eee url('https://api.duishangbao.cn/upload/image/icon_zu4.png') no-repeat 30rpx -40rpx / 50rpx 1000rpx;
+  background: url('https://api.duishangbao.cn/upload/image/icon_zu4.png') no-repeat 30rpx -40rpx / 50rpx 1000rpx;
   position: absolute;
   top: 40rpx;
   right: 0;

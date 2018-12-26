@@ -7,7 +7,8 @@
   overflow: hidden;
 }
 
-.out-side-goodsdetail .banner {
+.out-side-goodsdetail .banner,
+.out-side-goodsdetail .banner swiper {
   height: 100vw;
 }
 
@@ -94,6 +95,20 @@
   height: 80rpx;
   line-height: 54rpx;
   background: url('https://api.duishangbao.cn/upload/image/qipao_jiao5.png') no-repeat right/150rpx 80rpx;
+}
+
+.out-side-goodsdetail .detai-info2.help-pay {
+  width: 710rpx;
+  margin: 2rpx 20rpx;
+}
+.out-side-goodsdetail .help-pay .detai-info2-bj2,
+.out-side-goodsdetail .help-pay .detai-info2-bj3 {
+  width: 710rpx;
+  margin: 0;
+  padding: 0;
+}
+
+.out-side-goodsdetail .help-pay .detail-info-main {
   display: flex;
   justify-content: space-around;
   text-align: center;
@@ -101,10 +116,10 @@
   padding-top: 27rpx;
 }
 
-.out-side-goodsdetail .detai-info2.help-pay,
-.out-side-goodsdetail .help-pay .detai-info2-bj2,
-.out-side-goodsdetail .help-pay .detai-info2-bj3 {
-  width: 710rpx;
+.out-side-goodsdetail .detai-info2-bj3 text {
+  display: inline-block;
+  height: 58rpx;
+  line-height: 58rpx;
 }
 
 .out-side-goodsdetail .detai-info2-bj3 .line-ge {
@@ -114,9 +129,6 @@
   background: url('https://api.duishangbao.cn/upload/image/qipao_jiao6.png') no-repeat right/1px 54px;
 }
 
-.out-side-goodsdetail .detai-info2-bj3 text {
-  line-height: 58rpx;
-}
 
 .out-side-goodsdetail .goods-name {
   line-height: 52rpx;
@@ -177,7 +189,7 @@
   background-color: #ffeaed;
 }
 
-.out-side-goodsdetail .goods-explain span {
+.out-side-goodsdetail .goods-explain text {
   display: inline-block;
   min-width: 90rpx;
   color: #cc250e;
@@ -319,7 +331,7 @@
 
 .out-side-goodsdetail .box-select-sku .box-sku-main {
   width: 100vw;
-  height: 879rpx;
+  height: 85vh;
   background-color: #fff;
   position: absolute;
   left: 0;
@@ -383,7 +395,7 @@
 }
 
 .out-side-goodsdetail .info-select {
-  height: 423rpx;
+  height: calc(85vh - 450rpx);
   overflow-y: auto;
 }
 
@@ -456,7 +468,7 @@
   height: 98rpx;
 }
 
-.out-side-goodsdetail .box-select-sku footer a {
+.out-side-goodsdetail .box-select-sku .footer text {
   display: block;
   width: 50%;
   height: 98rpx;
@@ -466,6 +478,6 @@
   background-color: #fc6c15;
 }
 
-.out-side-goodsdetail .box-select-sku footer a.go-pay {
+.out-side-goodsdetail .box-select-sku .footer text.go-pay {
   background-color: #e62343;
 }

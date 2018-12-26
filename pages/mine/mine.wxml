@@ -1,16 +1,18 @@
-<login-box bind:loginevent='loginevent' id="loginBox"></login-box>
 
 <view class="out-side-mine">
 
   <view class="mine-head-bar">
-    <view class="mine-header-img"><image src="https://img-qn.hdb.com/upload/_oss/usershopimg/201808/02/31533179105153_shop3.jpg"></image></view>
+    <view class="mine-header-img">
+      <image src="https://img-qn.hdb.com/upload/_oss/usershopimg/201808/02/31533179105153_shop3.jpg" wx:if="{{ !isLogin }}"></image>
+      <image src="{{ userInfo.avatarUrl }}" wx:else></image>
+    </view>
     <view class="mine-header-name">
-      <text class="login">请登录</text>
-      <text class="name">用户名字</text>
+      <text class="login" wx:if="{{ !isLogin }}">请登录</text>
+      <text class="name" wx:else>{{ userInfo.nickName }}</text>
     </view>
     <view class="mine-head-k">
-      <text class="head-k-mess"><text class="gold"><text class="red">登录</text>赚金贝 可当现金用~</text></text>
-      <text class="head-k-mess2"><span class="gold">{{ this.$store.state.userCapital.gold / 100 }}</span><span class="gray">金贝</span></text>
+      <text class="head-k-mess" wx:if="{{ !isLogin }}"><text class="gold"><text class="red">登录</text>赚金贝 可当现金用~</text></text>
+      <text class="head-k-mess2" wx:else><text class="gold">{{ gold / 100 }}</text><text class="gray">金贝</text></text>
     </view>
   </view>
 
@@ -36,31 +38,30 @@
   </view>
 
   <view class="mine-nav-list">
-    <text class="opacity down first"><text class="img icon05"></text><text class="txt">售后服务</text></text>
-    <text class="opacity down"><text class="img icon06"></text><text class="txt">我的分享</text></text>
-    <text class="opacity down"><text class="img icon07"></text><text class="txt">地址管理</text></text>
-    <text class="opacity down"><text class="img icon08"></text><text class="txt">浏览轨迹</text></text>
-    <text class="opacity first"><text class="img icon09"></text><text class="txt">账号管理</text></text>
-    <text class="opacity"><text class="img icon10"></text><text class="txt">我的收藏</text></text>
-    <text class="opacity"><text class="img icon11"></text><text class="txt">联系客服</text></text>
-    <text class="opacity"><text class="img icon12"></text><text class="txt">关于我们</text></text>
+    <navigator class="opacity" url="../mine/aftersalelist/aftersalelist"><text class="img icon05"></text><text class="txt">售后服务</text></navigator>
+    <text class="border-line-shu-e6e6e6"></text>
+    <navigator class="opacity"><text class="img icon06"></text><text class="txt">我的分享</text></navigator>
+    <text class="border-line-shu-e6e6e6"></text>
+    <navigator class="opacity" url="../mine/adress/adress"><text class="img icon07"></text><text class="txt">地址管理</text></navigator>
+    <text class="border-line-shu-e6e6e6"></text>
+    <navigator class="opacity"><text class="img icon08"></text><text class="txt">浏览轨迹</text></navigator>
+  </view>
+  <view class="border-line-heng-e6e6e6"></view>
+  <view class="mine-nav-list">
+    <navigator class="opacity"><text class="img icon09"></text><text class="txt">账号管理</text></navigator>
+    <text class="border-line-shu-e6e6e6"></text>
+    <navigator class="opacity"><text class="img icon10"></text><text class="txt">我的收藏</text></navigator>
+    <text class="border-line-shu-e6e6e6"></text>
+    <navigator class="opacity"><text class="img icon11"></text><text class="txt">联系客服</text></navigator>
+    <text class="border-line-shu-e6e6e6"></text>
+    <navigator class="opacity" url="../mine/aboutus/aboutus"><text class="img icon12"></text><text class="txt">关于我们</text></navigator>
   </view>
 
   <view class="mine-btn-login">
-    <text class="opacity">退出当前账号</text>
-    <text class="opacity">未登录</text>
+    <text class="opacity" wx:if="{{ !isLogin }}">未登录</text>
+    <text class="opacity" wx:else>退出当前账号</text>
   </view>
 
-  <!--<view class="for-login"></view>-->
-
 </view>
 
-<view class="personal">
-  <button class="photoCon" open-type="getUserInfo" bindgetuserinfo="getUserInfo"></button>
-  <button class="photoCon test">
-    <view class="photo">
-      <open-data type="userAvatarUrl"></open-data>
-    </view>
-    <open-data type="userNickName" class="nickname">菩提</open-data>
-  </button>
-</view>
+<include src="../include/include.wxml"></include>

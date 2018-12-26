@@ -2,28 +2,33 @@
 
 /*手指按下，降低透明度*/
 .opacity:active {
-    opacity: .8
+  opacity: .8
 }
+
 /*文本一行，超出点点点*/
 .text-overflow {
-    overflow: hidden;
-    text-overflow: ellipsis;
-    white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }
+
 /*文本两行，超出点点点*/
 .text-overflow-2 {
-    overflow: hidden;
-    text-overflow: ellipsis;
-    display: -webkit-box;
-    -webkit-box-orient: vertical;
-    -webkit-line-clamp: 2;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
 }
+
 page {
   background: #f4f4f4;
 }
+
 .clear {
   zoom: 1;
 }
+
 .clear:after {
   display: block;
   clear: both;
@@ -31,333 +36,395 @@ page {
   visibility: hidden;
   height: 0;
 }
+
 .fl {
   float: left;
 }
+
 .fr {
   float: right;
 }
+
 .box-sizing {
   box-sizing: border-box;
 }
+
 .checkbox {
-  display:flex;
-  align-items:center;
+  display: flex;
+  align-items: center;
 }
+
 /** font **/
 .fs-bold {
-    font-weight: bold
+  font-weight: bold
 }
+
 .fs-line {
-    text-decoration: line-through
+  text-decoration: line-through
 }
+
 .fs-under {
-    text-decoration: underline
+  text-decoration: underline
 }
+
 .fs-20 {
   font-size: 20rpx;
 }
+
 .fs-22 {
   font-size: 22rpx;
 }
+
 .fs-24 {
-    font-size: 24rpx;
+  font-size: 24rpx;
 }
+
 .fs-26 {
-    font-size: 26rpx;
+  font-size: 26rpx;
 }
+
 .fs-28 {
-    font-size: 28rpx;
+  font-size: 28rpx;
 }
+
 .fs-30 {
-    font-size: 30rpx;
+  font-size: 30rpx;
 }
+
 .fs-32 {
-    font-size: 32rpx;
+  font-size: 32rpx;
 }
+
 .fs-36 {
-    font-size: 36rpx;
+  font-size: 36rpx;
 }
+
 .fs-40 {
-    font-size: 40rpx;
+  font-size: 40rpx;
 }
+
 .fs-44 {
-    font-size: 44rpx;
+  font-size: 44rpx;
 }
+
 .fs-50 {
-    font-size: 50rpx;
+  font-size: 50rpx;
 }
+
 .fs-60 {
-     font-size: 60rpx;
- }
+  font-size: 60rpx;
+}
+
 .fc-0d {
-    color: #0d0d0d
+  color: #0d0d0d
 }
+
 .fc-1a {
-    color: #1a1a1a
+  color: #1a1a1a
 }
+
 .fc-26 {
-    color: #262626
+  color: #262626
 }
+
 .fc-40 {
-    color: #404040
+  color: #404040
 }
+
 .fc-59 {
-    color: #595959
+  color: #595959
 }
+
 .fc-b2 {
-    color: #b2b2b2
+  color: #b2b2b2
 }
+
 .fc-b3 {
-    color: #b3b3b3
+  color: #b3b3b3
 }
+
 .fc-80 {
-    color: #808080
+  color: #808080
 }
+
 .fc-e6 {
-    color: #e62343 /*粉红色*/
+  color: #e62343 /*粉红色*/
 }
+
 .fc-fc {
-    color: #fc6c15 /*橙色*/
+  color: #fc6c15 /*橙色*/
 }
+
 .fc-ff {
-    color: #fff
+  color: #fff
 }
+
 .fc-33 {
-    color: #333
+  color: #333
 }
+
 .fc-66 {
-    color: #666
+  color: #666
 }
+
 .fc-99 {
-    color: #999
+  color: #999
 }
+
 .fc-00 {
-    color: #000
+  color: #000
 }
+
 .red {
-    color: #e62343;
+  color: #e62343;
 }
+
 .border-line-heng-e6e6e6 {
   display: block;
   width: 100%;
   height: 1px;
   background: url('https://api.duishangbao.cn/upload/image/border-line-heng-e6e6e6.png') repeat-x 0 0/ 100px 1px;
 }
+
 .border-line-heng-d9d9d9 {
   display: block;
   width: 100%;
   height: 1px;
   background: url('https://api.duishangbao.cn/upload/image/border-line-heng-d9d9d9.png') repeat-x 0 0/ 100px 1px;
 }
+
 .border-line-heng-e62343 {
   display: block;
   width: 100%;
   height: 1px;
   background: url('https://api.duishangbao.cn/upload/image/border-line-heng-e62343.png') repeat-x 0 0/ 100px 1px;
 }
+
 .border-line-heng-xuxian {
   display: block;
   width: 100%;
   height: 1px;
   background: url('https://api.duishangbao.cn/upload/image/xu-xian-gray.png') repeat-x 0 0/ 500px 1px;
 }
+
 .border-line-shu-e6e6e6 {
   display: block;
   width: 1px;
   height: 100%;
   background: url('https://api.duishangbao.cn/upload/image/border-line-shu-e6e6e6.png') repeat-y 0 0/ 1px 100px;
 }
+
 .border-line-shu-d9d9d9 {
   display: block;
   width: 1px;
   height: 100%;
   background: url('https://api.duishangbao.cn/upload/image/border-line-shu-d9d9d9.png') repeat-y 0 0/ 1px 100px;
 }
+
 .border-line-shu-e62343 {
   display: block;
   width: 1px;
   height: 100%;
   background: url('https://api.duishangbao.cn/upload/image/border-line-shu-e62343.png') repeat-y 0 0/ 1px 100px;
 }
-button::after{
-    border: none;
+
+button::after {
+  border: none;
 }
+
 button:active {
-    opacity: .7
+  opacity: .7
 }
+
 /** loading **/
 .base-box {
-    width: 100%;
-    height: 100%;
-    position: fixed;
-    left: 0;
-    top: 0;
-    z-index: 101;
+  width: 100%;
+  height: 100%;
+  position: fixed;
+  left: 0;
+  top: 0;
+  z-index: 101;
 }
+
 .base-box .gray-back {
-    width: 100%;
-    height: 100%;
-    background-color: #fff;
-    opacity: 0;
-    position: absolute;
-    left: 0;
-    top: 0;
+  width: 100%;
+  height: 100%;
+  background-color: #000;
+  opacity: .7;
+  position: absolute;
+  left: 0;
+  top: 0
 }
-.login-box .gray-back {
-    background-color: #000;
-    opacity: .7;
+
+.loading-box .gray-back {
+  background-color: #fff;
+  opacity: 0;
 }
+
 .loading-box .box-content {
-    width: 120px;
-    height: 120px;
-    background: rgba(0, 0, 0, 0.5);
-    position: absolute;
-    left: calc(50vw - 60px);
-    top: calc(50vh - 60px);
-    border-radius: 5px;
+  width: 120px;
+  height: 120px;
+  background: rgba(0, 0, 0, 0.5);
+  position: absolute;
+  left: calc(50vw - 60px);
+  top: calc(50vh - 60px);
+  border-radius: 5px;
 }
+
 .loading-box .box-content .img {
-    text-align: center;
-    padding: 30px 0 20px;
+  text-align: center;
+  padding: 30px 0 20px;
 }
+
 .loading-box .box-content .img image {
-    width: 30px;
-    height: 30px;
+  width: 30px;
+  height: 30px;
 }
+
 .loading-box .box-content .txt {
-    text-align: center;
-    font-size: 12px;
-    color: #f0f0f0;
+  text-align: center;
+  font-size: 12px;
+  color: #f0f0f0;
 }
+
 .show-toast {
-    width: 100%;
-    height: 20px;
-    text-align: center;
-    position: fixed;
-    left: 0;
-    bottom: 150px;
-    z-index: 1001;
-    overflow: visible;
+  width: 100%;
+  height: 20px;
+  text-align: center;
+  position: fixed;
+  left: 0;
+  bottom: 150px;
+  z-index: 1001;
+  overflow: visible;
 }
+
 .show-toast text {
-    display: inline-block;
-    padding: 9px 15px;
-    background-color: #333;
-    color: #fff;
-    font-size: 14px;
-    margin: 0 auto;
-    border-radius: 5px;
-    max-width: 60vw;
+  display: inline-block;
+  padding: 9px 15px;
+  background-color: #333;
+  color: #fff;
+  font-size: 14px;
+  margin: 0 auto;
+  border-radius: 5px;
+  max-width: 60vw;
 }
+
 .login-box .box-content {
-    width: 400rpx;
-    height: 300rpx;
-    background-color: #fff;
-    position: absolute;
-    left: calc(50vw - 200rpx);
-    top: calc(50vh - 150rpx);
-    border-radius: 5px;
-    text-align: center;
+  width: 400rpx;
+  height: 300rpx;
+  background-color: #fff;
+  position: absolute;
+  left: calc(50vw - 200rpx);
+  top: calc(50vh - 150rpx);
+  border-radius: 5px;
+  text-align: center;
 }
+
 .login-box .box-content .ts-txt {
-    font-size: 16px;
-    padding: 40rpx 0 100rpx;
+  font-size: 16px;
+  padding: 40rpx 0 100rpx;
 }
+
 .login-box .box-content .btn button {
-    width: 300rpx;
-    line-height: 70rpx;
-    background-color: #0099e9;
-    color: #fff;
-    font-size: 13px;
+  width: 300rpx;
+  line-height: 70rpx;
+  background-color: #0099e9;
+  color: #fff;
+  font-size: 13px;
 }
+
 .line-base {
-    display: block;
-    width: 100%;
-    height: 5px;
-    overflow: hidden;
-    border-top: 1px solid #e5e5e5;
-    position: fixed;
-    top: 0;
-    left: 0;
-    z-index: 1;
-    background: none;
+  display: block;
+  width: 100%;
+  height: 5px;
+  overflow: hidden;
+  border-top: 1px solid #e5e5e5;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 1;
+  background: none;
 }
+
 /*header-bar 公共吸顶头：粉底，返回，搜索框，标题等*/
 .head-bar-fixed {
-    width: 100vw;
-    height: 88rpx;
-    background-color: #e62343;
-    position: fixed;
-    z-index: 1;
-    left: 0;
-    top: 0
+  width: 100vw;
+  height: 88rpx;
+  background-color: #e62343;
+  position: fixed;
+  z-index: 1;
+  left: 0;
+  top: 0
 }
+
 .head-bar-fixed .list-title {
-    line-height: 88rpx;
-    text-align: center;
+  line-height: 88rpx;
+  text-align: center;
 }
+
 .head-bar-fixed .head-btn-return {
-    display: inline-block;
-    position: absolute;
-    width: 68rpx;
-    height: 50rpx;
-    background: url('https://api.duishangbao.cn/upload/image/icon_zu.png') no-repeat 10rpx -395rpx / 70rpx 1000rpx;
-    left: 10rpx;
-    top: 17rpx;
+  display: inline-block;
+  position: absolute;
+  width: 68rpx;
+  height: 50rpx;
+  background: url('https://api.duishangbao.cn/upload/image/icon_zu.png') no-repeat 10rpx -395rpx / 70rpx 1000rpx;
+  left: 10rpx;
+  top: 17rpx;
 }
+
 .head-bar-fixed .share-btn {
-    display: inline-block;
-    height: 50rpx;
-    line-height: 50rpx;
-    padding-left: 60rpx;
-    position: absolute;
-    background: url('https://api.duishangbao.cn/upload/image/icon_zu4.png') no-repeat 0 -200rpx / 50rpx 1000rpx;
-    top: 19rpx;
-    right: 20rpx;
+  display: inline-block;
+  height: 50rpx;
+  line-height: 50rpx;
+  padding-left: 60rpx;
+  position: absolute;
+  background: url('https://api.duishangbao.cn/upload/image/icon_zu4.png') no-repeat 0 -200rpx / 50rpx 1000rpx;
+  top: 19rpx;
+  right: 20rpx;
 }
+
 /*search-bar 页头 搜索框*/
 .search-main-bar {
-    width: 710rpx;
-    height: 60rpx;
-    border-radius: 60rpx;
-    background-color: rgba(255, 255, 255, .3);
-    float: right;
-    margin: 14rpx 20rpx 0 0;
+  width: 710rpx;
+  height: 60rpx;
+  border-radius: 60rpx;
+  background-color: rgba(255, 255, 255, .3);
+  float: right;
+  margin: 14rpx 20rpx 0 0;
 }
 
 .search-main-bar .search-go {
-    display: inline-block;
-    width: 36rpx;
-    height: 36rpx;
-    float: left;
-    margin: 14rpx 15rpx 0 25rpx;
-    background: url('https://api.duishangbao.cn/upload/image/icon_zu.png') no-repeat 0 -550rpx / 70rpx 1000rpx;
+  display: inline-block;
+  width: 36rpx;
+  height: 36rpx;
+  float: left;
+  margin: 14rpx 15rpx 0 25rpx;
+  background: url('https://api.duishangbao.cn/upload/image/icon_zu.png') no-repeat 0 -550rpx / 70rpx 1000rpx;
 }
 
 .search-main-bar .search-word {
-    width: 420rpx;
-    height: 50rpx;
-    line-height: 50rpx;
-    float: left;
-    margin-top: 4rpx;
-    color: #ffe0e8;
-    font-size: 26rpx;
+  width: 420rpx;
+  height: 50rpx;
+  line-height: 50rpx;
+  float: left;
+  margin-top: 4rpx;
+  color: #ffe0e8;
+  font-size: 26rpx;
 }
 
 .search-main-bar input {
-    width: 420rpx;
-    height: 50rpx;
-    line-height: 50rpx;
-    float: left;
-    margin-top: 4rpx;
-    color: #fff;
-    font-size: 26rpx;
+  width: 420rpx;
+  height: 50rpx;
+  line-height: 50rpx;
+  float: left;
+  margin-top: 4rpx;
+  color: #fff;
+  font-size: 26rpx;
 }
 
 .search-main-bar .search-del {
-    display: inline-block;
-    width: 50rpx;
-    height: 50rpx;
-    background: url('https://api.duishangbao.cn/upload/image/icon_zu4.png') no-repeat 16rpx -89rpx / 50rpx 1000rpx;
+  display: inline-block;
+  width: 50rpx;
+  height: 50rpx;
+  background: url('https://api.duishangbao.cn/upload/image/icon_zu4.png') no-repeat 16rpx -89rpx / 50rpx 1000rpx;
 }

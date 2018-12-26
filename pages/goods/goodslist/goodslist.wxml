@@ -1,11 +1,11 @@
 <!--列表页-->
 
-<view class="out-side-goodslist {{word?'has-search':''}}">
+<view class="out-side-goodslist {{isSearch?'has-search':''}}">
 
-    <view class="head-bar-fixed" wx:if="{{word}}">
+    <view class="head-bar-fixed" wx:if="{{isSearch}}">
         <view class="search-main-bar">
             <text class="search-go opacity" title="搜索" bindtap="toSearch"></text>
-            <input class="search-word" placeholder="搜索商品(助力购买更划算)" placeholder-style="color:#ffe0e8"></input>
+            <input class="search-word" placeholder="搜索商品(助力购买更划算)" placeholder-style="color:#ffe0e8" value="{{word}}" bindinput="searchChange"  style="width: 570rpx"></input>
             <text class="search-del opacity" title="清空" bindtap="delAllword"></text>
         </view>
     </view>
@@ -18,7 +18,7 @@
 
     <view class="goods-out">
         <ul>
-            <li class="goods-list opacity" wx:for="{{ list }}" data-id="{{ item.id }}" bindtap="openPage">
+            <li class="goods-list opacity" wx:for="{{ list }}" wx:key="" data-id="{{ item.id }}" bindtap="openPage">
                 <view class="goods-img">
                     <image wx:if="item.image" src="{{ item.image }}"></image>
                     <image wx:else src="https://img.duishangbao.cn/upload/goods/list/13/57df3532333e8e3e87ab963f137db674.png"></image>

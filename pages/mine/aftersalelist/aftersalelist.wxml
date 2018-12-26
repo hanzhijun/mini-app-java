@@ -15,15 +15,15 @@
   </view>
 
   <ul class="after-ul">
-    <li class="after-li opacity" ontouchstart="">
+    <li class="after-li opacity" >
       <text class="txt fs-28 fc-1a">我要退款</text>
       <text class="icon"></text>
     </li>
-    <li class="after-li opacity" ontouchstart="">
+    <li class="after-li opacity" >
       <text class="txt fs-28 fc-1a">已收到货，我要退款</text>
       <text class="icon"></text>
     </li>
-    <li class="after-li opacity" ontouchstart="">
+    <li class="after-li opacity" >
       <text class="txt fs-28 fc-1a">换货</text>
       <text class="icon"></text>
     </li>

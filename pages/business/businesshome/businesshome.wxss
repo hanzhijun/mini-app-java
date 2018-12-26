@@ -39,14 +39,14 @@
   float: left;
 }
 
-.out-side-businesshome .addr .l-side span {
+.out-side-businesshome .addr .l-side text {
   display: block;
 }
 
 .out-side-businesshome .addr .border-line-shu-e6e6e6 {
   height: 46rpx;
   float: left;
-  margin: 0.10rpx 0 0 15rpx;
+  margin: 10rpx 0 0 15rpx;
 }
 
 .out-side-businesshome .addr .tel {

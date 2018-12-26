@@ -15,14 +15,14 @@
   </view>
 
   <ul class="after-ul">
-    <li class="after-li opacity" ontouchstart="">
+    <li class="after-li opacity" >
       <text class="txt fs-28 fc-1a">换货原因</text>
       <text class="icon"></text>
     </li>
     <li class="after-li">
       <text class="txt fs-28 fc-1a">换货说明：</text>
     </li>
-    <li class="after-li" ontouchstart="">
+    <li class="after-li" >
       <textarea class="text-area fs-28 fc-1a" placeholder="陈述您遇到的问题..."></textarea>
     </li>
   </ul>
@@ -35,7 +35,7 @@
       <view class="img-group-k"><image src="https://img.duishangbao.cn/upload/goods/list/13/57df3532333e8e3e87ab963f137db674.png"></image></view>
       <view class="img-group-k"><image src="https://img.duishangbao.cn/upload/goods/list/13/57df3532333e8e3e87ab963f137db674.png"></image></view>
       <view class="img-group-k"><image src="https://img.duishangbao.cn/upload/goods/list/13/57df3532333e8e3e87ab963f137db674.png"></image></view>
-      <text class="up-load-btn opacity" href="javascript:void(0)" ontouchstart=""><text class="icon"></text><text class="txt-up fs-24 fc-1a">上传图片</text><text class="txt-b fs-20 fc-99">(最多6张)</text></text>
+      <text class="up-load-btn opacity"><text class="icon"></text><text class="txt-up fs-24 fc-1a">上传图片</text><text class="txt-b fs-20 fc-99">(最多6张)</text></text>
     </view>
   </view>
 

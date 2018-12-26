@@ -8,62 +8,29 @@ App({
   onLaunch() {
 
     let _this = this;
-    // 展示本地存储能力
-    var logs = wx.getStorageSync('logs') || [];
-    logs.unshift(Date.now());
-    wx.setStorageSync('logs', logs);
-
-    // 登录
-    wx.login({
-      success: res => {
-        // 发送 res.code 到后台换取 openId, sessionKey, unionId
-        console.info(res);
-      }
-    });
     // 获取用户信息
     wx.getSetting({
       success: res => {
         if (res.authSetting['scope.userInfo']) {
           // 已经授权，可以直接调用 getUserInfo 获取头像昵称，不会弹框
           wx.getUserInfo({
-            success: res => {
+            success: function (res) {
               // 可以将 res 发送给后台解码出 unionId
-              _this.globalData.userInfo = res.userInfo;
-
+              wx.setStorageSync('userInfo', res.userInfo);
               // 由于 getUserInfo 是网络请求，可能会在 Page.onLoad 之后才返回
               // 所以此处加入 callback 以防止这种情况
-              if (this.userInfoReadyCallback) {
-                this.userInfoReadyCallback(res)
-              } else {
-                console.log('no')
+              if (_this.userInfoReadyCallback) {
+                _this.userInfoReadyCallback(res)
               }
             }
           })
         }
       }
     });
-
     wx.request({
       url: `https://api.duishangbao.cn/city.js`,
       success: function (res) {
         _this.data.city = res.data;
-      }
-    });
-
-    _this.getUserCapital();
-  },
-  /**
-   * 获取用户余额，金贝数
-   */
-  getUserCapital: function () {
-    let _this = this;
-    _this.myAjax('get', 'bhs-client-online/userCapital/detail', '{}', (res) => {
-      if (res.code == 1) {
-        let {balance, gold, silver, copper} = res.data;
-        _this.globalData.balance = balance;
-        _this.globalData.gold = gold;
-        _this.globalData.silver = silver;
-        _this.globalData.copper = copper;
       }
     })
   },
@@ -78,10 +45,13 @@ App({
     }
   },
   globalData: {
-    vision: 'V3.0.0',
-    host: 'http://39.108.96.150:5200/', // api接口域名前缀
-    //host: 'http://192.168.100.231:5200/', // api接口域名前缀
-    imgUrl: 'https://img.duishangbao.cn/', // 图片阿里云前缀
+    vision: '3.0.0',
+    host: 'http://39.108.96.150:5020/', // api接口域名前缀
+    hostCenter: 'http://39.108.96.150:5020/',
+    hostLogin: 'http://39.108.96.150:8088/',
+    // host: 'http://192.168.100.231:5020/', // api接口域名前缀
+    imgUrl: 'http://bhs-java-test.oss-cn-beijing.aliyuncs.com/', // 图片阿里云前缀
+    // imgUrl: 'https://img.duishangbao.cn/', // 图片阿里云前缀
     width: wx.getSystemInfoSync().windowWidth, // 设备宽度
     qqsdk_key: 'HZFBZ-QLUCF-BYVJZ-N5Y6J-ELEZO-4CFPQ', // 腾讯sdk
 
@@ -121,6 +91,39 @@ I+1VPMVAUA7yGlqyr/gjGFhSaXWWErDZHWN/srHWEHdpxLyQwiMBOxG+32KjB86C
 7o6CJhfEBkdN
 -----END PRIVATE KEY-----`,
     orderId: ''
+  },
+  /**
+   * 公共异步 一级接口 to 微信授权登录
+   * @param type 类型： post,get,put,delete
+   * @param url 接口地址
+   * @param data 参数
+   * @param res 成功
+   * @param reg 失败
+   */
+  myAjaxLogin (type, url, data, res, reg) {
+    let message = 'timespan=' + Date.parse(new Date()) + '&nonce=' + this.getAesKey(8) + '&xClientId=' + this.getAesKey(8) + '&app=1000';
+    let key = '1000' + this.getAesKey(16);
+    let sign = this.getSign(message, key);
+    wx.request({
+      url: this.globalData.hostLogin + url,
+      data: data,
+      header: {
+        'content-type': 'application/json',
+        'B-User-Agent': '1000/1.0;android/6.2;mi/YA77;cn;10003',
+        'X-Client-Id': '8888',
+        'B-Replay': 'nonce=' + this.getAesKey(8) + '&timespan=' + Date.parse(new Date()) + '&sig=' + sign,
+        'sig': this.getAesKey(8) + Date.parse(new Date()) + 'AAAAA'
+      },
+      method: type,
+      success(data) {
+        console.info(data);
+        res && res(data.data)
+      },
+      fail(data) {
+        reg && reg(data.data)
+      }
+    })
+
   },
   /**
    * 公共异步 一级接口 (不需登录)
@@ -178,7 +181,7 @@ I+1VPMVAUA7yGlqyr/gjGFhSaXWWErDZHWN/srHWEHdpxLyQwiMBOxG+32KjB86C
         'B-User-Agent': '1000/1.0;android/6.2;mi/YA77;cn;10003',
         'X-Client-Id': '8888',
         'B-Replay': 'nonce=' + nonce + '&timespan=' + Date.parse(new Date()) + '&sig=' + sign,
-        'B-Author': 'app=1000&sid=' + sid + '&nonce=' + nonce + '&timespan=' + Date.parse(new Date()) + '&device=16&uid=' + uid + '& sig=' + sign,
+        'B-Author': 'app=1000&sid=' + sid + '&nonce=' + nonce + '&timespan=' + Date.parse(new Date()) + '&device=16&uid=' + uid + '&sig=' + sign,
         'sig': sign
       },
       method: type,
@@ -189,7 +192,6 @@ I+1VPMVAUA7yGlqyr/gjGFhSaXWWErDZHWN/srHWEHdpxLyQwiMBOxG+32KjB86C
         reg && reg(data.data)
       }
     })
-
   },
 
   /**
@@ -201,29 +203,32 @@ I+1VPMVAUA7yGlqyr/gjGFhSaXWWErDZHWN/srHWEHdpxLyQwiMBOxG+32KjB86C
     wx.login({
       success: function (res) {
         if (res.code) {
-          _this.getEncryptKey();
-          _this.getEncryptData(res.code);
-          _this.myAjax('post', 'bhs-client-online/ucenter/wx/appLogin', {
-            'encryptKey': _this.globalData.encryptKey,
-            'encryptData': _this.globalData.encryptData
-          }, (res) => {
-            console.log('成功' + JSON.stringify(res));
-            let {session, sid, uid, openId, unionId} = res.data;
-            wx.setStorageSync('session', session);
-            wx.setStorageSync('sid', sid);
-            wx.setStorageSync('uid', uid);
-            wx.setStorageSync('openId', openId);
-            wx.setStorageSync('unionId', unionId);
-            _this.globalData.isLogin = 1;
-            that.setData({
-              loginbox: 0
-            });
-            that.userInfoReadyCallback(res)
-          }, (res) => {
-            console.log('失败' + JSON.stringify(res))
+          wx.getUserInfo({
+            success: function (reg) {
+              console.info(reg);
+              _this.getEncryptKey();
+              _this.getEncryptData(res.code, reg.encryptedData, reg.iv, JSON.stringify(reg.userInfo));
+              _this.myAjaxLogin('post', 'ucenter/wx/appLogin', {
+                'encryptKey': _this.globalData.encryptKey,
+                'encryptData': _this.globalData.encryptData
+              }, (res) => {
+                let {session, sid, uid, openId, unionId} = res.data;
+                wx.setStorageSync('session', session);
+                wx.setStorageSync('sid', sid);
+                wx.setStorageSync('uid', uid);
+                wx.setStorageSync('openId', openId);
+                wx.setStorageSync('unionId', unionId);
+                let s = _this.deAesData(session)
+                wx.setStorageSync('session-login', s)
+                _this.globalData.isLogin = 1;
+                that.setData({
+                  loginbox: 0
+                });
+                _this.goToLogin();
+                that.userInfoReadyCallback(res)
+              })
+            }
           })
-        } else {
-          console.info('登录发生错误' + res)
         }
       }
     });
@@ -241,7 +246,7 @@ I+1VPMVAUA7yGlqyr/gjGFhSaXWWErDZHWN/srHWEHdpxLyQwiMBOxG+32KjB86C
     if (!url) return;
     if (close == '_tab') {
       wx.switchTab({
-        url: '/' + url
+        url: '/pages/' + url
       })
     } else if (close == '_self') {
       wx.redirectTo({
@@ -349,16 +354,15 @@ I+1VPMVAUA7yGlqyr/gjGFhSaXWWErDZHWN/srHWEHdpxLyQwiMBOxG+32KjB86C
     let encryptKey = encrypt_rsa.encrypt(aesKey);
     this.globalData.aesKey = aesKey;
     this.globalData.encryptKey = RSA.hex2b64(encryptKey);
-    console.log(this.globalData.encryptKey)
   },
   /**
    * 加密数据
    * @param jsCode
    */
-  getEncryptData: function (jsCode) {
-    var obj = 'jsCode=' + jsCode + '&content=' + JSON.stringify(this.globalData.userInfo) + '&app=1000&device=32&nonce=' + this.getAesKey(8) + '&timespan=' + Date.parse(new Date());
+  getEncryptData: function (jsCode, encryptedData, iv, userInfo) {
+    let obj = 'jsCode=' + jsCode + '&encryptedData=' + encryptedData + '&iv=' + iv + '&content=' + userInfo + '&app=1000&device=32&nonce=' + this.getAesKey(8) + '&timespan=' + Date.parse(new Date());
+    console.log(obj);
     this.globalData.encryptData = Util.Encrypt(obj, this.globalData.aesKey);
-    console.log(1)
   },
   /**
    * 生成签名
@@ -366,6 +370,23 @@ I+1VPMVAUA7yGlqyr/gjGFhSaXWWErDZHWN/srHWEHdpxLyQwiMBOxG+32KjB86C
    */
   getSign (message, key) {
     return sha1CryptoJS.enc.Hex.stringify(sha1CryptoJS.HmacSHA1(message, key))
+  },
+  /**
+   * AES加密数据
+   * @param word
+   * @param key
+   * @returns {*}
+   */
+  aesData (word, key) {
+    return Util.Encrypt(word, key)
+  },
+  /**
+   * AES解密数据
+   * @param word
+   * @returns {*}
+   */
+  deAesData (word) {
+    return Util.Decrypt(word, this.globalData.aesKey)
   },
   /**
    * 本地存储   {key:value}
@@ -380,7 +401,7 @@ I+1VPMVAUA7yGlqyr/gjGFhSaXWWErDZHWN/srHWEHdpxLyQwiMBOxG+32KjB86C
    */
   clearStorageSync: function () {
     let {keys} = wx.getStorageInfoSync();
-    let notClear = ['session', 'sid', 'uid'];
+    let notClear = ['session', 'session-login', 'sid', 'uid', 'unionId', 'openId', 'searchWord', 'userInfo'];
     for (let s of keys) {
       if (notClear.indexOf(s) > -1) continue;
       wx.removeStorageSync(s);
@@ -427,1654 +448,91 @@ I+1VPMVAUA7yGlqyr/gjGFhSaXWWErDZHWN/srHWEHdpxLyQwiMBOxG+32KjB86C
     s = Math.round(s * 10000) / 10000;
     return s.toFixed(2);
   },
+  /**
+   * code编码
+   * @param text
+   */
+  enCode (text) {
+    return escape(encodeURIComponent(text))
+  },
+  /**
+   * code解码
+   * @param text
+   * @returns {string}
+   */
+  unCode (text) {
+    return decodeURIComponent(unescape(text))
+  },
+  /**
+   * 新增搜索词条的缓存处理
+   * @param word
+   */
+  addSearchWord (word) {
+    let arr = [];
+    if(wx.getStorageSync('searchWord') != '') {
+      arr = JSON.parse(wx.getStorageSync('searchWord'));
+    }
+    if (arr != "" && arr.indexOf(word) != -1) {
+      let index = arr.indexOf(word);
+      arr.splice(index, 1);
+    }
+    arr.unshift(word);
+    if (arr.length > 10) {
+      arr.length = 10
+    }
+    wx.setStorageSync('searchWord', JSON.stringify(arr))
+  },
+  /**
+   * 微信授权回来后触发后台登录验证
+   */
+  goToLogin () {
+    let sid = wx.getStorageSync('sid');
+    let uid = wx.getStorageSync('uid');
+    let message = 'app=1000&sid=' + sid + '&nonce=' + this.getAesKey(8) + '&timespan=' + Date.parse(new Date()) + '&device=16&uid=' + uid;
+    let sign = this.getSign(message, wx.getStorageSync('session-login'));
+    let obj = {
+      app: 1000,
+      appProject: 10003,
+      clientId: this.getAesKey(4),
+      device: 16,
+      nonce: this.getAesKey(8),
+      sid,
+      uid,
+      sig: sign,
+      timespan: new Date().getTime()
+    };
+    let _this = this;
+    this.myAjax('post', 'bhs-client-online/login', obj, function (res) {
+      if (res.data.code * 1 === 1) {
+        _this.showToast('登录成功');
+        _this.setData({
+          loginbox: 0,
+          loading: 0
+        });
+        setTimeout(function () {
+          _this.goPage()
+        }, 3000)
+      } else {
+        // console.log('成功')
+      }
+    }, function (reg) {
+      // console.log('失败')
+    })
+  },
+  /**
+   * 获取用户余额，金贝数
+   */
+  getUserCapital: function (that, fn) {
+    this.myAjax2('get', 'bhs-client-online/userCapital/detail', '{}', (res) => {
+      if (res.code == 1) {
+        that.setData({
+          gold: res.data.gold
+        });
+        fn && fn()
+      }
+    })
+  },
   data: {
-    classify: [
-      {
-        "cid": 3,
-        "c_name": "美妆",
-        "parent_id": 0,
-        "level": 1,
-        "logo": "upload/goods/category_logo/",
-        "data": [
-          {
-            "s_cid": 11,
-            "s_c_name": "护肤品",
-            "s_parent_id": 3,
-            "s_level": 2,
-            "s_logo": "upload/goods/category_logo/1/09766e1777389cd7ebc13eec905e0e5f.jpeg"
-          },
-          {
-            "s_cid": 90,
-            "s_c_name": "彩妆",
-            "s_parent_id": 3,
-            "s_level": 2,
-            "s_logo": "upload/goods/category_logo/1/4ee5df6a82265cdc9067bd85d66a44b0.jpeg"
-          },
-          {
-            "s_cid": 92,
-            "s_c_name": "口红",
-            "s_parent_id": 3,
-            "s_level": 2,
-            "s_logo": "upload/goods/category_logo/1/9343a2285f3fd55f053fcd05164eb26d.jpeg"
-          },
-          {
-            "s_cid": 97,
-            "s_c_name": "面膜",
-            "s_parent_id": 3,
-            "s_level": 2,
-            "s_logo": "upload/goods/category_logo/1/af66c5572596dcb16f1d1ad235e2d5c3.jpeg"
-          },
-          {
-            "s_cid": 99,
-            "s_c_name": "男士护肤",
-            "s_parent_id": 3,
-            "s_level": 2,
-            "s_logo": "upload/goods/category_logo/1/90c007a99aeb3b14037e6d7ce62a9779.jpeg"
-          },
-          {
-            "s_cid": 100,
-            "s_c_name": "脱毛膏",
-            "s_parent_id": 3,
-            "s_level": 2,
-            "s_logo": "upload/goods/category_logo/1/d96f8da4a0a3457659a9974975f222bf.jpeg"
-          },
-          {
-            "s_cid": 101,
-            "s_c_name": "洗护用品",
-            "s_parent_id": 3,
-            "s_level": 2,
-            "s_logo": "upload/goods/category_logo/1/a3076c982092f6933bf655261a5911a7.jpeg"
-          },
-          {
-            "s_cid": 102,
-            "s_c_name": "香水",
-            "s_parent_id": 3,
-            "s_level": 2,
-            "s_logo": "upload/goods/category_logo/1/5d81a86ace3d93a4347ad84e24072462.jpeg"
-          },
-          {
-            "s_cid": 103,
-            "s_c_name": "眼霜",
-            "s_parent_id": 3,
-            "s_level": 2,
-            "s_logo": "upload/goods/category_logo/1/91e690cf471806ab1b508639954cf1b8.jpeg"
-          }
-        ]
-      }, {
-        "cid": 4,
-        "c_name": "家电",
-        "parent_id": 0,
-        "level": 1,
-        "logo": "upload/goods/category_logo/",
-        "data": [
-          {
-            "s_cid": 105,
-            "s_c_name": "按摩椅",
-            "s_parent_id": 4,
-            "s_level": 2,
-            "s_logo": "upload/goods/category_logo/1/04f28d206fea762716d430dc1a73a0a2.jpeg"
-          },
-          {
-            "s_cid": 106,
-            "s_c_name": "冰箱",
-            "s_parent_id": 4,
-            "s_level": 2,
-            "s_logo": "upload/goods/category_logo/1/e9866260bdbca2e0e024175584c23f94.jpeg"
-          },
-          {
-            "s_cid": 108,
-            "s_c_name": "抽油烟机",
-            "s_parent_id": 4,
-            "s_level": 2,
-            "s_logo": "upload/goods/category_logo/1/8f6007d42ab64eb8a90f5f6759d7a899.jpeg"
-          },
-          {
-            "s_cid": 109,
-            "s_c_name": "电饼铛",
-            "s_parent_id": 4,
-            "s_level": 2,
-            "s_logo": "upload/goods/category_logo/1/22f1c3ced0699ebda58402cd8719fd17.jpeg"
-          },
-          {
-            "s_cid": 111,
-            "s_c_name": "电吹风",
-            "s_parent_id": 4,
-            "s_level": 2,
-            "s_logo": "upload/goods/category_logo/1/cdf74f8248cd373e5f9f107da31d05cd.jpeg"
-          },
-          {
-            "s_cid": 116,
-            "s_c_name": "电磁炉",
-            "s_parent_id": 4,
-            "s_level": 2,
-            "s_logo": "upload/goods/category_logo/1/43449a54992381b8a174f062ddf2fef6.jpeg"
-          },
-          {
-            "s_cid": 121,
-            "s_c_name": "电炖锅",
-            "s_parent_id": 4,
-            "s_level": 2,
-            "s_logo": "upload/goods/category_logo/1/a12a8a023aecb36289ec3af8534a7f8f.jpeg"
-          },
-          {
-            "s_cid": 124,
-            "s_c_name": "电饭煲",
-            "s_parent_id": 4,
-            "s_level": 2,
-            "s_logo": "upload/goods/category_logo/1/49e893fb3e8ab84d1dc3e12940e1ba52.jpeg"
-          },
-          {
-            "s_cid": 126,
-            "s_c_name": "电风扇",
-            "s_parent_id": 4,
-            "s_level": 2,
-            "s_logo": "upload/goods/category_logo/1/707378579f19046e40624cf2030a6d90.jpeg"
-          },
-          {
-            "s_cid": 127,
-            "s_c_name": "电热锅",
-            "s_parent_id": 4,
-            "s_level": 2,
-            "s_logo": "upload/goods/category_logo/1/dbdde25572145bc0384433fcf64b2f1e.jpeg"
-          },
-          {
-            "s_cid": 128,
-            "s_c_name": "电视机",
-            "s_parent_id": 4,
-            "s_level": 2,
-            "s_logo": "upload/goods/category_logo/1/69f7e89d823e4d3fdfddb7d781f495a7.jpeg"
-          },
-          {
-            "s_cid": 129,
-            "s_c_name": "电蚊拍",
-            "s_parent_id": 4,
-            "s_level": 2,
-            "s_logo": "upload/goods/category_logo/1/a852273f6a681d49d0e074c8b90f4748.jpeg"
-          },
-          {
-            "s_cid": 130,
-            "s_c_name": "豆浆机",
-            "s_parent_id": 4,
-            "s_level": 2,
-            "s_logo": "upload/goods/category_logo/1/bdef7854e0c161804e974d6c002c513f.jpeg"
-          },
-          {
-            "s_cid": 132,
-            "s_c_name": "家电配件",
-            "s_parent_id": 4,
-            "s_level": 2,
-            "s_logo": "upload/goods/category_logo/1/712b796147df238d7bf3280bb634dc8c.jpeg"
-          },
-          {
-            "s_cid": 134,
-            "s_c_name": "家用电器",
-            "s_parent_id": 4,
-            "s_level": 2,
-            "s_logo": "upload/goods/category_logo/1/d83eb5831813ff4756ce3fcd2450eb15.jpeg"
-          },
-          {
-            "s_cid": 137,
-            "s_c_name": "净化器",
-            "s_parent_id": 4,
-            "s_level": 2,
-            "s_logo": "upload/goods/category_logo/1/a54e2cae6babe51590e90f3110243e9d.jpeg"
-          },
-          {
-            "s_cid": 141,
-            "s_c_name": "净水器",
-            "s_parent_id": 4,
-            "s_level": 2,
-            "s_logo": "upload/goods/category_logo/1/dcdd88cbe0d316df359475dc8f479dd3.jpeg"
-          },
-          {
-            "s_cid": 145,
-            "s_c_name": "空调",
-            "s_parent_id": 4,
-            "s_level": 2,
-            "s_logo": "upload/goods/category_logo/1/832c1a75d3c08a5a695dc0433012bd95.jpeg"
-          },
-          {
-            "s_cid": 148,
-            "s_c_name": "灭蚊灯",
-            "s_parent_id": 4,
-            "s_level": 2,
-            "s_logo": "upload/goods/category_logo/1/1374132c5f4d9834aaaa0ef8431fb057.jpeg"
-          },
-          {
-            "s_cid": 149,
-            "s_c_name": "热水器",
-            "s_parent_id": 4,
-            "s_level": 2,
-            "s_logo": "upload/goods/category_logo/1/38abb3efdb747fe85c895e77c9612df3.jpeg"
-          },
-          {
-            "s_cid": 150,
-            "s_c_name": "台灯",
-            "s_parent_id": 4,
-            "s_level": 2,
-            "s_logo": "upload/goods/category_logo/1/8db2e8e3bcaa71bd0f1ea7d7ae722ac6.jpeg"
-          },
-          {
-            "s_cid": 151,
-            "s_c_name": "洗衣机",
-            "s_parent_id": 4,
-            "s_level": 2,
-            "s_logo": "upload/goods/category_logo/1/414c79dfd93b0c7ce9ac5a83e11dfaf6.jpeg"
-          },
-          {
-            "s_cid": 152,
-            "s_c_name": "饮水机",
-            "s_parent_id": 4,
-            "s_level": 2,
-            "s_logo": "upload/goods/category_logo/1/c58f3334d84a7fac65b7e4dcbca9c273.jpeg"
-          },
-          {
-            "s_cid": 153,
-            "s_c_name": "熨斗机",
-            "s_parent_id": 4,
-            "s_level": 2,
-            "s_logo": "upload/goods/category_logo/1/85247355a467020660afd6104b6053cb.jpeg"
-          },
-          {
-            "s_cid": 154,
-            "s_c_name": "榨汁机",
-            "s_parent_id": 4,
-            "s_level": 2,
-            "s_logo": "upload/goods/category_logo/1/bebf292a13222b9a7777c53c58023320.jpeg"
-          },
-          {
-            "s_cid": 215,
-            "s_c_name": "电水壶",
-            "s_parent_id": 4,
-            "s_level": 2,
-            "s_logo": "upload/goods/category_logo/1/ae43bb55501df98b6ed29f28c22eabdd.png"
-          }
-        ]
-      },
-      {
-        "cid": 7,
-        "c_name": "箱包",
-        "parent_id": 0,
-        "level": 1,
-        "logo": "upload/goods/category_logo/",
-        "data": [
-          {
-            "s_cid": 110,
-            "s_c_name": "单肩包",
-            "s_parent_id": 7,
-            "s_level": 2,
-            "s_logo": "upload/goods/category_logo/1/929fa17d907b278fe3e9436fb8d39919.jpeg"
-          },
-          {
-            "s_cid": 131,
-            "s_c_name": "手提包",
-            "s_parent_id": 7,
-            "s_level": 2,
-            "s_logo": "upload/goods/category_logo/1/31bb9a07ff980ac9b0f7291eb35f6ce8.jpeg"
-          },
-          {
-            "s_cid": 135,
-            "s_c_name": "双肩包",
-            "s_parent_id": 7,
-            "s_level": 2,
-            "s_logo": "upload/goods/category_logo/1/f0a005bbdde216dbdef51d05eceb374d.jpeg"
-          },
-          {
-            "s_cid": 138,
-            "s_c_name": "旅行包",
-            "s_parent_id": 7,
-            "s_level": 2,
-            "s_logo": "upload/goods/category_logo/1/422b36d53fcf453bff35dabcb4550613.jpeg"
-          },
-          {
-            "s_cid": 140,
-            "s_c_name": "钱包",
-            "s_parent_id": 7,
-            "s_level": 2,
-            "s_logo": "upload/goods/category_logo/1/219bf02010a4514edffae6da741a46ea.jpeg"
-          },
-          {
-            "s_cid": 143,
-            "s_c_name": "女包",
-            "s_parent_id": 7,
-            "s_level": 2,
-            "s_logo": "upload/goods/category_logo/1/8cbf1520578ffd80c7e0efd769841903.jpeg"
-          },
-          {
-            "s_cid": 144,
-            "s_c_name": "男包",
-            "s_parent_id": 7,
-            "s_level": 2,
-            "s_logo": "upload/goods/category_logo/1/81896fc3b892d140dc85db10fb9b1059.jpeg"
-          },
-          {
-            "s_cid": 147,
-            "s_c_name": "旅行箱",
-            "s_parent_id": 7,
-            "s_level": 2,
-            "s_logo": "upload/goods/category_logo/1/c37a6a89be21d380a72b598adb0b4c0c.jpeg"
-          }
-        ]
-      },
-      {
-        "cid": 10,
-        "c_name": "鞋类",
-        "parent_id": 0,
-        "level": 1,
-        "logo": "upload/goods/category_logo/",
-        "data": [
-          {
-            "s_cid": 214,
-            "s_c_name": "女鞋",
-            "s_parent_id": 10,
-            "s_level": 2,
-            "s_logo": "upload/goods/category_logo/1/bf0553a5a5c3eee9f4ed3934db70f682.png"
-          },
-          {
-            "s_cid": 123,
-            "s_c_name": "球鞋",
-            "s_parent_id": 10,
-            "s_level": 2,
-            "s_logo": "upload/goods/category_logo/1/282ca61e56b04ba479dccc5dbf902379.jpeg"
-          },
-          {
-            "s_cid": 119,
-            "s_c_name": "情侣鞋",
-            "s_parent_id": 10,
-            "s_level": 2,
-            "s_logo": "upload/goods/category_logo/1/90baa70a95b38f51b80ef5aacc8974fe.jpeg"
-          },
-          {
-            "s_cid": 115,
-            "s_c_name": "拖鞋",
-            "s_parent_id": 10,
-            "s_level": 2,
-            "s_logo": "upload/goods/category_logo/1/61465caabd685992b769ad3b8414b2f2.jpeg"
-          },
-          {
-            "s_cid": 113,
-            "s_c_name": "童鞋",
-            "s_parent_id": 10,
-            "s_level": 2,
-            "s_logo": "upload/goods/category_logo/1/052f43f17a2c9b41d708bfff42a24740.jpeg"
-          },
-          {
-            "s_cid": 107,
-            "s_c_name": "男鞋",
-            "s_parent_id": 10,
-            "s_level": 2,
-            "s_logo": "upload/goods/category_logo/1/b361eb143e8f132a0262699973986223.jpeg"
-          }
-        ]
-      },
-      {
-        "cid": 14,
-        "c_name": "手机数码",
-        "parent_id": 0,
-        "level": 1,
-        "logo": "upload/goods/category_logo/",
-        "data": [
-          {
-            "s_cid": 155,
-            "s_c_name": "手机数码",
-            "s_parent_id": 14,
-            "s_level": 2,
-            "s_logo": "upload/goods/category_logo/1/3176abfa3c49b243c0ed71263add775f.png"
-          },
-          {
-            "s_cid": 156,
-            "s_c_name": "手机",
-            "s_parent_id": 14,
-            "s_level": 2,
-            "s_logo": "upload/goods/category_logo/1/ac02401cb47c1d388bc8cc6ef07ff71b.jpeg"
-          },
-          {
-            "s_cid": 157,
-            "s_c_name": "相机",
-            "s_parent_id": 14,
-            "s_level": 2,
-            "s_logo": "upload/goods/category_logo/1/76845e4c87bbafd582be790c24f5fe48.jpeg"
-          },
-          {
-            "s_cid": 158,
-            "s_c_name": "耳机",
-            "s_parent_id": 14,
-            "s_level": 2,
-            "s_logo": "upload/goods/category_logo/1/f7a4b4a85f15746bd38a6bd72a026ebc.jpeg"
-          },
-          {
-            "s_cid": 159,
-            "s_c_name": "移动电源",
-            "s_parent_id": 14,
-            "s_level": 2,
-            "s_logo": "upload/goods/category_logo/1/73898ef6a2611f6ce3198a342de566b8.jpeg"
-          },
-          {
-            "s_cid": 160,
-            "s_c_name": "投影仪",
-            "s_parent_id": 14,
-            "s_level": 2,
-            "s_logo": "upload/goods/category_logo/1/8328eb52ae3bb428787b561872d391ff.jpeg"
-          },
-          {
-            "s_cid": 161,
-            "s_c_name": "智能设备",
-            "s_parent_id": 14,
-            "s_level": 2,
-            "s_logo": "upload/goods/category_logo/1/702a1014dd22e6ae5f8f4dc377f8f4ce.jpeg"
-          },
-          {
-            "s_cid": 162,
-            "s_c_name": "数码配件",
-            "s_parent_id": 14,
-            "s_level": 2,
-            "s_logo": "upload/goods/category_logo/1/a99a96646a030fe90ed2d778235868fe.jpeg"
-          },
-          {
-            "s_cid": 163,
-            "s_c_name": "笔记本电脑",
-            "s_parent_id": 14,
-            "s_level": 2,
-            "s_logo": "upload/goods/category_logo/1/95919154cb311690fea727dc495a4d7e.jpeg"
-          },
-          {
-            "s_cid": 164,
-            "s_c_name": "音响",
-            "s_parent_id": 14,
-            "s_level": 2,
-            "s_logo": "upload/goods/category_logo/1/919312b6d8e5c354f62e2a253d1abbc2.jpeg"
-          },
-          {
-            "s_cid": 211,
-            "s_c_name": "无人机",
-            "s_parent_id": 14,
-            "s_level": 2,
-            "s_logo": "upload/goods/category_logo/1/74fab8d28f5d1c5c2dccf56dce7c5b35.jpeg"
-          }
-        ]
-      },
-      {
-        "cid": 15,
-        "c_name": "户外运动",
-        "parent_id": 0,
-        "level": 1,
-        "logo": "upload/goods/category_logo/",
-        "data": [
-          {
-            "s_cid": 170,
-            "s_c_name": "护膝",
-            "s_parent_id": 15,
-            "s_level": 2,
-            "s_logo": "upload/goods/category_logo/1/3eab883f0940b3aa10587a658c6eff7a.jpeg"
-          },
-          {
-            "s_cid": 171,
-            "s_c_name": "溜冰鞋",
-            "s_parent_id": 15,
-            "s_level": 2,
-            "s_logo": "upload/goods/category_logo/1/c7329638b80e55e2599c5a7c8f45a83c.jpeg"
-          },
-          {
-            "s_cid": 172,
-            "s_c_name": "旅行配件",
-            "s_parent_id": 15,
-            "s_level": 2,
-            "s_logo": "upload/goods/category_logo/1/9cb7cd969766027d923022ef4fb6e958.jpeg"
-          },
-          {
-            "s_cid": 173,
-            "s_c_name": "渔具",
-            "s_parent_id": 15,
-            "s_level": 2,
-            "s_logo": "upload/goods/category_logo/1/bc239b5732919781531afea7a1163c92.jpeg"
-          },
-          {
-            "s_cid": 174,
-            "s_c_name": "帐篷",
-            "s_parent_id": 15,
-            "s_level": 2,
-            "s_logo": "upload/goods/category_logo/1/9cc346acabad9934c8a68e369a01778c.jpeg"
-          }
-        ]
-      },
-      {
-        "cid": 16,
-        "c_name": "珠宝",
-        "parent_id": 0,
-        "level": 1,
-        "logo": "upload/goods/category_logo/",
-        "data": [
-          {
-            "s_cid": 40,
-            "s_c_name": "玉石",
-            "s_parent_id": 16,
-            "s_level": 2,
-            "s_logo": "upload/goods/category_logo/1/910c888ebc0bd30e69d8c3ca64feb4f6.jpeg"
-          },
-          {
-            "s_cid": 41,
-            "s_c_name": "金银",
-            "s_parent_id": 16,
-            "s_level": 2,
-            "s_logo": "upload/goods/category_logo/1/4ebfa19868966ca941d8e6c09685c485.jpeg"
-          },
-          {
-            "s_cid": 43,
-            "s_c_name": "文玩",
-            "s_parent_id": 16,
-            "s_level": 2,
-            "s_logo": "upload/goods/category_logo/1/8f091bf13132685c2dc85c154a824902.jpeg"
-          },
-          {
-            "s_cid": 44,
-            "s_c_name": "水晶",
-            "s_parent_id": 16,
-            "s_level": 2,
-            "s_logo": "upload/goods/category_logo/1/1ff25454690af050ddc06dff7a3abd82.jpeg"
-          },
-          {
-            "s_cid": 45,
-            "s_c_name": "珍珠",
-            "s_parent_id": 16,
-            "s_level": 2,
-            "s_logo": "upload/goods/category_logo/1/0bee92f42618c1660f51e685d732052a.jpeg"
-          },
-          {
-            "s_cid": 213,
-            "s_c_name": "钻石",
-            "s_parent_id": 16,
-            "s_level": 2,
-            "s_logo": "upload/goods/category_logo/1/fb6b98fdd686cda178bb2b3dc8438557.png"
-          }
-        ]
-      },
-      {
-        "cid": 17,
-        "c_name": "酒类",
-        "parent_id": 0,
-        "level": 1,
-        "logo": "upload/goods/category_logo/",
-        "data": [
-          {
-            "s_cid": 34,
-            "s_c_name": "白酒",
-            "s_parent_id": 17,
-            "s_level": 2,
-            "s_logo": "upload/goods/category_logo/1/a69e6392681e9d35d0571b85c296727c.jpeg"
-          },
-          {
-            "s_cid": 35,
-            "s_c_name": "葡萄酒",
-            "s_parent_id": 17,
-            "s_level": 2,
-            "s_logo": "upload/goods/category_logo/1/cd17ea488b91c00c4e7f9c8d7e8f569b.jpeg"
-          },
-          {
-            "s_cid": 36,
-            "s_c_name": "洋酒",
-            "s_parent_id": 17,
-            "s_level": 2,
-            "s_logo": "upload/goods/category_logo/1/2477a581492a661c6c7c1a0b0c6e67fb.jpeg"
-          },
-          {
-            "s_cid": 37,
-            "s_c_name": "黄酒",
-            "s_parent_id": 17,
-            "s_level": 2,
-            "s_logo": "upload/goods/category_logo/1/d8054f62d256cf59d5a89684c0440192.jpeg"
-          },
-          {
-            "s_cid": 38,
-            "s_c_name": "保健酒",
-            "s_parent_id": 17,
-            "s_level": 2,
-            "s_logo": "upload/goods/category_logo/1/5feeec4846cd7758393d6c9dbfd4bbd3.jpeg"
-          },
-          {
-            "s_cid": 39,
-            "s_c_name": "啤酒",
-            "s_parent_id": 17,
-            "s_level": 2,
-            "s_logo": "upload/goods/category_logo/1/aa14040c3d03a347b4a0acef525ae099.jpeg"
-          },
-          {
-            "s_cid": 175,
-            "s_c_name": "配制酒",
-            "s_parent_id": 17,
-            "s_level": 2,
-            "s_logo": "upload/goods/category_logo/1/8e336a636c41b375764a3bc5c795fe77.jpeg"
-          }
-        ]
-      },
-      {
-        "cid": 18,
-        "c_name": " 女装",
-        "parent_id": 0,
-        "level": 1,
-        "logo": "upload/goods/category_logo/",
-        "data": [
-          {
-            "s_cid": 46,
-            "s_c_name": "气质连衣裙",
-            "s_parent_id": 18,
-            "s_level": 2,
-            "s_logo": "upload/goods/category_logo/1/16c16cbbf67cb2a3a3b08dfc7c67de99.jpeg"
-          },
-          {
-            "s_cid": 47,
-            "s_c_name": "卫衣",
-            "s_parent_id": 18,
-            "s_level": 2,
-            "s_logo": "upload/goods/category_logo/1/83a81d7f3dc09fe849aca3331b85dc82.jpeg"
-          },
-          {
-            "s_cid": 48,
-            "s_c_name": "时髦外套",
-            "s_parent_id": 18,
-            "s_level": 2,
-            "s_logo": "upload/goods/category_logo/1/db3e834ae312f62e9975a6b2afb6b549.jpeg"
-          },
-          {
-            "s_cid": 49,
-            "s_c_name": "毛针织衫",
-            "s_parent_id": 18,
-            "s_level": 2,
-            "s_logo": "upload/goods/category_logo/1/968159e69c9dd261f463710cbd718584.jpeg"
-          },
-          {
-            "s_cid": 50,
-            "s_c_name": "休闲裤",
-            "s_parent_id": 18,
-            "s_level": 2,
-            "s_logo": "upload/goods/category_logo/1/8847a9af7e8167640f65c861ac5cc50a.jpeg"
-          },
-          {
-            "s_cid": 51,
-            "s_c_name": "牛仔裤",
-            "s_parent_id": 18,
-            "s_level": 2,
-            "s_logo": "upload/goods/category_logo/1/0ca834c90462d44d259f8e56c76fddf0.jpeg"
-          },
-          {
-            "s_cid": 52,
-            "s_c_name": "衬衫",
-            "s_parent_id": 18,
-            "s_level": 2,
-            "s_logo": "upload/goods/category_logo/1/7e6c0af72e800c050723bfce01ed2334.jpeg"
-          },
-          {
-            "s_cid": 53,
-            "s_c_name": "T恤",
-            "s_parent_id": 18,
-            "s_level": 2,
-            "s_logo": "upload/goods/category_logo/1/17ff8e94706b097b22f2cea966d83bb5.jpeg"
-          },
-          {
-            "s_cid": 54,
-            "s_c_name": "小西装",
-            "s_parent_id": 18,
-            "s_level": 2,
-            "s_logo": "upload/goods/category_logo/1/275da730c6eccf08dabb58eefb0d11c3.jpeg"
-          },
-          {
-            "s_cid": 55,
-            "s_c_name": "风衣",
-            "s_parent_id": 18,
-            "s_level": 2,
-            "s_logo": "upload/goods/category_logo/1/ba487bb6f9aeeb79cc210eae063b0f93.jpeg"
-          },
-          {
-            "s_cid": 57,
-            "s_c_name": "孕妇装",
-            "s_parent_id": 18,
-            "s_level": 2,
-            "s_logo": "upload/goods/category_logo/1/fa46ffbc6f058fa9f021ac3b7948baa6.jpeg"
-          },
-          {
-            "s_cid": 58,
-            "s_c_name": "打底裤",
-            "s_parent_id": 18,
-            "s_level": 2,
-            "s_logo": "upload/goods/category_logo/1/abcdb082c63ded25d79ba2a6813e9305.jpeg"
-          },
-          {
-            "s_cid": 59,
-            "s_c_name": "皮裤",
-            "s_parent_id": 18,
-            "s_level": 2,
-            "s_logo": "upload/goods/category_logo/1/5754f17ac1b6656769b3180593e78cbd.jpeg"
-          },
-          {
-            "s_cid": 60,
-            "s_c_name": "女士短裤",
-            "s_parent_id": 18,
-            "s_level": 2,
-            "s_logo": "upload/goods/category_logo/1/e1c970fc4dda6e2c74ed5908f20c9c45.jpeg"
-          },
-          {
-            "s_cid": 61,
-            "s_c_name": "雪纺衫",
-            "s_parent_id": 18,
-            "s_level": 2,
-            "s_logo": "upload/goods/category_logo/1/481989fc97d1193a3cf2c4fe935022e6.jpeg"
-          },
-          {
-            "s_cid": 62,
-            "s_c_name": "防晒衣",
-            "s_parent_id": 18,
-            "s_level": 2,
-            "s_logo": "upload/goods/category_logo/1/d7a8c7dcbae581fbb18249234aa24e5e.jpeg"
-          },
-          {
-            "s_cid": 63,
-            "s_c_name": "打底衫",
-            "s_parent_id": 18,
-            "s_level": 2,
-            "s_logo": "upload/goods/category_logo/1/5a1552cd2dc3f644f460e0f6b0ae0888.jpeg"
-          },
-          {
-            "s_cid": 71,
-            "s_c_name": "半身裙",
-            "s_parent_id": 18,
-            "s_level": 2,
-            "s_logo": "upload/goods/category_logo/1/1ca42386311aa58ac8d67badc35b3488.jpeg"
-          }
-        ]
-      },
-      {
-        "cid": 19,
-        "c_name": " 男装",
-        "parent_id": 0,
-        "level": 1,
-        "logo": "upload/goods/category_logo/",
-        "data": [
-          {
-            "s_cid": 64,
-            "s_c_name": "男士外套",
-            "s_parent_id": 19,
-            "s_level": 2,
-            "s_logo": "upload/goods/category_logo/1/57a95d6033aea638ca6893206a29bcc0.jpeg"
-          },
-          {
-            "s_cid": 65,
-            "s_c_name": "风衣",
-            "s_parent_id": 19,
-            "s_level": 2,
-            "s_logo": "upload/goods/category_logo/1/cb087654d6abf90738698a8170ec038e.jpeg"
-          },
-          {
-            "s_cid": 66,
-            "s_c_name": "西服",
-            "s_parent_id": 19,
-            "s_level": 2,
-            "s_logo": "upload/goods/category_logo/1/f9f3e636fb30f4c70f83bbe00c52e273.jpeg"
-          },
-          {
-            "s_cid": 67,
-            "s_c_name": "卫衣",
-            "s_parent_id": 19,
-            "s_level": 2,
-            "s_logo": "upload/goods/category_logo/1/2155bd4c65544b04b275209a7bfcb503.jpeg"
-          },
-          {
-            "s_cid": 68,
-            "s_c_name": "针织衫",
-            "s_parent_id": 19,
-            "s_level": 2,
-            "s_logo": "upload/goods/category_logo/1/a7a6ed649386b666ab5f6387199352da.jpeg"
-          },
-          {
-            "s_cid": 69,
-            "s_c_name": "毛衣",
-            "s_parent_id": 19,
-            "s_level": 2,
-            "s_logo": "upload/goods/category_logo/1/e5d106747a80b1f1b0da54408edb257f.jpeg"
-          },
-          {
-            "s_cid": 70,
-            "s_c_name": "衬衫",
-            "s_parent_id": 19,
-            "s_level": 2,
-            "s_logo": "upload/goods/category_logo/1/ed7763966246fe0071ed66722eede489.jpeg"
-          },
-          {
-            "s_cid": 72,
-            "s_c_name": "T恤",
-            "s_parent_id": 19,
-            "s_level": 2,
-            "s_logo": "upload/goods/category_logo/1/8a988de43f8d78bc54329046874cb39c.png"
-          },
-          {
-            "s_cid": 73,
-            "s_c_name": "牛仔裤",
-            "s_parent_id": 19,
-            "s_level": 2,
-            "s_logo": "upload/goods/category_logo/1/ba63663bfaadc23565d61a67d50d1189.jpeg"
-          },
-          {
-            "s_cid": 74,
-            "s_c_name": "休闲裤",
-            "s_parent_id": 19,
-            "s_level": 2,
-            "s_logo": "upload/goods/category_logo/1/ace86fe561b7cabb26c8b59432ed58b4.jpeg"
-          },
-          {
-            "s_cid": 75,
-            "s_c_name": "polo衫",
-            "s_parent_id": 19,
-            "s_level": 2,
-            "s_logo": "upload/goods/category_logo/1/ccde9bd55e198563b2dc481c4a1fe29b.jpeg"
-          },
-          {
-            "s_cid": 76,
-            "s_c_name": "男士短裤",
-            "s_parent_id": 19,
-            "s_level": 2,
-            "s_logo": "upload/goods/category_logo/1/35265fb2f8e690d8e4fd186ec6169c31.jpeg"
-          }
-        ]
-      },
-      {
-        "cid": 20,
-        "c_name": "套装",
-        "parent_id": 0,
-        "level": 1,
-        "logo": "upload/goods/category_logo/",
-        "data": [
-          {
-            "s_cid": 77,
-            "s_c_name": "情侣装",
-            "s_parent_id": 20,
-            "s_level": 2,
-            "s_logo": "upload/goods/category_logo/1/a44e761e7dd752bca6f86fba626bf958.jpeg"
-          },
-          {
-            "s_cid": 78,
-            "s_c_name": "运动套装",
-            "s_parent_id": 20,
-            "s_level": 2,
-            "s_logo": "upload/goods/category_logo/1/c496f8ad1d5d613a4dbc31e38c8197bd.jpeg"
-          },
-          {
-            "s_cid": 79,
-            "s_c_name": "男士套装",
-            "s_parent_id": 20,
-            "s_level": 2,
-            "s_logo": "upload/goods/category_logo/1/bc13814246fc82b4e10017e55bbdb547.jpeg"
-          },
-          {
-            "s_cid": 80,
-            "s_c_name": "女士套装",
-            "s_parent_id": 20,
-            "s_level": 2,
-            "s_logo": "upload/goods/category_logo/1/1004156e5e8c1d6ef1a289b37626ef40.jpeg"
-          },
-          {
-            "s_cid": 81,
-            "s_c_name": "亲子装",
-            "s_parent_id": 20,
-            "s_level": 2,
-            "s_logo": "upload/goods/category_logo/1/cd7c75b8445bd8a6188fe5672391f4f3.jpeg"
-          },
-          {
-            "s_cid": 82,
-            "s_c_name": "儿童套装",
-            "s_parent_id": 20,
-            "s_level": 2,
-            "s_logo": "upload/goods/category_logo/1/14e609295dab28af399eb066d599f8a4.jpeg"
-          }
-        ]
-      },
-      {
-        "cid": 21,
-        "c_name": "家居",
-        "parent_id": 0,
-        "level": 1,
-        "logo": "upload/goods/category_logo/",
-        "data": [
-          {
-            "s_cid": 133,
-            "s_c_name": "厨具",
-            "s_parent_id": 21,
-            "s_level": 2,
-            "s_logo": "upload/goods/category_logo/1/28256a1db430e27225246f2ecd78d980.jpeg"
-          },
-          {
-            "s_cid": 136,
-            "s_c_name": "家纺",
-            "s_parent_id": 21,
-            "s_level": 2,
-            "s_logo": "upload/goods/category_logo/1/9dcc12a70f05c5636a620fb5ab0ee44e.jpeg"
-          },
-          {
-            "s_cid": 139,
-            "s_c_name": "家具",
-            "s_parent_id": 21,
-            "s_level": 2,
-            "s_logo": "upload/goods/category_logo/1/21cbf9dae360f392ca59e2b23f1e12db.jpeg"
-          },
-          {
-            "s_cid": 142,
-            "s_c_name": "灯具",
-            "s_parent_id": 21,
-            "s_level": 2,
-            "s_logo": "upload/goods/category_logo/1/b83f1c619c6220c9bbf24d830f5220b5.jpeg"
-          },
-          {
-            "s_cid": 146,
-            "s_c_name": "厨房卫浴",
-            "s_parent_id": 21,
-            "s_level": 2,
-            "s_logo": "upload/goods/category_logo/1/e4df9a4424b668eb7693b633f484c625.jpeg"
-          },
-          {
-            "s_cid": 165,
-            "s_c_name": "家装软饰",
-            "s_parent_id": 21,
-            "s_level": 2,
-            "s_logo": "upload/goods/category_logo/1/aa97b5b40bba348fc960601c894c8c0a.jpeg"
-          },
-          {
-            "s_cid": 166,
-            "s_c_name": "家装主材",
-            "s_parent_id": 21,
-            "s_level": 2,
-            "s_logo": "upload/goods/category_logo/1/86c7a5f3782b523ab4c60d6e6e0bca87.jpeg"
-          },
-          {
-            "s_cid": 167,
-            "s_c_name": "五金电工",
-            "s_parent_id": 21,
-            "s_level": 2,
-            "s_logo": "upload/goods/category_logo/1/0168df811cfd627333247152a70250f1.jpeg"
-          },
-          {
-            "s_cid": 168,
-            "s_c_name": "生活用品",
-            "s_parent_id": 21,
-            "s_level": 2,
-            "s_logo": "upload/goods/category_logo/1/eb7a6167526bd7deca7320e5031d5a9d.jpeg"
-          },
-          {
-            "s_cid": 169,
-            "s_c_name": "工艺品",
-            "s_parent_id": 21,
-            "s_level": 2,
-            "s_logo": "upload/goods/category_logo/1/309de88ace72c351aa5438e8a6d42c53.jpeg"
-          }
-        ]
-      },
-      {
-        "cid": 22,
-        "c_name": " 童装",
-        "parent_id": 0,
-        "level": 1,
-        "logo": "upload/goods/category_logo/",
-        "data": [
-          {
-            "s_cid": 83,
-            "s_c_name": "男童",
-            "s_parent_id": 22,
-            "s_level": 2,
-            "s_logo": "upload/goods/category_logo/1/6f2e5a39517eccace5e2107d9858675d.jpeg"
-          },
-          {
-            "s_cid": 84,
-            "s_c_name": "女童",
-            "s_parent_id": 22,
-            "s_level": 2,
-            "s_logo": "upload/goods/category_logo/1/5070e1fd136c46903fab73d06d0fdeaf.jpeg"
-          },
-          {
-            "s_cid": 85,
-            "s_c_name": "童袜",
-            "s_parent_id": 22,
-            "s_level": 2,
-            "s_logo": "upload/goods/category_logo/1/d1ba237b5a1693b380002f17561d3b21.jpeg"
-          }
-        ]
-      },
-      {
-        "cid": 23,
-        "c_name": "内衣",
-        "parent_id": 0,
-        "level": 1,
-        "logo": "upload/goods/category_logo/",
-        "data": [
-          {
-            "s_cid": 86,
-            "s_c_name": "男士内裤",
-            "s_parent_id": 23,
-            "s_level": 2,
-            "s_logo": "upload/goods/category_logo/1/f128b7bb19c98e8fa396c6520ab5588e.jpeg"
-          },
-          {
-            "s_cid": 87,
-            "s_c_name": "女士内裤",
-            "s_parent_id": 23,
-            "s_level": 2,
-            "s_logo": "upload/goods/category_logo/1/a6839eca1cc23ef0a182fae8bb709e16.jpeg"
-          },
-          {
-            "s_cid": 88,
-            "s_c_name": "吊带",
-            "s_parent_id": 23,
-            "s_level": 2,
-            "s_logo": "upload/goods/category_logo/1/db7f184231b0b98b0b39502d9e59a423.jpeg"
-          },
-          {
-            "s_cid": 89,
-            "s_c_name": "背心",
-            "s_parent_id": 23,
-            "s_level": 2,
-            "s_logo": "upload/goods/category_logo/1/515e6ad21fdd57ec1c207447af3340a6.jpeg"
-          },
-          {
-            "s_cid": 91,
-            "s_c_name": "文胸",
-            "s_parent_id": 23,
-            "s_level": 2,
-            "s_logo": "upload/goods/category_logo/1/b3a3e6345caac3501ee6e86a547072e8.jpeg"
-          },
-          {
-            "s_cid": 93,
-            "s_c_name": "睡衣",
-            "s_parent_id": 23,
-            "s_level": 2,
-            "s_logo": "upload/goods/category_logo/1/71dd6a45a40eb0a97780318bc7b07470.jpeg"
-          },
-          {
-            "s_cid": 98,
-            "s_c_name": "女袜",
-            "s_parent_id": 23,
-            "s_level": 2,
-            "s_logo": "upload/goods/category_logo/1/c20101af621c9da1a3c0081fd877a717.jpeg"
-          }
-        ]
-      },
-      {
-        "cid": 24,
-        "c_name": "配饰",
-        "parent_id": 0,
-        "level": 1,
-        "logo": "upload/goods/category_logo/",
-        "data": [
-          {
-            "s_cid": 104,
-            "s_c_name": "皮带",
-            "s_parent_id": 24,
-            "s_level": 2,
-            "s_logo": "upload/goods/category_logo/1/f6fb3a4fc06be471488e6e3f0d705a25.jpeg"
-          },
-          {
-            "s_cid": 112,
-            "s_c_name": "围巾",
-            "s_parent_id": 24,
-            "s_level": 2,
-            "s_logo": "upload/goods/category_logo/1/3ddf47d6315dd707f13c887c2a95fdff.jpeg"
-          },
-          {
-            "s_cid": 117,
-            "s_c_name": "耳环",
-            "s_parent_id": 24,
-            "s_level": 2,
-            "s_logo": "upload/goods/category_logo/1/0d62604e8d1c5613b17a58f42210d653.jpeg"
-          },
-          {
-            "s_cid": 118,
-            "s_c_name": "戒指",
-            "s_parent_id": 24,
-            "s_level": 2,
-            "s_logo": "upload/goods/category_logo/1/136037ca7e8cd68c6719a1a1d46c7399.jpeg"
-          },
-          {
-            "s_cid": 120,
-            "s_c_name": "项链",
-            "s_parent_id": 24,
-            "s_level": 2,
-            "s_logo": "upload/goods/category_logo/1/3503c26a4cc3930f2e89320786957515.jpeg"
-          },
-          {
-            "s_cid": 122,
-            "s_c_name": "手链",
-            "s_parent_id": 24,
-            "s_level": 2,
-            "s_logo": "upload/goods/category_logo/1/e0aa455181ba833d5292fb5904cf7b32.jpeg"
-          },
-          {
-            "s_cid": 125,
-            "s_c_name": "帽子",
-            "s_parent_id": 24,
-            "s_level": 2,
-            "s_logo": "upload/goods/category_logo/1/f1c66896f37a3466c38027aa761a6dea.jpeg"
-          }
-        ]
-      },
-      {
-        "cid": 25,
-        "c_name": "腕表眼镜",
-        "parent_id": 0,
-        "level": 1,
-        "logo": "upload/goods/category_logo/",
-        "data": [
-          {
-            "s_cid": 177,
-            "s_c_name": "眼镜",
-            "s_parent_id": 25,
-            "s_level": 2,
-            "s_logo": "upload/goods/category_logo/1/924f52d5550a879093c3aa08258cd9f8.jpeg"
-          }
-        ]
-      },
-      {
-        "cid": 26,
-        "c_name": "母婴",
-        "parent_id": 0,
-        "level": 1,
-        "logo": "upload/goods/category_logo/",
-        "data": [
-          {
-            "s_cid": 178,
-            "s_c_name": "产后护理",
-            "s_parent_id": 26,
-            "s_level": 2,
-            "s_logo": "upload/goods/category_logo/1/77694479812a0a5c2732114e90cfcebf.jpeg"
-          },
-          {
-            "s_cid": 179,
-            "s_c_name": "妈咪护理",
-            "s_parent_id": 26,
-            "s_level": 2,
-            "s_logo": "upload/goods/category_logo/1/13c4c40b541fb9405f1108a2a94c9203.jpeg"
-          },
-          {
-            "s_cid": 180,
-            "s_c_name": "奶粉",
-            "s_parent_id": 26,
-            "s_level": 2,
-            "s_logo": "upload/goods/category_logo/1/4a3cc75e084ad31d99164d56ad2a59c4.jpeg"
-          },
-          {
-            "s_cid": 181,
-            "s_c_name": "婴儿哺乳",
-            "s_parent_id": 26,
-            "s_level": 2,
-            "s_logo": "upload/goods/category_logo/1/6cdde2b6ce3a48c38581b0d870f0bab0.jpeg"
-          },
-          {
-            "s_cid": 182,
-            "s_c_name": "婴儿服饰",
-            "s_parent_id": 26,
-            "s_level": 2,
-            "s_logo": "upload/goods/category_logo/1/d40465cbf8949867af20de88a3c2af25.jpeg"
-          },
-          {
-            "s_cid": 183,
-            "s_c_name": "婴儿起居",
-            "s_parent_id": 26,
-            "s_level": 2,
-            "s_logo": "upload/goods/category_logo/1/a86f886192d5421e25651644d7c83437.jpeg"
-          },
-          {
-            "s_cid": 184,
-            "s_c_name": "婴儿洗护",
-            "s_parent_id": 26,
-            "s_level": 2,
-            "s_logo": "upload/goods/category_logo/1/e1543b7b7dc3c2773cbc67812696436a.jpeg"
-          },
-          {
-            "s_cid": 185,
-            "s_c_name": "智力开发",
-            "s_parent_id": 26,
-            "s_level": 2,
-            "s_logo": "upload/goods/category_logo/1/50a1442e235df37916e9f996407d7b11.jpeg"
-          }
-        ]
-      },
-      {
-        "cid": 27,
-        "c_name": "食品",
-        "parent_id": 0,
-        "level": 1,
-        "logo": "upload/goods/category_logo/",
-        "data": [
-          {
-            "s_cid": 188,
-            "s_c_name": "休闲食品",
-            "s_parent_id": 27,
-            "s_level": 2,
-            "s_logo": "upload/goods/category_logo/1/97639666034c0dae6bcce79332ee82e7.jpeg"
-          },
-          {
-            "s_cid": 189,
-            "s_c_name": "进口食品",
-            "s_parent_id": 27,
-            "s_level": 2,
-            "s_logo": "upload/goods/category_logo/1/512fd3488f8ecc5bb1708bbd60df9535.jpeg"
-          },
-          {
-            "s_cid": 190,
-            "s_c_name": "地方特产",
-            "s_parent_id": 27,
-            "s_level": 2,
-            "s_logo": "upload/goods/category_logo/1/fe45ae691848a1e051bc9da2496a8700.jpeg"
-          },
-          {
-            "s_cid": 191,
-            "s_c_name": "茗茶",
-            "s_parent_id": 27,
-            "s_level": 2,
-            "s_logo": "upload/goods/category_logo/1/87e2da3e47beb452206cc878c06cb595.jpeg"
-          },
-          {
-            "s_cid": 192,
-            "s_c_name": "粮油速食",
-            "s_parent_id": 27,
-            "s_level": 2,
-            "s_logo": "upload/goods/category_logo/1/f5b355631f3bfa131a73236d24e2495e.jpeg"
-          },
-          {
-            "s_cid": 195,
-            "s_c_name": "保健食品",
-            "s_parent_id": 27,
-            "s_level": 2,
-            "s_logo": "upload/goods/category_logo/1/8acadad6672fb8f146b4633101c5bf24.jpeg"
-          }
-        ]
-      },
-      {
-        "cid": 28,
-        "c_name": "汽车用品",
-        "parent_id": 0,
-        "level": 1,
-        "logo": "upload/goods/category_logo/",
-        "data": [
-          {
-            "s_cid": 193,
-            "s_c_name": "汽车装饰",
-            "s_parent_id": 28,
-            "s_level": 2,
-            "s_logo": "upload/goods/category_logo/1/bc9e6bf7df11cf8e0bbed71c4b004e6f.jpeg"
-          },
-          {
-            "s_cid": 196,
-            "s_c_name": "车载电器",
-            "s_parent_id": 28,
-            "s_level": 2,
-            "s_logo": "upload/goods/category_logo/1/4b483304c02438a15cef2a3c680c8f84.jpeg"
-          },
-          {
-            "s_cid": 197,
-            "s_c_name": "维修保养",
-            "s_parent_id": 28,
-            "s_level": 2,
-            "s_logo": "upload/goods/category_logo/1/c8240b15752857bd19fca001583f76bf.jpeg"
-          },
-          {
-            "s_cid": 198,
-            "s_c_name": "车载配件",
-            "s_parent_id": 28,
-            "s_level": 2,
-            "s_logo": "upload/goods/category_logo/1/702279a39d5f5954eb6cf0ae86933c54.jpeg"
-          }
-        ]
-      },
-      {
-        "cid": 29,
-        "c_name": "文具办公",
-        "parent_id": 0,
-        "level": 1,
-        "logo": "upload/goods/category_logo/",
-        "data": [
-          {
-            "s_cid": 201,
-            "s_c_name": "学生文具",
-            "s_parent_id": 29,
-            "s_level": 2,
-            "s_logo": "upload/goods/category_logo/1/5b9440c119a689f9417c3b7a0e305ab8.jpeg"
-          },
-          {
-            "s_cid": 203,
-            "s_c_name": "书写工具",
-            "s_parent_id": 29,
-            "s_level": 2,
-            "s_logo": "upload/goods/category_logo/1/563c4439914f438818ee24ad7204821d.jpeg"
-          },
-          {
-            "s_cid": 206,
-            "s_c_name": "文件管理",
-            "s_parent_id": 29,
-            "s_level": 2,
-            "s_logo": "upload/goods/category_logo/1/a52cc87de1d0186be5a21982f4d410ea.jpeg"
-          },
-          {
-            "s_cid": 207,
-            "s_c_name": "办公设备",
-            "s_parent_id": 29,
-            "s_level": 2,
-            "s_logo": "upload/goods/category_logo/1/4434168013bf9b8cd7bd7380adcd66c8.jpeg"
-          },
-          {
-            "s_cid": 208,
-            "s_c_name": "办公用纸",
-            "s_parent_id": 29,
-            "s_level": 2,
-            "s_logo": "upload/goods/category_logo/1/3bfb2db1d4033bf5dbb66581dd055fa6.jpeg"
-          },
-          {
-            "s_cid": 209,
-            "s_c_name": "打印耗材",
-            "s_parent_id": 29,
-            "s_level": 2,
-            "s_logo": "upload/goods/category_logo/1/03dad3a717c971433bb901aeb162e2f8.jpeg"
-          },
-          {
-            "s_cid": 210,
-            "s_c_name": "体育用品",
-            "s_parent_id": 29,
-            "s_level": 2,
-            "s_logo": "upload/goods/category_logo/1/a6c8129137b93ad88b7d1fd23d5fdd45.jpeg"
-          }
-        ]
-      },
-      {
-        "cid": 30,
-        "c_name": "健身器材",
-        "parent_id": 0,
-        "level": 1,
-        "logo": "upload/goods/category_logo/",
-        "data": [
-          {
-            "s_cid": 200,
-            "s_c_name": "按摩仪",
-            "s_parent_id": 30,
-            "s_level": 2,
-            "s_logo": "upload/goods/category_logo/1/933189bdae2e1aac51c7e1a377f069f3.jpeg"
-          },
-          {
-            "s_cid": 202,
-            "s_c_name": "健腹器",
-            "s_parent_id": 30,
-            "s_level": 2,
-            "s_logo": "upload/goods/category_logo/1/4e1c41c8b3a648bc1fc6383f931b1dd9.jpeg"
-          },
-          {
-            "s_cid": 204,
-            "s_c_name": "跑步机",
-            "s_parent_id": 30,
-            "s_level": 2,
-            "s_logo": "upload/goods/category_logo/1/69aa2c9023fcb864951c65e00ad283f4.jpeg"
-          },
-          {
-            "s_cid": 205,
-            "s_c_name": "踏步机",
-            "s_parent_id": 30,
-            "s_level": 2,
-            "s_logo": "upload/goods/category_logo/1/ca153d37fc73be57b894b595136c488c.jpeg"
-          }
-        ]
-      },
-      {
-        "cid": 31,
-        "c_name": " 生鲜",
-        "parent_id": 0,
-        "level": 1,
-        "logo": "upload/goods/category_logo/",
-        "data": [
-          {
-            "s_cid": 194,
-            "s_c_name": "水果",
-            "s_parent_id": 31,
-            "s_level": 2,
-            "s_logo": "upload/goods/category_logo/1/1f890835a1e6f0c869d74e8b91cd8df1.jpeg"
-          },
-          {
-            "s_cid": 199,
-            "s_c_name": "蔬菜",
-            "s_parent_id": 31,
-            "s_level": 2,
-            "s_logo": "upload/goods/category_logo/1/d3947c22375a86cd9107245a3b240e26.jpeg"
-          }
-        ]
-      },
-      {
-        "cid": 32,
-        "c_name": "宠物用品",
-        "parent_id": 0,
-        "level": 1,
-        "logo": "upload/goods/category_logo/",
-        "data": [
-          {
-            "s_cid": 187,
-            "s_c_name": "宠物日用品",
-            "s_parent_id": 32,
-            "s_level": 2,
-            "s_logo": "upload/goods/category_logo/1/f5690a2e5f45991fe8d51042a30c4522.jpeg"
-          }
-        ]
-      },
-      {
-        "cid": 33,
-        "c_name": "工艺饰品",
-        "parent_id": 0,
-        "level": 1,
-        "logo": "upload/goods/category_logo/",
-        "data": [
-          {
-            "s_cid": 186,
-            "s_c_name": "摆件",
-            "s_parent_id": 33,
-            "s_level": 2,
-            "s_logo": "upload/goods/category_logo/1/cc6ff4b9d4c58633f2feb356b074fa72.jpeg"
-          }
-        ]
-      },
-      {
-        "cid": 234,
-        "c_name": "类目名称",
-        "parent_id": 0,
-        "level": 1,
-        "logo": "upload/goods/category_logo/",
-        "data": []
-      },
-      {
-        "cid": 236,
-        "c_name": "测试类目三",
-        "parent_id": 0,
-        "level": 1,
-        "logo": "upload/goods/category_logo/",
-        "data": [
-          {
-            "s_cid": 239,
-            "s_c_name": "测试类目二test2",
-            "s_parent_id": 236,
-            "s_level": 2,
-            "s_logo": "upload/goods/category_logo/"
-          },
-          {
-            "s_cid": 240,
-            "s_c_name": "测试类目二test3",
-            "s_parent_id": 236,
-            "s_level": 2,
-            "s_logo": "upload/goods/category_logo/1/528fa3b65168481a304bf2516f517166.jpeg"
-          }
-        ]
-      },
-      {
-        "cid": 238,
-        "c_name": "测试类目四",
-        "parent_id": 0,
-        "level": 1,
-        "logo": "upload/goods/category_logo/",
-        "data": []
-      },
-      {
-        "cid": 216,
-        "c_name": "test",
-        "parent_id": 0,
-        "level": 1,
-        "logo": "upload/goods/category_logo/",
-        "data": [
-          {
-            "s_cid": 217,
-            "s_c_name": "test1",
-            "s_parent_id": 216,
-            "s_level": 2,
-            "s_logo": "upload/goods/category_logo/1/a4ee1fb619a5be232a9c5080b1508a30.png"
-          }
-        ]
-      },
-      {
-        "cid": 235,
-        "c_name": "测试类目二",
-        "parent_id": 0,
-        "level": 1,
-        "logo": "upload/goods/category_logo/",
-        "data": [
-          {
-            "s_cid": 237,
-            "s_c_name": "测试类目二-test1",
-            "s_parent_id": 235,
-            "s_level": 2,
-            "s_logo": "upload/goods/category_logo/1/69a972fe13250e59025b93ae85dc838d.jpeg"
-          }
-        ]
-      }
-    ],
-    goodsList: [
-      {
-        id: 10539,
-        business_id: 5,
-        goodsName: "A.by BOM 超能婴儿 基因再生桃花美颜面膜 5片",
-        goods_desc: "",
-        imgs_url: "upload/goods/imgs/16/dd971fce22d24d8a3cb6bf9e79582b98.jpeg",
-        image: "https://img.duishangbao.cn/upload/goods/list/5/468c791a07f5afaa68f8f4ec6b3c7aee.jpeg",
-        price: "6400",
-        backGold: 6,
-        business_name: "成都家仆科技有限公司"
-      },
-      {
-        id: 10544,
-        business_id: 5,
-        goodsName: "SHANGPREE 香蒲丽海洋水光眼膜贴60片",
-        goods_desc: "",
-        imgs_url: "upload/goods/imgs/16/7660344e4cd34c0a7b5cf283eef46299.jpeg",
-        image: "https://img.duishangbao.cn/upload/goods/list/5/9195163ce01bd3a2cf1800ab45f05b3d.jpeg",
-        price: "11300",
-        backGold: 11,
-        business_name: "成都家仆科技有限公司"
-      },
-      {
-        id: 10555,
-        business_id: 5,
-        goodsName: "韩国A. by Bom超能婴儿神仙叶植物补水面膜紫色补水舒缓",
-        goods_desc: "",
-        imgs_url: "upload/goods/imgs/16/8a696f647a6d8a8468ab6d7eed5201f9.jpeg",
-        image: "https://img.duishangbao.cn/upload/goods/list/5/dd8e2f16eaeadea137ef124a5e4d34b0.jpeg",
-        price: "5000",
-        backGold: 5,
-        business_name: "成都家仆科技有限公司"
-      },
-      {
-        id: 10559,
-        business_id: 5,
-        goodsName: "韩国AHC面膜玻尿酸精华液B5透明质酸面膜红色淡斑第三代 5片",
-        goods_desc: "",
-        imgs_url: "upload/goods/imgs/16/ebe9216850c2f67aef350a06f1ddde24.jpeg",
-        image: "https://img.duishangbao.cn/upload/goods/list/5/0a9fdf0416fc17bde89a2d352618d2d4.jpeg",
-        price: "9600",
-        backGold: 10,
-        business_name: "成都家仆科技有限公司"
-      },
-      {
-        id: 10633,
-        business_id: 5,
-        goodsName: "泰国UAU蚕丝面膜黑白10片装细腻滋润超薄祛痘印35g*10",
-        goods_desc: "",
-        imgs_url: "upload/goods/imgs/16/c2b4d02ea2fa68a4b5c76f75587ef7d4.jpeg",
-        image: "https://img.duishangbao.cn/upload/goods/list/5/b68cfcc76d46c8a54f7b71ba86ee0e0d.jpeg",
-        price: "53900",
-        backGold: 0,
-        business_name: "成都家仆科技有限公司"
-      },
-      {
-        id: 10846,
-        business_id: 199,
-        goodsName: "AHC眼霜 保湿抗皱改善眼袋黑眼膜 5片装",
-        goods_desc: "",
-        imgs_url: "upload/goods/imgs/16/c5367a6d3132867dc851770e49e3eba9.jpeg",
-        image: "https://img.duishangbao.cn/upload/goods/list/5/a48557fbc202201fa8e961c094320fe5.jpeg",
-        price: "6800",
-        backGold: 7,
-        business_name: "深圳市南山区靓肤宝化妆品商行"
-      },
-      {
-        id: 10922,
-        business_id: 199,
-        goodsName: "JM solution 珍珠面膜+防晒喷雾防晒霜SPF50+套装",
-        goods_desc: "",
-        imgs_url: "upload/goods/imgs/16/4e5ace4d0a61fbe5190a63f1bc2e2770.jpeg",
-        image: "https://img.duishangbao.cn/upload/goods/list/5/7f180ad14ab4d20635af41b92bd79e4e.jpeg",
-        price: "15000",
-        backGold: 15,
-        business_name: "深圳市南山区靓肤宝化妆品商行"
-      },
-      {
-        id: 10956,
-        business_id: 199,
-        goodsName: "JM solution防晒喷雾SPF50++韩国JM水光蜂蜜面膜贴蜂胶水润滋养透莹清透面膜",
-        goods_desc: "",
-        imgs_url: "upload/goods/imgs/16/e73068486438168e182d3ee3bac86e4f.jpeg",
-        image: "https://img.duishangbao.cn/upload/goods/list/5/fb93f674760a93a75884e0b0c3ac3827.jpeg",
-        price: "14900",
-        backGold: 15,
-        business_name: "深圳市南山区靓肤宝化妆品商行"
-      },
-      {
-        id: 11087,
-        business_id: 199,
-        goodsName: "Spa Treatment 超浓密免洗泡沫面膜",
-        goods_desc: "",
-        imgs_url: "upload/goods/imgs/17/f1ded766b430880004dec53aedde3ac4.jpeg",
-        image: "https://img.duishangbao.cn/upload/goods/list/5/fdbd88697a117f6d7c362e520eb9ef7b.jpeg",
-        price: "37700",
-        backGold: 39,
-        business_name: "深圳市南山区靓肤宝化妆品商行"
-      },
-      {
-        id: 11141,
-        business_id: 198,
-        goodsName: "科颜氏高保湿面膜",
-        goods_desc: "",
-        imgs_url: "upload/goods/imgs/17/7feb1f8e634885f09f0513dfd5f234b0.jpeg",
-        image: "https://img.duishangbao.cn/upload/goods/list/5/8ef2bfc5ac56d6cbea1a8bcf093381dd.jpeg",
-        price: "22700",
-        backGold: 23,
-        business_name: "广州杨森科技生物有限公司"
-      },
-      {
-        id: 11164,
-        business_id: 198,
-        goodsName: "A.by bom超能婴儿神仙叶人参植物面膜 人参精华粉色",
-        goods_desc: "",
-        imgs_url: "upload/goods/imgs/17/9bcd360b3babda63d214155d4f014904.jpeg",
-        image: "https://img.duishangbao.cn/upload/goods/list/5/20916066d135feb0a1121315c407ba8f.jpeg",
-        price: "4300",
-        backGold: 4,
-        business_name: "广州杨森科技生物有限公司"
-      },
-      {
-        id: 11169,
-        business_id: 198,
-        goodsName: "A.by bom超能婴儿神仙叶人参植物面膜 植物补水紫色",
-        goods_desc: "",
-        imgs_url: "upload/goods/imgs/17/85658922aa85090fd17a602989ff42e0.jpeg",
-        image: "https://img.duishangbao.cn/upload/goods/list/5/979c50368b28d2a761d9cc190899fd8e.jpeg",
-        price: "4300",
-        backGold: 4,
-        business_name: "广州杨森科技生物有限公司"
-      }
-    ],
     nearbyBannerList: [
       {
         "title": "",
@@ -2133,118 +591,6 @@ I+1VPMVAUA7yGlqyr/gjGFhSaXWWErDZHWN/srHWEHdpxLyQwiMBOxG+32KjB86C
         "img": "https://img.duishangbao.cn/upload/operation/content/img/1/876fb746e94be9a0a1cc79d4cb6012ca.png",
         "jump_type": 8,
         "jump_data": "12"
-      }
-    ],
-    nearbyList: [
-      {
-        "name": "红四门秘制老火锅（高升桥店）",
-        "expense_avg": "58",
-        "address": "武侯区高升桥路24号附16号",
-        "s": 0,
-        "desc_info": [
-          "精选好店"
-        ],
-        "logo": "https://img.duishangbao.cn/upload/business/logo/2/8af7b9a06eff4f6e3942df1221bae25e.jpeg",
-        "business_offline_id": 1974
-      },
-      {
-        "name": "重庆小龙坎",
-        "expense_avg": "60",
-        "address": "武侯区广福桥路721号",
-        "s": 0.1,
-        "desc_info": [
-          "精选好店"
-        ],
-        "logo": "https://img.duishangbao.cn/upload/business/logo/2/2bf4593d9bb6c2fbbae44e1b3c26da34.jpeg",
-        "business_offline_id": 1431
-      },
-      {
-        "name": "御茶（广福桥店）",
-        "expense_avg": "11",
-        "address": "成都市武侯区广福桥街-30号附13号",
-        "s": 0.2,
-        "desc_info": [
-          "精选好店"
-        ],
-        "logo": "https://img.duishangbao.cn/upload/business/logo/2/73e9b50e247aa2592a6bb866d6145f79.jpeg",
-        "business_offline_id": 2142
-      },
-      {
-        "name": "川西坝子红码头（双楠店）",
-        "expense_avg": "80",
-        "address": "武侯区高升桥路26号",
-        "s": 0.3,
-        "desc_info": [
-          "精选好店"
-        ],
-        "logo": "https://img.duishangbao.cn/upload/business/logo/2/022b1bc4c6c61a4d070ff3eec1c5fd2a.jpeg",
-        "business_offline_id": 2211
-      },
-      {
-        "name": "拈一筷子",
-        "expense_avg": "80",
-        "address": "成都市武侯区拈一筷子(碧云路店)",
-        "s": 0.4,
-        "desc_info": [
-          "精选好店"
-        ],
-        "logo": "https://img.duishangbao.cn/upload/business/logo/2/4c3ed9f0b44f13536f53532b879c8a0d.jpeg",
-        "business_offline_id": 1462
-      },
-      {
-        "name": "家宴山珍菌汤馆",
-        "expense_avg": "20",
-        "address": "成都市武侯区家宴山珍",
-        "s": 0.5,
-        "desc_info": [
-          "精选好店"
-        ],
-        "logo": "https://img.duishangbao.cn/upload/business/logo/2/75ae234fe710923a51aea478b88bb3ea.jpeg",
-        "business_offline_id": 2023
-      },
-      {
-        "name": "龍堂肴老火锅（高升桥店）",
-        "expense_avg": "68",
-        "address": "武侯区广福桥西街1号附53号",
-        "s": 0.5,
-        "desc_info": [
-          "精选好店"
-        ],
-        "logo": "https://img.duishangbao.cn/upload/business/logo/2/776d6cfc3d5dfc5bc7fba4efe899c043.jpeg",
-        "business_offline_id": 1641
-      },
-      {
-        "name": "ZW祛痘祛斑国际连锁(南门总店）",
-        "expense_avg": "66",
-        "address": "成都市武侯区痘奇迹祛痘祛斑皮肤管理中心",
-        "s": 0.5,
-        "desc_info": [
-          "精选好店"
-        ],
-        "logo": "https://img.duishangbao.cn/upload/business/logo/2/a781ed5f0a5fd2291fc9559b96e8105c.jpeg",
-        "business_offline_id": 1767
-      },
-      {
-        "name": "御茶（莱蒙都会店）",
-        "expense_avg": "11",
-        "address": "四川省成都市武侯区二环路南四段51号",
-        "s": 0.6,
-        "desc_info": [
-          "精选好店"
-        ],
-        "logo": "https://img.duishangbao.cn/upload/business/logo/2/25d4636ba1eafadf91f426e1abd953ac.jpeg",
-        "business_offline_id": 2192
-      },
-      {
-        "name": "草屋烧烤(双楠广福店)",
-        "expense_avg": "40",
-        "address": "武侯区广福桥西街1号附43号丼亦九宫格火锅旁",
-        "s": 0.6,
-        "desc_info": [
-          "精选好店"
-        ],
-        "logo": "https://img.duishangbao.cn/upload/business/logo/1/d6dbc16d90cd6a6496636c9fa92a7584.jpeg",
-        "business_offline_id": 1060
       }
     ],
     businessNavList: [
@@ -3831,152 +2177,6 @@ I+1VPMVAUA7yGlqyr/gjGFhSaXWWErDZHWN/srHWEHdpxLyQwiMBOxG+32KjB86C
         "num": 1000,
         "sale_num": 0,
         "gold_price": 68
-      }
-    ],
-    adressList: [
-      {
-        "receiver_id": 46,
-        "receiver_name": "菩提二",
-        "receiver_phone": "13691190746",
-        "receiver_address": "北京市北京市市辖区角门13号院6-14-101北京市北京市市辖区角门13号院6-14-101",
-        "default_a": 1,
-        "label": 1,
-        "detail_address": "角门13号院6-14-101北京市北京市市辖区角门13号院6-14-101",
-        "province_id": 110000,
-        "city_id": 110000,
-        "county_id": 110100
-      },
-      {
-        "receiver_id": 45,
-        "receiver_name": "菩提",
-        "receiver_phone": "13681153793",
-        "receiver_address": "四川省成都市武侯区大石西路",
-        "default_a": 0,
-        "label": 1,
-        "detail_address": "大石西路",
-        "province_id": 510000,
-        "city_id": 510100,
-        "county_id": 510107
-      },
-      {
-        "receiver_id": 47,
-        "receiver_name": "菩提二",
-        "receiver_phone": "13691190746",
-        "receiver_address": "北京市北京市市辖区角门13号院6-14-101",
-        "default_a": 0,
-        "label": 1,
-        "detail_address": "角门13号院6-14-101",
-        "province_id": 110000,
-        "city_id": 110000,
-        "county_id": 110100
-      },
-      {
-        "receiver_id": 48,
-        "receiver_name": "菩提二",
-        "receiver_phone": "13691190746",
-        "receiver_address": "北京市北京市丰台区角门13号院6-14-101",
-        "default_a": 0,
-        "label": 1,
-        "detail_address": "角门13号院6-14-101",
-        "province_id": 110000,
-        "city_id": 110000,
-        "county_id": 110106
-      },
-      {
-        "receiver_id": 49,
-        "receiver_name": "菩提三",
-        "receiver_phone": "13691190274",
-        "receiver_address": "天津市天津市东丽区家和市场南",
-        "default_a": 0,
-        "label": 3,
-        "detail_address": "家和市场南",
-        "province_id": 120000,
-        "city_id": 120000,
-        "county_id": 120110
-      },
-      {
-        "receiver_id": 50,
-        "receiver_name": "菩提四",
-        "receiver_phone": "13691190275",
-        "receiver_address": "天津市天津市东丽区家和市场南123",
-        "default_a": 0,
-        "label": 3,
-        "detail_address": "家和市场南123",
-        "province_id": 120000,
-        "city_id": 120000,
-        "county_id": 120110
-      },
-      {
-        "receiver_id": 51,
-        "receiver_name": "菩提五",
-        "receiver_phone": "13691190276",
-        "receiver_address": "天津市天津市东丽区家和市场南123456",
-        "default_a": 0,
-        "label": 3,
-        "detail_address": "家和市场南123456",
-        "province_id": 120000,
-        "city_id": 120000,
-        "county_id": 120110
-      },
-      {
-        "receiver_id": 52,
-        "receiver_name": "菩提六",
-        "receiver_phone": "13691190277",
-        "receiver_address": "天津市天津市东丽区家和市场南123456789",
-        "default_a": 0,
-        "label": 3,
-        "detail_address": "家和市场南123456789",
-        "province_id": 120000,
-        "city_id": 120000,
-        "county_id": 120110
-      },
-      {
-        "receiver_id": 53,
-        "receiver_name": "菩提七",
-        "receiver_phone": "13691190278",
-        "receiver_address": "天津市天津市东丽区家和市场南1234567890",
-        "default_a": 0,
-        "label": 3,
-        "detail_address": "家和市场南1234567890",
-        "province_id": 120000,
-        "city_id": 120000,
-        "county_id": 120110
-      },
-      {
-        "receiver_id": 54,
-        "receiver_name": "菩提八",
-        "receiver_phone": "13691190279",
-        "receiver_address": "天津市天津市东丽区家和市场南12345678901",
-        "default_a": 0,
-        "label": 2,
-        "detail_address": "家和市场南12345678901",
-        "province_id": 120000,
-        "city_id": 120000,
-        "county_id": 120110
-      },
-      {
-        "receiver_id": 55,
-        "receiver_name": "菩提九",
-        "receiver_phone": "13691190280",
-        "receiver_address": "天津市天津市东丽区家和市场南123456789012",
-        "default_a": 0,
-        "label": 2,
-        "detail_address": "家和市场南123456789012",
-        "province_id": 120000,
-        "city_id": 120000,
-        "county_id": 120110
-      },
-      {
-        "receiver_id": 56,
-        "receiver_name": "菩提十",
-        "receiver_phone": "13691190280",
-        "receiver_address": "天津市天津市东丽区家和市场南123456789012",
-        "default_a": 0,
-        "label": 2,
-        "detail_address": "家和市场南123456789012",
-        "province_id": 120000,
-        "city_id": 120000,
-        "county_id": 120110
       }
     ],
     city: {},

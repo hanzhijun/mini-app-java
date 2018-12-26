@@ -44,7 +44,7 @@
           <text class="l fs-22 fc-b2">卡其色;170/92A/XL</text>
           <text class="r fs-22 fc-59">x1</text>
         </view>
-        <span class="price fs-24 fc-59">￥9999.99</span>
+        <text class="price fs-24 fc-59">￥9999.99</text>
       </view>
     </view>
   </view>

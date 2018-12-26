@@ -3,9 +3,9 @@
 <view class="out-side-search">
 
     <view class="head-bar-fixed">
-        <text class="head-btn-return-txt opacity" bindtap="goBack" ontouchstart="">取消</text>
+        <text class="head-btn-return-txt opacity" bindtap="goBack" >取消</text>
         <view class="search-main-bar" style="width: 630rpx">
-            <text class="search-go opacity" title="搜索" ontouchstart="" bindtap="toSearch"></text>
+            <text class="search-go opacity" title="搜索"  bindtap="toSearch"></text>
             <input class="search-word" placeholder="搜索商品(助力购买更划算)" placeholder-style="color:#ffe0e8" bindinput="changeWord"></input>
         </view>
     </view>
@@ -17,8 +17,8 @@
 
     <ul class="search-history-list" wx:if="{{ searchLong > 0 }}">
         <li wx:for="{{ searchList }}">
-            <text class="txt" bindtap="toSearchOld" data-word="{{ item.text }}">{{ item.text }}</text>
-            <text class="del opacity" bindtap="delSearch" data-id="{{ item.id }}"></text>
+            <text class="txt" bindtap="toSearchOld" data-word="{{ item }}">{{ item }}</text>
+            <text class="del opacity" bindtap="delSearch" data-word="{{ item }}"></text>
         </li>
     </ul>
 

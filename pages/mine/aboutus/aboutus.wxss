@@ -1,57 +1,51 @@
-/* pages/mine/aboutus/aboutus.wxss */
+.out-side-aboutus {
+  background-color: #fff;
+  padding-top: 88rpx;
+}
 
-.icon_about {
-  height: 100%;
-  width: 100%;
+.out-side-aboutus .bhs-logo {
   text-align: center;
-  margin-top: 114rpx;
+  padding: 80rpx 0 0;
 }
 
-.icon_about image {
-  height: 127rpx;
-  width: 127rpx;
+.out-side-aboutus .bhs-logo image {
+  width: 150rpx;
+  height: 150rpx;
 }
 
-.title {
+.out-side-aboutus .bhs-v {
+  height: 140rpx;
+  text-align: center;
+  line-height: 90rpx;
+}
+
+.out-side-aboutus .abouts-ul li text {
+  display: inline-block;
+  line-height: 90rpx;
+  float: left;
+  margin: 0 25rpx;
+}
+
+.out-side-aboutus .abouts-ul li text.info {
+  float: right;
+}
+
+.out-side-aboutus .abouts-ul li .border-line-heng-e6e6e6 {
+  clear: both;
+}
+
+.out-side-aboutus .about-up {
+  min-height: calc(100vh - 208rpx)
+}
+
+.out-side-aboutus .about-foot {
+  overflow: hidden;
+  padding: 12rpx 0;
+}
+
+.out-side-aboutus .about-foot text {
   display: block;
   width: 100%;
+  line-height: 48rpx;
   text-align: center;
-  font-size: 48rpx;
-  margin-top: 30rpx;
-  color: #333;
-}
-
-.ourInfo {
-  padding-left: 47rpx;
-  width: 390rpx;
-  background-color: white;
-  border-radius: 20rpx;
-  margin: 113rpx auto;
-  color: #999;
-  border: 1px solid transparent;
-}
-
-.ourInfo view {
-  padding-top: 28rpx;
-}
-
-.ourInfo view:last-child {
-  padding-bottom: 28rpx;
-}
-
-.hotline, .email, .version {
-  margin-left: 15rpx;
-}
-
-.permit {
-  position: absolute;
-  bottom: 190rpx;
-  width: 100%;
-  text-align: center;
-  color: #333;
-}
-
-.permit text {
-  display: block;
-  margin-top: 20rpx;
 }

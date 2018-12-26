@@ -170,8 +170,6 @@
 
 .out-side-confirm .order-goods-message {
   height: 80rpx;
-  border-top: 1px solid #f4f4f4;
-  border-bottom: 1px solid #f4f4f4;
 }
 
 .out-side-confirm .order-goods-message .title {
@@ -244,7 +242,7 @@
   position: fixed;
   left: 0;
   bottom: 0;
-  border-top: 1px solid #f4f4f4;
+  z-index: 1;
 }
 
 .out-side-confirm .go-pay text {
@@ -263,7 +261,7 @@
   float: right;
 }
 
-.out-side-confirm .go-pay a {
+.out-side-confirm .go-pay .fs-38 {
   display: inline-block;
   width: 212rpx;
   line-height: 100rpx;
@@ -279,7 +277,7 @@
   position: fixed;
   left: 0;
   bottom: 98rpx;
-  border-top: 1px solid #f4f4f4;
+  z-index: 1;
 }
 
 .out-side-confirm .golden-yh .title {

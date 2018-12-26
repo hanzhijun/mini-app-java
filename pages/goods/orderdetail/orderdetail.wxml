@@ -56,7 +56,7 @@
         <li><text class="txt">创建时间：2018-10-26  17:30:59</text></li>
         <li><text class="txt">付款时间：2018-10-26  17:30:59</text></li>
         <li><text class="txt">发货时间：2018-10-26  17:30:59</text></li>
-        <li><text class="txt">订单编号：201820822712893711</text><text class="copy fc-1a fs-24 opacity" href="javascript:void(0)">复制</text></li>
+        <li><text class="txt">订单编号：201820822712893711</text><text class="copy fc-1a fs-24 opacity">复制</text></li>
     </ul>
 
     <ul class="order-goods-p-count">
@@ -75,8 +75,8 @@
     </ul>
 
     <view class="footer-btn">
-        <text class="red opacity" href="javascript:void(0)">确认收货</text>
-        <text class="opacity" href="javascript:void(0)">查看物流</text>
+        <text class="red opacity">确认收货</text>
+        <text class="opacity">查看物流</text>
     </view>
 
 </view>

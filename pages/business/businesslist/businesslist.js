@@ -13,7 +13,7 @@ Page({
         loading: 0, // loading加载提示框
         loginbox: 0, // 登录弹窗
         toast: 0, // toast提示
-        toastTxt: '你真的很不错哟！', // toast文字
+        toastTxt: '系统错误，请稍后重试!', // toast文字
         imgUrl: app.globalData.imgUrl,
 
         business_category_id: '', // 一级类目id

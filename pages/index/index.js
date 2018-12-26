@@ -10,70 +10,69 @@ Page({
     loading: 0, // loading加载提示框
     loginbox: 0, // 登录弹窗
     toast: 0, // toast提示
-    title: '首页', // 标题
-    toastTxt: '你真的很不错哟！', // toast文字
+    title: '贝划算，开始划算生活', // 标题
+    toastTxt: '系统错误，请稍后重试!', // toast文字
     imgUrl: app.globalData.imgUrl,
-    imageList: [],
-    menuList: [],
-    userInfo: {},
-    hasUserInfo: false
+    isLogin: app.globalData.isLogin,
+    gold: null,
+    userInfo: null,
+
+    imageList: [], // banner图列表
+    menuList: [], // 分类图标列表
+    recommendList: [] // 推荐商品列表
   },
 
   onLoad: function () {
-    /*        if (app.globalData.userInfo) {
-     this.setData({
-     userInfo: app.globalData.userInfo,
-     hasUserInfo: true
-     });
-     } else if (this.data.canIUse) {
-     // 由于 getUserInfo 是网络请求，可能会在 Page.onLoad 之后才返回
-     // 所以此处加入 callback 以防止这种情况
-     app.userInfoReadyCallback = res => {
-     this.setData({
-     userInfo: res.userInfo,
-     hasUserInfo: true
-     });
-     }
-     } else {
-     // 在没有 open-type=getUserInfo 版本的兼容处理
-     wx.getUserInfo({
-     success: res => {
-     app.globalData.userInfo = res.userInfo;
-     this.setData({
-     userInfo: res.userInfo,
-     hasUserInfo: true
-     });
-     }
-     })
-     }*/
-    this.getData();
-    wx.setStorageSync('aesKey', 'rDPrNmQzrXQxBZZ2');
-    wx.setStorageSync('unionId', 'ouA1Y0oLXxWH1b7YeU7BPSSHaB70');
-    wx.setStorageSync('openId', 'ouA1Y0oLXxWH1b7YeU7BPSSHaB70');
-    wx.setStorageSync('sid', '9465a0c0fcfb4fbfb6b2d6af1f2e31de');
-    wx.setStorageSync('uid', '516964814301212672');
-    wx.setStorageSync('session', 'iHNrt0aOLjX5rCIK+eYkVonwuhYgk2jec7GEYFPHvpN8TV76+BC0V5K7M8d7crqm');
-    wx.setStorageSync('session-login', 'd9eb1410f1f744adafa6e8d4b102e271');
-
-    let testSign = app.getSign('ASDFG', '456789')
-    console.log(testSign)
+    this.showpageList();
+    this.clientListByCodes();
   },
-  getData() {
+  /**
+   * 获取banner、nav列表
+   */
+  showpageList() {
+
     this.setData({
       loading: 1
     });
     let _this = this;
     app.myAjax('post', 'bhs-client-online/showpageConfig/showpageList', {}, (res) => {
-
       if (res.code == 1) {
-        console.info(res.data);
         let {imageList, menuList} = res.data;
         _this.setData({
           imageList,
           menuList
         })
       }
+      _this.setData({
+        loading: 0
+      })
+    }, () => {
+      _this.setData({
+        loading: 0
+      })
+    })
 
+  },
+  /**
+   * 获取商品推荐列表
+   */
+  clientListByCodes() {
+    this.setData({
+      loading: 1
+    });
+    let _this = this;
+    app.myAjax('post', 'bhs-client-online/showpageContent/clientListByCodes', {}, (res) => {
+      if (res.code == 1) {
+        if (!res.data) return;
+        let {data} = res;
+        let {recommendList} = _this.data;
+        for (let i = 0; i < data.length; i++) {
+          recommendList.push(data[i])
+        }
+        _this.setData({
+          recommendList
+        })
+      }
       _this.setData({
         loading: 0
       })
@@ -84,53 +83,16 @@ Page({
     })
   },
   /**
-   * 用户手动触发登录
-   * @param e
+   * 页面相关事件处理函数--监听用户下拉动作
    */
-  getUserInfo: function (e) {
-    app.globalData.userInfo = e.detail.userInfo;
-    app.globalData.hasUserInfo = true;
+  onPullDownRefresh: function () {
+
     this.setData({
-      userInfo: e.detail.userInfo,
-      hasUserInfo: true
+      goodsInfo: '',
+      pkList: []
     });
-    app.toLogin(this);
-  },
-  /**
-   * 登录成功后回执
-   * @param res
-   */
-  userInfoReadyCallback: function (res) {
-    console.log('登录后index页回执' + JSON.stringify(res));
-  },
-  /**
-   * 关闭登录弹窗
-   */
-  loginBoxClose() {
-    this.setData({
-      loginbox: 0
-    });
-  },
-  /**
-   * toast弹窗触发
-   */
-  showToast() {
-    app.showToast(this, '提示语弹窗', 6)
-  },
-  /**
-   * 调试用加密
-   */
-  jiami() {
-    app.getEncryptKey();
-    app.getEncryptData('JHGD5DFKJH');
-  },
-  /**
-   * 调试用登录
-   */
-  toLogin() {
-    this.setData({
-      loginbox: 1
-    })
+    this.onShow();
+
   },
   /**
    * 跳转类目
@@ -143,5 +105,23 @@ Page({
    */
   searchJump() {
     app.openPage('goods/search/search')
+  },
+  /**
+   * 用户手动触发登录
+   * @param e
+   */
+  getUserInfo: function (e) {
+    wx.setStorageSync('userInfo', e.detail.userInfo);
+    this.setData({
+      userInfo: e.detail.userInfo
+    });
+    app.toLogin(this);
+  },
+  /**
+   * 登录成功后回执
+   * @param res
+   */
+  userInfoReadyCallback: function (res) {
+    console.log('登录后index页回执' + JSON.stringify(res));
   }
 });

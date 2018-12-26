@@ -3,17 +3,25 @@
   min-height: 100vh;
 }
 
+.out-side-cart .head-bar-fixed {
+  background-color: #fff;
+}
+
+.out-side-cart .head-bar-fixed .border-line-heng-e6e6e6 {
+  display: block;
+  clear: both;
+}
+
 .out-side-cart .header-address {
   width: 280rpx;
   height: 50rpx;
   line-height: 50rpx;
   padding-left: 35rpx;
   font-size: 28rpx;
-  color: #fff;
   position: absolute;
   left: 20rpx;
   top: 19rpx;
-  background: url('https://api.duishangbao.cn/upload/image/icon_zu.png') no-repeat 0 -344rpx / 70rpx 1000rpx;
+  background: url('https://api.duishangbao.cn/upload/image/icon_zu.png?v=1220') no-repeat 0 -952rpx / 70rpx 1000rpx;
 }
 
 .out-side-cart .header-cart-btn {
@@ -21,7 +29,6 @@
   height: 50rpx;
   line-height: 50rpx;
   font-size: 28rpx;
-  color: #fff;
   position: absolute;
   right: 20rpx;
   top: 19rpx;

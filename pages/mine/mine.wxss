@@ -2,7 +2,7 @@
   background-color: #f4f4f4;
   overflow: hidden;
   min-height: 100vh;
-  padding-bottom: 113rpx;
+  padding-bottom: 20rpx;
 }
 
 .out-side-mine .mine-head-bar {
@@ -50,6 +50,7 @@
 }
 
 .out-side-mine .head-k-mess {
+  display: block;
   text-align: center;
   padding-top: 60rpx;
 }
@@ -62,6 +63,7 @@
 }
 
 .out-side-mine .head-k-mess2 {
+  display: block;
   height: 72rpx;
   line-height: 72rpx;
   text-align: center;
@@ -70,6 +72,8 @@
 
 .out-side-mine .head-k-mess2 .gold {
   display: inline-block;
+  height: 72rpx;
+  line-height: 72rpx;
   padding-left: 60rpx;
   background: url('https://api.duishangbao.cn/upload/image/mine-header-gold-bj1.png') no-repeat 0 0 / 60rpx 72rpx;
   font-size: 58rpx;
@@ -188,26 +192,22 @@
 }
 
 .out-side-mine .mine-nav-list {
-  height: 372rpx;
+  overflow: hidden;
   background-color: #fff;
 }
 
 .out-side-mine .mine-nav-list .opacity {
   display: inline-block;
   width: calc(25vw - 1px);
-  height: 185rpx;
+  height: 145rpx;
   padding-top: 42rpx;
-  border-left: 1px solid #dcdcdc;
   float: left;
   text-align: center;
 }
 
-.out-side-mine .mine-nav-list .down {
-  border-bottom: 1px solid #dcdcdc;
-}
-
-.out-side-mine .mine-nav-list .first {
-  border-left: 1px solid #fff;
+.out-side-mine .mine-nav-list .border-line-shu-e6e6e6 {
+  float: left;
+  height: 187rpx;
 }
 
 .out-side-mine .mine-nav-list .img {
